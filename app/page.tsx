@@ -1,9 +1,10 @@
-import Button from "./components/ui/button";
+import Button from "../components/ui/button";
 import Image from "next/image";
 
 export default function Home() {
   const experiences = [
     {
+      id: 1,
       title: "Cadreuse",
       company: "Web tv, IUT de Troyes",
       date: "2024 - Présent",
@@ -13,6 +14,7 @@ export default function Home() {
       ],
     },
     {
+      id: 2,
       title: "Animatrice en centre de loisir",
       company: "Brou et Cloyes",
       date: "2023 - Présent",
@@ -23,6 +25,7 @@ export default function Home() {
       ],
     },
     {
+      id: 3,
       title: "Chargée de Communication",
       company: "Association FIFO, Université d'Orléans",
       date: "2022 - Présent",
@@ -33,6 +36,7 @@ export default function Home() {
       ],
     },
     {
+      id: 4,
       title: "Equipière polyvalente McDonald",
       company: "Olivet",
       date: "2021 - 2022",
@@ -46,18 +50,21 @@ export default function Home() {
 
   const formations = [
     {
+      id: 1,
       title: "BUT MMI",
       company: "IUT Troyes",
       date: "2024 - Présent",
       list: ["Actuellement en 1e année"],
     },
     {
+      id: 2,
       title: "Licence Informatique",
       company: "Université d'Orléans",
       date: "2021 - 2024",
       list: ["Obtention 2e année"],
     },
     {
+      id: 3,
       title: "BAFA",
       company: "UFCV, Orléans",
       date: "2020 - 2023",
@@ -68,16 +75,61 @@ export default function Home() {
       ],
     },
     {
+      id: 4,
       title: "Baccalauréat",
       company: "Lycée Jehan de Beauce",
       date: "2020 - 2021",
       list: ["Spécialités Mathématiques et NSI"],
     },
     {
+      id: 5,
       title: "Brevet Initiation Aéronautique",
       company: "Lycée Emile Zola",
       date: "2018 - 2019",
       list: ["Apprentissage des bases de l'aéronautique"],
+    },
+  ];
+
+  const logos = [
+    {
+      id: 1,
+      src: "/logos/Figma.png",
+      alt: "Figma",
+    },
+    {
+      id: 2,
+      src: "/logos/Lightroom.png",
+      alt: "Lightroom",
+    },
+    {
+      id: 3,
+      src: "/logos/PS.png",
+      alt: "Photoshop",
+    },
+    {
+      id: 4,
+      src: "/logos/AI.png",
+      alt: "Adobe Illustrator",
+    },
+    {
+      id: 5,
+      src: "/logos/XD.png",
+      alt: "Adobe XD",
+    },
+    {
+      id: 6,
+      src: "/logos/premiere pro.png",
+      alt: "Premiere Pro",
+    },
+    {
+      id: 7,
+      src: "/logos/AE.png",
+      alt: "After Effects",
+    },
+    {
+      id: 8,
+      src: "/logos/A.png",
+      alt: "Adobe",
     },
   ];
 
@@ -122,12 +174,12 @@ export default function Home() {
       </section>
       <section className="grid grid-cols-2 gap-16 p-32">
         <div className="flex flex-col gap-8">
-          <h2 className="text-2xl font-bold">Expérience</h2>
+          <h2 className="text-2xl font-bold">Expériences</h2>
           <div>
-            {experiences.map((experience, index) => (
+            {experiences.map((experience) => (
               <div
                 className="group py-8 flex flex-col gap-8 border-t-2 border-light last:border-b-2"
-                key={index}
+                key={experience.id}
               >
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex flex-col">
@@ -146,12 +198,12 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col gap-8">
-          <h2 className="text-2xl font-bold">Formation</h2>
+          <h2 className="text-2xl font-bold">Formations</h2>
           <div>
-            {formations.map((formation, index) => (
+            {formations.map((formation) => (
               <div
                 className="group py-8 flex flex-col gap-8 border-t-2 border-light last:border-b-2"
-                key={index}
+                key={formation.id}
               >
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex flex-col">
@@ -170,9 +222,73 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="h-screen">
-        <div></div>
+      <section className="h-screen px-24 py-16">
+        <div className="h-full bg-white text-black flex items-center justify-between gap-4 px-10 rounded-3xl">
+          <div className="flex flex-col gap-12 py-8 max-w-xl">
+            <h2 className="text-6xl font-extrabold">Compétences</h2>
+            <p>
+              {
+                "Voici les outils que j'utilise régulièrement : des logiciels de conception et prototypage, des outils de création graphique, de montage vidéo, de retouche photo, ainsi que des technologies pour l'intégration front-end."
+              }
+            </p>
+          </div>
+          <div className="flex gap-20 h-full overflow-y-hidden">
+            <div className="relative flex flex-col">
+              <div className="flex flex-col gap-20 py-10 animate-[marquee_20s_linear_infinite_reverse]">
+                {logos.map((logo) => (
+                  <div key={logo.id}>
+                    <Image
+                      src={logo.src}
+                      alt={logo.alt}
+                      width={100}
+                      height={100}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="absolute flex flex-col gap-20 py-10 animate-[marquee2_20s_linear_infinite_reverse]">
+                {logos.map((logo) => (
+                  <div key={logo.id}>
+                    <Image
+                      src={logo.src}
+                      alt={logo.alt}
+                      width={100}
+                      height={100}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative flex flex-col">
+              <div className="flex flex-col gap-20 py-10 animate-[marquee_20s_linear_infinite]">
+                {logos.map((logo) => (
+                  <div key={logo.id}>
+                    <Image
+                      src={logo.src}
+                      alt={logo.alt}
+                      width={100}
+                      height={100}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="absolute flex flex-col gap-20 py-10 animate-[marquee2_20s_linear_infinite]">
+                {logos.map((logo) => (
+                  <div key={logo.id}>
+                    <Image
+                      src={logo.src}
+                      alt={logo.alt}
+                      width={100}
+                      height={100}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
+      <section className="h-screen"></section>
     </>
   );
 }

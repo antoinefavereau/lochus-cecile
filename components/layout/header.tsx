@@ -13,7 +13,7 @@ export default function Header() {
             <Link href="/#about">À propos</Link>
           </li>
           <li>
-            <Link href="/#contact">Contact</Link>
+            <Link href="/#formations">Formations</Link>
           </li>
           <li>
             <Link href="/" title="Cécile Lochus">
@@ -21,13 +21,13 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <Link href="/projects">Projets</Link>
-          </li>
-          <li>
             <Link href="/#skills">Compétences</Link>
           </li>
           <li>
-            <Link href="/#formations">Formations</Link>
+            <Link href="/projects">Projets</Link>
+          </li>
+          <li>
+            <Link href="/#contact">Contact</Link>
           </li>
         </ul>
       </nav>

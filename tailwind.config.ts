@@ -14,6 +14,16 @@ export default {
         primary: "var(--primary)",
         light: "var(--light)",
       },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateY(0%)' },
+          '100%': { transform: 'translateY(-100%)' },
+        },
+        marquee2: {
+          '0%': { transform: 'translateY(100%)' },
+          '100%': { transform: 'translateY(0%)' },
+        },
+      },
     },
   },
   plugins: [],
