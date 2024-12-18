@@ -156,9 +156,6 @@ export default function Home() {
       image: "/projects/mmitv.png",
     },
   ];
-  const half = Math.ceil(projects.length / 2);
-  const firstColumnProjects = projects.slice(0, half);
-  const secondColumnProjects = projects.slice(half);
 
   return (
     <>
@@ -345,7 +342,7 @@ export default function Home() {
         <div className="columns-2 gap-7 max-w-5xl">
           {projects.map((project) => (
             <Link
-              href={`/projects/${project.name}`}
+              href={`/projets/${project.name}`}
               key={project.name}
               className="block rounded-2xl overflow-hidden pb-7 [&:nth-child(3)]:pt-14"
             >
