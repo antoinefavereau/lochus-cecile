@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Button from "../components/ui/button";
 import Image from "next/image";
 
@@ -133,6 +134,32 @@ export default function Home() {
     },
   ];
 
+  const projects = [
+    {
+      id: 1,
+      name: "audio-to-text",
+      image: "/projects/audio-to-text.png",
+    },
+    {
+      id: 2,
+      name: "utopia",
+      image: "/projects/utopia.png",
+    },
+    {
+      id: 3,
+      name: "fifo",
+      image: "/projects/fifo.png",
+    },
+    {
+      id: 4,
+      name: "mmitv",
+      image: "/projects/mmitv.png",
+    },
+  ];
+  const half = Math.ceil(projects.length / 2);
+  const firstColumnProjects = projects.slice(0, half);
+  const secondColumnProjects = projects.slice(half);
+
   return (
     <>
       <section className="flex flex-col items-center justify-center h-screen">
@@ -172,7 +199,7 @@ export default function Home() {
         </div>
         <Button variant="outlined">CV</Button>
       </section>
-      <section className="grid grid-cols-2 gap-16 p-32">
+      <section id="formations" className="grid grid-cols-2 gap-16 p-32">
         <div className="flex flex-col gap-8">
           <h2 className="text-2xl font-bold">Expériences</h2>
           <div>
@@ -222,9 +249,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="h-screen px-24 py-16">
-        <div className="h-full bg-white text-black flex items-center justify-between gap-4 px-10 rounded-3xl">
-          <div className="flex flex-col gap-12 py-8 max-w-xl">
+      <section id="skills" className="h-screen px-28 py-16">
+        <div className="h-full bg-white text-black flex items-center justify-between gap-4 px-12 rounded-[3rem]">
+          <div className="flex flex-col gap-12 py-16 max-w-xl">
             <h2 className="text-6xl font-extrabold">Compétences</h2>
             <p>
               {
@@ -288,7 +315,51 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="h-screen"></section>
+      <section className="flex px-36 py-32">
+        <p className="text-3xl max-w-4xl">
+          {"Je déborde de "}
+          <strong className="text-primary font-normal">
+            {"mapassion pour le design"}
+          </strong>
+          {" et j'ai "}
+          <strong className="text-primary font-normal">
+            {"envie d'apprendre et de grandir"}
+          </strong>
+          {" dans ce domaine. Je n'ai pas peur d'apporter des "}
+          <strong className="text-primary font-normal">
+            {"perspectives nouvelles et de la créativité"}
+          </strong>
+          {
+            ", et je m'engage à constamment améliorer mes compétences. Je sais qu'il peut être difficile de me donner une chance, mais je crois qu'avec "
+          }
+          <strong className="text-primary font-normal">
+            {"mon potentiel et ma détermination"}
+          </strong>
+          {
+            ", je peux devenir la meilleure designer junior que vous pourriez recruter."
+          }
+        </p>
+      </section>
+      <section className="flex flex-col items-center gap-20 p-20">
+        <h2 className="text-8xl font-extrabold text-primary">Projets</h2>
+        <div className="columns-2 gap-7 max-w-5xl">
+          {projects.map((project) => (
+            <Link
+              href={`/projects/${project.name}`}
+              key={project.name}
+              className="block rounded-2xl overflow-hidden pb-7 [&:nth-child(3)]:pt-14"
+            >
+              <Image
+                className="w-full h-auto"
+                src={project.image}
+                alt={project.name}
+                width={500}
+                height={300}
+              />
+            </Link>
+          ))}
+        </div>
+      </section>
     </>
   );
 }
