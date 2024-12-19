@@ -16,12 +16,12 @@ export default {
       },
       keyframes: {
         marquee: {
-          '0%': { transform: 'translateY(0%)' },
-          '100%': { transform: 'translateY(-100%)' },
+          "0%": { transform: "translateY(0%)" },
+          "100%": { transform: "translateY(-100%)" },
         },
         marquee2: {
-          '0%': { transform: 'translateY(100%)' },
-          '100%': { transform: 'translateY(0%)' },
+          "0%": { transform: "translateY(100%)" },
+          "100%": { transform: "translateY(0%)" },
         },
       },
     },
