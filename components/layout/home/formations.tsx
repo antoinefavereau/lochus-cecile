@@ -94,7 +94,7 @@ export default function Formations() {
         <div>
           {experiences.map((experience) => (
             <div
-              className="group py-8 flex flex-col gap-8 border-t-2 border-light last:border-b-2"
+              className="group py-8 flex flex-col border-t-2 border-light last:border-b-2"
               key={experience.id}
             >
               <div className="flex items-center justify-between gap-2">
@@ -104,11 +104,13 @@ export default function Formations() {
                 </div>
                 <p>{experience.date}</p>
               </div>
-              <ul className="hidden group-hover:block">
-                {experience.list.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
+              <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-max-height duration-500">
+                <ul className="pt-8">
+                  {experience.list.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           ))}
         </div>
@@ -118,7 +120,7 @@ export default function Formations() {
         <div>
           {formations.map((formation) => (
             <div
-              className="group py-8 flex flex-col gap-8 border-t-2 border-light last:border-b-2"
+              className="group py-8 flex flex-col border-t-2 border-light last:border-b-2"
               key={formation.id}
             >
               <div className="flex items-center justify-between gap-2">
@@ -128,11 +130,13 @@ export default function Formations() {
                 </div>
                 <p>{formation.date}</p>
               </div>
-              <ul className="hidden group-hover:block">
-                {formation.list.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
+              <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-max-height duration-500">
+                <ul className="pt-8">
+                  {formation.list.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           ))}
         </div>
