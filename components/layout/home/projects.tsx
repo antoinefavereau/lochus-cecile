@@ -28,12 +28,12 @@ export default function Projects() {
   return (
     <section className="flex flex-col items-center gap-20 p-20">
       <h2 className="text-8xl font-extrabold text-primary">Projets</h2>
-      <div className="columns-2 gap-7 max-w-5xl">
+      <div className="columns-2 gap-7 max-w-5xl mt-14">
         {projects.map((project) => (
           <Link
             href={`/projets/${project.name}`}
             key={project.name}
-            className="block rounded-2xl overflow-hidden pb-7 [&:nth-child(3)]:pt-14"
+            className="block rounded-2xl overflow-hidden pb-7 first:-mt-14"
           >
             <Image
               className="w-full h-auto"
