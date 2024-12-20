@@ -14,6 +14,9 @@ export default {
         primary: "var(--primary)",
         light: "var(--light)",
       },
+      fontFamily: {
+        sans: ["Poppins", "system-ui"],
+      },
       keyframes: {
         marquee: {
           "0%": { transform: "translateY(0%)" },
