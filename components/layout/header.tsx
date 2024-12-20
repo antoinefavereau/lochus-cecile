@@ -17,7 +17,13 @@ export default function Header() {
           </li>
           <li>
             <Link href="/" title="Cécile Lochus">
-              <Image src="/logo_cecile_lochus.svg" alt="Logo" width={40} height={40} />
+              <Image
+                className="h-12 w-auto"
+                src="/logo_cecile_lochus.svg"
+                alt="Logo"
+                width={100}
+                height={100}
+              />
             </Link>
           </li>
           <li>
