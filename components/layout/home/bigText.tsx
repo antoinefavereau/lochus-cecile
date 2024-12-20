@@ -19,7 +19,7 @@ export default function BigText() {
         ".word",
         {
           duration: 0.5,
-          opacity: 0,
+          opacity: 0.1,
           y: 10,
           ease: "circ.out",
           stagger: 0.2,
