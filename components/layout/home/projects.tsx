@@ -28,7 +28,7 @@ export default function Projects() {
   return (
     <section className="flex flex-col items-center gap-20 p-20">
       <h2 className="text-9xl font-light">Projets</h2>
-      <div className="columns-2 gap-6 max-w-5xl mt-8">
+      <div className="columns-2 gap-6 max-w-7xl mt-8">
         {projects.map((project) => (
           <Link
             href={`/projets/${project.name}`}
