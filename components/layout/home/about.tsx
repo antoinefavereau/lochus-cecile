@@ -5,12 +5,18 @@ import Button from "@/components/ui/button";
 import { useEffect, useState } from "react";
 
 export default function About() {
-  const titles = ["créative", "empathique", "curieuse", "rigoureuse"];
+  const [titles, setTitles] = useState([
+    "créative",
+    "empathique",
+    "curieuse",
+    "rigoureuse",
+  ]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((currentIndex + 1) % titles.length);
+      setTitles((titles) => [...titles, titles[currentIndex]]);
+      setCurrentIndex(currentIndex + 1);
     }, 3000);
     return () => clearInterval(interval);
   }, [currentIndex, titles.length]);
@@ -42,8 +48,8 @@ export default function About() {
               className="transform transition-transform duration-300 ease-in-out"
               style={{ transform: `translateY(${-currentIndex * 4}rem)` }}
             >
-              {titles.map((title) => (
-                <span key={title} className="block h-16">
+              {titles.map((title, index) => (
+                <span key={title + index} className="titleItem block h-16">
                   {title}
                 </span>
               ))}
