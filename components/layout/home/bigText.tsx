@@ -19,10 +19,10 @@ export default function BigText() {
         ".word",
         {
           duration: 0.5,
-          opacity: 0,
+          opacity: 0.05,
           y: 10,
           ease: "circ.out",
-          stagger: 0.02,
+          stagger: 0.2,
           scrollTrigger: {
             trigger: container.current,
             // markers: true,
@@ -38,10 +38,10 @@ export default function BigText() {
   );
 
   const splitText = (text: string) => {
-    return text.split(" ").map((word, index) => {
+    return text.split("").map((word, index) => {
       return (
         <span key={index} className="word">
-          {word + " "}
+          {word}
         </span>
       );
     });
@@ -49,10 +49,10 @@ export default function BigText() {
 
   return (
     <section className="flex px-36 py-32">
-      <p className="text-3xl max-w-4xl" ref={container}>
+      <p className="text-5xl max-w-4xl leading-[4rem]" ref={container}>
         {splitText("Je déborde de ")}
         <strong className="text-primary font-normal">
-          {splitText("ma passion pour le design")}
+          {splitText("passion pour le design")}
         </strong>
         {splitText(" et j'ai ")}
         <strong className="text-primary font-normal">
@@ -62,9 +62,9 @@ export default function BigText() {
         <strong className="text-primary font-normal">
           {splitText("perspectives nouvelles et de la créativité")}
         </strong>
-        {splitText(
-          ", et je m'engage à constamment améliorer mes compétences. Je sais qu'il peut être difficile de me donner une chance, mais je crois qu'avec "
-        )}
+        {splitText(", et je m'engage à constamment améliorer mes compétences.")}
+        <br />
+        {splitText("Je crois qu'avec ")}
         <strong className="text-primary font-normal">
           {splitText("mon potentiel et ma détermination")}
         </strong>
