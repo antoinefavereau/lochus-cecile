@@ -15,7 +15,11 @@ export default function About() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTitles((titles) => [...titles, titles[currentIndex]]);
+      // put the first title at the end of the array
+      setTitles((prevTitles) => [
+        ...prevTitles.slice(1, prevTitles.length),
+        prevTitles[0],
+      ]);
       setCurrentIndex(currentIndex + 1);
     }, 3000);
     return () => clearInterval(interval);
@@ -46,7 +50,10 @@ export default function About() {
           <span className="text-primary block h-16 leading-[3rem] transform translate-y-1 overflow-hidden">
             <div
               className="transform transition-transform duration-300 ease-in-out"
-              style={{ transform: `translateY(${-currentIndex * 4}rem)` }}
+              style={{
+                transform: `translateY(${-(currentIndex + 1) * 4}rem)`,
+                paddingTop: `${currentIndex * 4}rem`,
+              }}
             >
               {titles.map((title, index) => (
                 <span key={title + index} className="titleItem block h-16">
