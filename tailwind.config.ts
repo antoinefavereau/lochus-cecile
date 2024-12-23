@@ -18,6 +18,14 @@ export default {
         sans: ["Poppins", "system-ui"],
       },
       keyframes: {
+        customSpin: {
+          "0%": { transform: "rotateX(20deg) rotateY(30deg) skewX(30deg) rotate(0deg)" },
+          "100%": { transform: "rotateX(20deg) rotateY(30deg) skewX(30deg) rotate(360deg)" },
+        },
+        centeredSpin: {
+          "0%": { transform: "rotateX(-20deg) rotateY(-30deg) skewX(-30deg) translate(-50%, -50%) rotate(0deg)" },
+          "100%": { transform: "rotateX(-20deg) rotateY(-30deg) skewX(-30deg) translate(-50%, -50%) rotate(360deg)" },
+        },
         marquee: {
           "0%": { transform: "translateY(0%)" },
           "100%": { transform: "translateY(-100%)" },
