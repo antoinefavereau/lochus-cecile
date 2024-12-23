@@ -20,7 +20,6 @@ export default function BigText() {
         {
           duration: 0.5,
           opacity: 0.05,
-          y: 10,
           ease: "circ.out",
           stagger: 0.2,
           scrollTrigger: {

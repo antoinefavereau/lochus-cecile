@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="absolute start-0 top-0 end-0 p-10">
+    <header className="absolute z-10 start-0 top-0 end-0 p-10">
       <nav>
         <ul className="flex items-center justify-evenly">
           <li>
