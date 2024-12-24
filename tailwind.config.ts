@@ -19,12 +19,12 @@ export default {
       },
       keyframes: {
         customSpin: {
-          "0%": { transform: "skewX(30deg) rotate(0deg)" },
-          "100%": { transform: "skewX(30deg) rotate(360deg)" },
+          "0%": { transform: "rotateX(60deg) rotateY(10deg) rotate(0deg)" },
+          "100%": { transform: "rotateX(60deg) rotateY(10deg) rotate(360deg)" },
         },
         centeredSpin: {
-          "0%": { transform: "translate(-50%, -50%) skewX(-30deg) rotate(0deg)" },
-          "100%": { transform: "translate(-50%, -50%) skewX(-30deg) rotate(-360deg)" },
+          "0%": { transform: "translate(-50%, -50%) rotate(0deg)" },
+          "100%": { transform: "translate(-50%, -50%) rotate(-360deg)" },
         },
         marquee: {
           "0%": { transform: "translateY(0%)" },
