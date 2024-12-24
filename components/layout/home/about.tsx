@@ -45,18 +45,18 @@ export default function About() {
         height={150}
       />
       <div className="relative flex flex-col gap-32">
-        <h2 className="relative flex pb-12 text-6xl font-extrabold">
+        <h2 className="relative flex flex-wrap pb-12 text-6xl font-extrabold">
           <span className="me-4">Je suis</span>
-          <span className="text-primary block h-16 leading-[3rem] transform translate-y-1 overflow-hidden">
+          <span className="text-primary inline-block h-[5rem] transform overflow-hidden">
             <div
               className="transform transition-transform duration-300 ease-in-out"
               style={{
-                transform: `translateY(${-(currentIndex + 1) * 4}rem)`,
-                paddingTop: `${currentIndex * 4}rem`,
+                transform: `translateY(${-(currentIndex + 1) * 5}rem)`,
+                paddingTop: `${currentIndex * 5}rem`,
               }}
             >
               {titles.map((title, index) => (
-                <span key={title + index} className="titleItem block h-16">
+                <span key={title + index} className="block h-[5rem]">
                   {title}
                 </span>
               ))}
