@@ -8,23 +8,21 @@ export default function Hero() {
 
   return (
     <section className="relative flex flex-col items-center justify-center h-screen">
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none">
         {domains.map((domain, index) => (
           <div
             key={domain}
             className={`absolute rounded-full border-2 border-light animate-[customSpin_20s_linear_infinite]`}
             style={{
-              width: `${(index + 2) * 200}px`,
-              height: `${(index + 2) * 200}px`,
+              width: `${(index + 3) * 200}px`,
+              height: `${(index + 3) * 200}px`,
               animationDuration: `${20000 + index * 2000}ms`,
-              transform: `rotateX(20deg) rotateY(30deg) skewX(30deg)`,
             }}
           >
             <span
               className="absolute top-0 left-1/2 bg-background animate-[centeredSpin_20s_linear_infinite]"
               style={{
                 animationDuration: `${20000 + index * 2000}ms`,
-                animationDirection: "reverse",
               }}
             >
               {domain}
