@@ -18,7 +18,7 @@ export default function Header() {
     <li key={href}>
       <Link className="group block p-2" href={href}>
         <span className="relative block overflow-hidden">
-          <span className="block transform-3d group-hover:-translate-y-full group-hover:rotate-y-180 transition-transform duration-300 ease-in-out">{label}</span>
+          <span className="block group-hover:-translate-y-full transition-transform duration-300 ease-in-out">{label}</span>
           <span className="absolute group-hover:-translate-y-full transition-transform duration-300 ease-in-out">{label}</span>
         </span>
       </Link>
