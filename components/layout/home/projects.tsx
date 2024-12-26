@@ -1,50 +1,52 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Projects() {
   const projects = [
     {
       id: 1,
-      name: "audio-to-text",
+      title: "Audio-to-text",
       image: "/projects/audio-to-text.png",
     },
     {
       id: 2,
-      name: "utopia",
+      title: "Utopia",
       image: "/projects/utopia.png",
     },
     {
       id: 3,
-      name: "fifo",
-      image: "/projects/fifo.png",
+      title: "MMITV3",
+      image: "/projects/mmitv.png",
     },
     {
       id: 4,
-      name: "mmitv",
-      image: "/projects/mmitv.png",
+      title: "FIFO",
+      image: "/projects/fifo.png",
     },
   ];
 
+  const [selectedProject, setSelectedProject] = useState<any>(projects[0]);
+
   return (
-    <section className="flex flex-col items-center gap-20 p-20">
-      <h2 className="text-9xl font-light">Projets</h2>
-      <div className="columns-2 gap-6 w-full max-w-6xl mt-8">
-        {projects.map((project) => (
-          <Link
-            href={`/projets/${project.name}`}
-            key={project.name}
-            className="block rounded-2xl overflow-hidden pb-7 first:-mt-8"
-          >
-            <Image
-              className="w-full h-auto"
-              src={project.image}
-              alt={project.name}
-              width={500}
-              height={300}
-            />
-          </Link>
-        ))}
-      </div>
-    </section>
+    <section className="relative flex flex-col items-center gap-32 px-8 py-40 min-h-screen">
+      {projects.map((project) => (
+        <div key={project.id} className="absolute inset-0">
+          <Image className={`sticky top-0 w-full h-screen object-cover object-center brightness-90 transition-opacity duration-300 ${project.id !== selectedProject.id && "opacity-0"}`} src={project.image} width="1920" height="1080" alt={selectedProject.title} />
+        </div>
+      ))}
+      {projects.map((project) => (
+        <Link
+          href={`/ projets / ${project.title}`}
+          key={project.id}
+          className={`relative text-8xl font-bold ${project.id !== selectedProject.id && "opacity-50"}`}
+          onMouseEnter={() => setSelectedProject(project)}
+        >
+          {project.title}
+        </Link>
+      ))}
+    </section >
   );
 }
