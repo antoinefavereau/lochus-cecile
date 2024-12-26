@@ -94,7 +94,7 @@ export default function Formations() {
         <div>
           {experiences.map((experience) => (
             <div
-              className="group py-8 flex flex-col border-t-2 border-very_light last:border-b-2"
+              className="group py-8 flex flex-col border-t-2 border-veryLight last:border-b-2"
               key={experience.id}
             >
               <div className="flex items-center justify-between gap-2">
@@ -120,7 +120,7 @@ export default function Formations() {
         <div>
           {formations.map((formation) => (
             <div
-              className="group py-8 flex flex-col border-t-2 border-very_light last:border-b-2"
+              className="group py-8 flex flex-col border-t-2 border-veryLight last:border-b-2"
               key={formation.id}
             >
               <div className="flex items-center justify-between gap-2">

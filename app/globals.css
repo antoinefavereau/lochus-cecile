@@ -9,7 +9,7 @@
   --foreground: #ffffff;
   --primary: #f3931b;
   --light: #999999;
-  --very_light: rgba(255, 255, 255, 0.15);
+  --veryLight: rgba(255, 255, 255, 0.15);
 }
 
 body {
