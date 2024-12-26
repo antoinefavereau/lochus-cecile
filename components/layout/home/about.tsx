@@ -28,49 +28,49 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative flex items-end justify-between flex-wrap gap-16 p-40"
+      className="relative flex flex-col gap-40 p-32"
     >
       <Image
-        className="absolute top-40 right-24"
+        className="absolute top-16 right-32"
         src="/Stars.svg"
         alt=""
         width={200}
         height={200}
       />
       <Image
-        className="absolute bottom-0 right-1/4"
+        className="absolute bottom-1/4 left-0"
         src="/Star.svg"
         alt=""
-        width={150}
-        height={150}
+        width={250}
+        height={250}
       />
-      <div className="relative flex flex-col gap-32">
-        <h2 className="relative flex flex-wrap pb-12 text-6xl font-extrabold">
-          <span className="me-4">Je suis</span>
-          <span className="text-primary inline-block h-[5rem] transform overflow-hidden">
-            <div
-              className="transform transition-transform duration-300 ease-in-out"
-              style={{
-                transform: `translateY(${-(currentIndex + 1) * 5}rem)`,
-                paddingTop: `${currentIndex * 5}rem`,
-              }}
-            >
-              {titles.map((title, index) => (
-                <span key={title + index} className="block h-[5rem]">
-                  {title}
-                </span>
-              ))}
-            </div>
-          </span>
-          <span className="absolute start-0 bottom-0 w-[7ch] h-[2px] bg-primary"></span>
-        </h2>
-        <p className="text-lg max-w-2xl">
+      <h2 className="relative self-start pt-12 text-6xl font-extrabold max-w-3xl">
+        <span className="absolute start-0 top-0 w-[7ch] h-[2px] bg-primary"></span>
+        {"Hello, étudiante en BUT MMI, je suis "}
+        <span className="text-primary inline-block h-[5rem] translate-y-[28px] overflow-hidden">
+          <div
+            className="transform transition-transform duration-300 ease-in-out"
+            style={{
+              transform: `translateY(${-(currentIndex + 1) * 5}rem)`,
+              paddingTop: `${currentIndex * 5}rem`,
+            }}
+          >
+            {titles.map((title, index) => (
+              <span key={title + index} className="block h-[5rem]">
+                {title}
+              </span>
+            ))}
+          </div>
+        </span>
+      </h2>
+      <div className="self-end flex flex-col items-start gap-14 max-w-3xl">
+        <p className="text-lg text-light">
           {
             "J'ai 21 ans et je suis étudiante en première année de BUT MMI. Je suis passionnée par le multimédia, j'aime explorer et approfondir différents domaines créatifs, comme l'UI design, l'audiovisuel, le graphisme et la photographie. J'ai un désir constant de découvrir et d'apprendre pour nourrir ma créativité et me pousser à relever de nouveaux défis."
           }
         </p>
+        <Button variant="outlined">CV</Button>
       </div>
-      <Button variant="outlined">CV</Button>
     </section>
   );
 }
