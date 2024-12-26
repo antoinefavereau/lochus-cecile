@@ -13,6 +13,7 @@ export default {
         foreground: "var(--foreground)",
         primary: "var(--primary)",
         light: "var(--light)",
+        very_light: "var(--very_light)",
       },
       fontFamily: {
         sans: ["Poppins", "system-ui"],
