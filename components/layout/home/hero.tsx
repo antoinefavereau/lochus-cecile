@@ -19,7 +19,7 @@ export default function Hero() {
           return (
             <div
               key={domain}
-              className={`absolute rounded-full border-2 border-very_light animate-[customSpin_20s_linear_infinite]`}
+              className={`absolute rounded-full border-2 border-veryLight animate-[customSpin_20s_linear_infinite]`}
               style={{
                 width: `${(index + 2) * 250}px`,
                 height: `${(index + 2) * 250}px`,

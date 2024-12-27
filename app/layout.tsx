@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="fr">
       <body className={`antialiased`}>
         <Header />
-        <main className="overflow-hidden">{children}</main>
+        <main>{children}</main>
         <Footer />
         <Analytics />
       </body>

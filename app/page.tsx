@@ -8,8 +8,10 @@ import Projects from "@/components/layout/home/projects";
 export default function Home() {
   return (
     <>
-      <Hero />
-      <About />
+      <div className="overflow-hidden">
+        <Hero />
+        <About />
+      </div>
       <Formations />
       <Skills />
       <BigText />

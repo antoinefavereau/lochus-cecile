@@ -1,3 +1,6 @@
+"use client"
+
+import { usePathname } from 'next/navigation';
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,6 +17,8 @@ export default function Header() {
     { href: "/#contact", label: "Contact" },
   ];
 
+  const pathname = usePathname()
+
   const getNavItem = (href: string, label: string) => (
     <li key={href}>
       <Link className="group block p-2" href={href}>
@@ -26,7 +31,7 @@ export default function Header() {
   );
 
   return (
-    <header className="absolute z-10 start-0 top-0 end-0 p-10">
+    <header className={`${pathname === "/" ? "absolute" : "relative"} z-10 start-0 top-0 end-0 p-10`}>
       <nav>
         <ul className="flex items-center justify-evenly">
           {leftLinks.map(({ href, label }) => getNavItem(href, label))}
