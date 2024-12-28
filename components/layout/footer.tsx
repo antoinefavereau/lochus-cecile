@@ -22,7 +22,7 @@ export default function Footer() {
     },
   ];
   return (
-    <footer id="contact" className="relative px-16 pt-80 pb-8 overflow-hidden">
+    <footer id="contact" className="relative px-16 pt-72 pb-8 overflow-hidden">
       <Image
         className="absolute max-w-none w-[150vw] top-[90%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         src="ellipses.svg"
@@ -31,11 +31,11 @@ export default function Footer() {
         height={1080}
       />
       <Image
-        className="absolute top-0 right-0"
+        className="absolute top-8 right-0"
         src="etoile.svg"
         alt="étoile"
-        width={700}
-        height={700}
+        width={600}
+        height={600}
       />
       <div className="relative flex flex-col items-start gap-28">
         <Image
