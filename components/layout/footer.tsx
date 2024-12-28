@@ -37,7 +37,7 @@ export default function Footer() {
         width={600}
         height={600}
       />
-      <div className="relative flex flex-col items-start gap-28">
+      <div className="relative flex flex-col items-start gap-24">
         <Image
           className="mx-4"
           src="logoPortfolio_1.svg"
