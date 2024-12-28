@@ -39,7 +39,7 @@ export default function Header() {
             <Link href="/" title="Cécile Lochus">
               <Image
                 className="h-12 w-auto"
-                src="/logo_cecile_lochus.svg"
+                src="/logoPortfolio_1.svg"
                 alt="Logo"
                 width={100}
                 height={100}
