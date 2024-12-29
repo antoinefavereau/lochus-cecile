@@ -7,11 +7,13 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative flex flex-col items-center justify-center h-screen">
-      <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none"
+    <section className="relative flex flex-col items-center justify-center gap-16 h-screen">
+      <div
+        className="absolute inset-0 flex items-center justify-center select-none pointer-events-none"
         style={{
           perspective: "1000px",
-        }}>
+        }}
+      >
         {domains.map((domain, index) => {
           const animationDuration = 20000 + index * 2000;
           const animationDelay = animationDuration * Math.random();
@@ -38,13 +40,27 @@ export default function Hero() {
                 {domain}
               </span>
             </div>
-          )
+          );
         })}
       </div>
       <h1 className="relative flex flex-col items-center gap-5 text-7xl font-extrabold text-center">
         <span className="text-6xl font-medium text-primary">Portfolio</span>
         <span>LOCHUS Cécile</span>
       </h1>
+      <button
+        type="button"
+        className="relative bg-transparent border-none outline outline-[3px] w-6 h-10 rounded-xl"
+        title="Voir plus"
+      >
+        <div className="absolute top-2 start-0 h-6 w-full flex flex-col items-center justify-end gap-0.5 overflow-hidden animate-[scrollDashes_2s_linear_infinite]">
+          <div className="w-0.5 h-1 rounded-sm bg-white shrink-0"></div>
+          <div className="w-0.5 h-1 rounded-sm bg-white shrink-0"></div>
+          <div className="w-0.5 h-1 rounded-sm bg-white shrink-0"></div>
+          <div className="w-0.5 h-1 rounded-sm bg-white shrink-0"></div>
+          <div className="w-0.5 h-1 rounded-sm bg-white shrink-0"></div>
+        </div>
+        <div className="absolute w-2 h-2 bg-white rounded-full top-2 start-2 animate-[scrollDot_2s_linear_infinite]"></div>
+      </button>
     </section>
   );
 }
