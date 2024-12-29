@@ -49,7 +49,7 @@ export default function Hero() {
       </h1>
       <button
         type="button"
-        className="relative bg-transparent border-none outline outline-[3px] w-6 h-10 rounded-xl"
+        className="relative bg-transparent border-none outline outline-2 w-6 h-10 rounded-xl"
         title="Voir plus"
       >
         <div className="absolute top-2 start-0 h-6 w-full flex flex-col items-center justify-end gap-0.5 overflow-hidden animate-[scrollDashes_2s_linear_infinite]">
