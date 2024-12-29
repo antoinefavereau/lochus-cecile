@@ -20,8 +20,8 @@ export default {
       },
       keyframes: {
         customSpin: {
-          "0%": { transform: "rotateX(60deg) rotateY(10deg) rotate(0deg)" },
-          "100%": { transform: "rotateX(60deg) rotateY(10deg) rotate(360deg)" },
+          "0%": { transform: "rotateZ(-15deg) skewX(35deg) rotate(0deg)" },
+          "100%": { transform: "rotateZ(-15deg) skewX(35deg) rotate(360deg)" },
         },
         centeredSpin: {
           "0%": { transform: "translate(-50%, -50%) rotate(0deg)" },

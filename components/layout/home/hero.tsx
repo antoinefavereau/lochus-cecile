@@ -10,7 +10,7 @@ export default function Hero() {
     <section className="relative flex flex-col items-center justify-center h-screen">
       <div className="absolute inset-0 flex items-center justify-center select-none pointer-events-none"
         style={{
-          perspective: "2000px",
+          perspective: "1000px",
         }}>
         {domains.map((domain, index) => {
           const animationDuration = 20000 + index * 2000;
