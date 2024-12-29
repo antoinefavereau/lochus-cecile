@@ -37,7 +37,7 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project>(projects[0]);
 
   return (
-    <section className="flex flex-col">
+    <section className="flex flex-col gap-8">
       <div className="relative flex flex-col items-center gap-32 px-8 py-40 min-h-screen">
         {projects.map((project) => (
           <div key={project.id} className="absolute inset-0">
@@ -65,11 +65,11 @@ export default function Projects() {
           </Link>
         ))}
       </div>
-      <Link className="group flex py-8 overflow-hidden" href="/projets">
+      <Link className="group flex py-4 overflow-hidden" href="/projets">
         {new Array(20).fill(0).map((_, index) => (
           <div
             key={index}
-            className="shrink-0 flex items-center gap-4 pe-16 text-4xl animate-[horizontalMarquee_3s_linear_infinite]"
+            className="shrink-0 flex items-center gap-4 pe-16 text-2xl animate-[horizontalMarquee_3s_linear_infinite]"
           >
             <span>Voir plus de projets</span>
             <svg
