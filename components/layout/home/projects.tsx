@@ -54,7 +54,7 @@ export default function Projects() {
         ))}
         {projects.map((project) => (
           <Link
-            href={`/ projets / ${project.title}`}
+            href={`/projets/${project.title}`}
             key={project.id}
             className={`relative text-8xl font-bold ${
               project.id !== selectedProject.id && "opacity-50"
