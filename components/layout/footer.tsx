@@ -25,14 +25,14 @@ export default function Footer() {
     <footer id="contact" className="relative px-16 pt-72 pb-8 overflow-hidden">
       <Image
         className="absolute max-w-none w-[150vw] top-[90%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none"
-        src="ellipses.svg"
+        src="/ellipses.svg"
         alt="ellipses"
         width={1920}
         height={1080}
       />
       <Image
         className="absolute top-8 right-0 select-none pointer-events-none"
-        src="etoile.svg"
+        src="/etoile.svg"
         alt="étoile"
         width={600}
         height={600}
@@ -40,7 +40,7 @@ export default function Footer() {
       <div className="relative flex flex-col items-start gap-24">
         <Image
           className="mx-4"
-          src="logoPortfolio_1.svg"
+          src="/logoPortfolio_1.svg"
           alt="Logo"
           width={48}
           height={48}
