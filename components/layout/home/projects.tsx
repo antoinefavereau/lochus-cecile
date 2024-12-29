@@ -2,39 +2,22 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
-
-interface Project {
-  id: number;
-  title: string;
-  image: string;
-}
+import { useEffect, useState } from "react";
+import { fetchProjects } from "@/lib/data";
+import { Project } from "@/types/project";
 
 export default function Projects() {
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "Audio-to-text",
-      image: "/projects/audio-to-text.png",
-    },
-    {
-      id: 2,
-      title: "Utopia",
-      image: "/projects/utopia.png",
-    },
-    {
-      id: 3,
-      title: "MMITV3",
-      image: "/projects/mmitv.png",
-    },
-    {
-      id: 4,
-      title: "FIFO",
-      image: "/projects/fifo.png",
-    },
-  ];
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const [selectedProject, setSelectedProject] = useState<Project>(projects[0]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchedProjects = await fetchProjects();
+      setProjects(fetchedProjects);
+      setSelectedProject(fetchedProjects[0]);
+    };
+    fetchData();
+  }, []);
 
   return (
     <section className="flex flex-col gap-8">
@@ -43,12 +26,12 @@ export default function Projects() {
           <div key={project.id} className="absolute inset-0">
             <Image
               className={`sticky top-0 w-full h-screen object-cover object-center brightness-90 transition-opacity duration-300 ${
-                project.id !== selectedProject.id && "opacity-0"
+                project.id !== selectedProject?.id && "opacity-0"
               }`}
-              src={project.image}
+              src={project.homepage_image}
               width="1920"
               height="1080"
-              alt={selectedProject.title}
+              alt={selectedProject?.title ?? ""}
             />
           </div>
         ))}
@@ -57,7 +40,7 @@ export default function Projects() {
             href={`/projets/${project.title}`}
             key={project.id}
             className={`relative text-8xl font-bold ${
-              project.id !== selectedProject.id && "opacity-50"
+              project.id !== selectedProject?.id && "opacity-50"
             }`}
             onMouseEnter={() => setSelectedProject(project)}
           >

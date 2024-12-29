@@ -2,93 +2,36 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
+import { Project } from "@/types/project";
+import { fetchProjects } from "@/lib/data";
 
-interface Category {
-  id: number;
-  title: string;
-}
-
-interface Project {
-  id: number;
-  title: string;
-  image: string;
-  category: number;
-  year: string;
-}
+const categories: string[] = [
+  "Tous",
+  "Ui/Ux Design",
+  "Audiovisuel",
+  "Branding",
+  "Réseaux sociaux",
+];
 
 export default function Page() {
-  const categories: Category[] = [
-    {
-      id: 0,
-      title: "Tous",
-    },
-    {
-      id: 1,
-      title: "Ui/Ux Design",
-    },
-    {
-      id: 2,
-      title: "Audiovisuel",
-    },
-    {
-      id: 3,
-      title: "Branding",
-    },
-    {
-      id: 4,
-      title: "Réseaux sociaux",
-    },
-  ];
-
-  const projects: Project[] = useMemo(
-    () => [
-      {
-        id: 1,
-        title: "Audio-to-text",
-        image: "/projects/audio-to-text.png",
-        category: 1,
-        year: "2024",
-      },
-      {
-        id: 2,
-        title: "Utopia",
-        image: "/projects/utopia.png",
-        category: 3,
-        year: "2024",
-      },
-      {
-        id: 4,
-        title: "MMITV3",
-        image: "/projects/mmitv.png",
-        category: 2,
-        year: "2024",
-      },
-      {
-        id: 3,
-        title: "FIFO",
-        image: "/projects/fifo.png",
-        category: 4,
-        year: "2024",
-      },
-    ],
-    []
-  );
-
-  const [activeCategory, setActiveCategory] = useState<number>(
-    categories[0].id
-  );
-
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [activeCategory, setActiveCategory] = useState<string>(categories[0]);
   const [filteredList, setFilteredList] = useState<Project[]>([]);
 
-  const getCategoryFromId = (id: number) => {
-    return categories.find((category) => category.id === id);
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchedProjects = await fetchProjects();
+      setProjects(fetchedProjects);
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     setFilteredList(
       projects.filter(
-        (project) => activeCategory === 0 || activeCategory === project.category
+        (project) =>
+          activeCategory === "Tous" || activeCategory === project.category
       )
     );
   }, [activeCategory, projects]);
@@ -106,14 +49,14 @@ export default function Page() {
         <div className="flex gap-4 px-8 bg-veryLight rounded-2xl">
           {categories.map((category) => (
             <button
-              key={category.id}
+              key={category}
               type="button"
               className={`px-6 py-4 ${
-                category.id === activeCategory ? "text-primary" : "text-white"
+                category === activeCategory ? "text-primary" : "text-white"
               }`}
-              onClick={() => setActiveCategory(category.id)}
+              onClick={() => setActiveCategory(category)}
             >
-              {category.title}
+              {category}
             </button>
           ))}
         </div>
@@ -128,7 +71,7 @@ export default function Page() {
             <div className="rounded-lg overflow-hidden">
               <Image
                 className="w-full h-auto group-hover:scale-105 transition-transform duration-300 ease-in-out"
-                src={project.image}
+                src={project.projectspage_image}
                 alt={project.title}
                 width={1920}
                 height={1080}
@@ -155,7 +98,7 @@ export default function Page() {
                 </svg>
               </div>
               <p className="text-light">
-                {getCategoryFromId(project.category)?.title} | {project.year}
+                {project.category} | {project.year}
               </p>
             </div>
           </Link>
