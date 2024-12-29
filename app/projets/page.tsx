@@ -118,7 +118,7 @@ export default function Page() {
           ))}
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full max-w-5xl mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full max-w-6xl mt-8">
         {filteredList.map((project) => (
           <Link
             href={`/projets/${project.title}`}
