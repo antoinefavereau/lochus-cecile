@@ -8,8 +8,9 @@ export interface Project {
   image_main: string;
   description: string;
   paragraph_title: string;
-  paragraph_content: string | [string, string?];
+  paragraph_content: [string, string?];
   link?: string;
+  link_text?: string;
 }
 
 export interface DesignProject extends Project {
