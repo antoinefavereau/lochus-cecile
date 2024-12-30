@@ -2,8 +2,9 @@ export interface Project {
   id: number;
   title: string;
   homepage_image: string;
+  homepage_image_color: string;
   projectspage_image: string;
-  category: "Ui/Ux Design" | "Audiovisuel" | "Branding" | "Réseaux sociaux";
+  category: "Ui/Ux Design" | "Audiovisuel" | "Branding" | "Communication";
   year: string;
   image_main: string;
   description: string;

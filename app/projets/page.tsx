@@ -11,7 +11,7 @@ const categories: string[] = [
   "Ui/Ux Design",
   "Audiovisuel",
   "Branding",
-  "Réseaux sociaux",
+  "Communication",
 ];
 
 export default function Page() {
@@ -70,7 +70,7 @@ export default function Page() {
           >
             <div className="rounded-lg overflow-hidden">
               <Image
-                className="w-full h-auto group-hover:scale-105 transition-transform duration-300 ease-in-out"
+                className="w-full h-auto aspect-[4/3] object-cover object-center group-hover:scale-105 transition-transform duration-300 ease-in-out"
                 src={project.projectspage_image}
                 alt={project.title}
                 width={1920}

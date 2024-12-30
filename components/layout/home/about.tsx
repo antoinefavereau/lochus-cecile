@@ -26,10 +26,7 @@ export default function About() {
   }, [currentIndex, titles.length]);
 
   return (
-    <section
-      id="about"
-      className="relative flex flex-col gap-40 p-32"
-    >
+    <section id="about" className="relative flex flex-col gap-40 p-32">
       <Image
         className="absolute top-16 right-32"
         src="/Stars.svg"
@@ -69,7 +66,9 @@ export default function About() {
             "J'ai 21 ans et je suis étudiante en première année de BUT MMI. Je suis passionnée par le multimédia, j'aime explorer et approfondir différents domaines créatifs, comme l'UI design, l'audiovisuel, le graphisme et la photographie. J'ai un désir constant de découvrir et d'apprendre pour nourrir ma créativité et me pousser à relever de nouveaux défis."
           }
         </p>
-        <Button variant="outlined">CV</Button>
+        <a href="/Cécile_Lochus_CV.pdf" download>
+          <Button variant="outlined">CV</Button>
+        </a>
       </div>
     </section>
   );

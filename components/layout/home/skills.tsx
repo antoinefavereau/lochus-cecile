@@ -4,43 +4,43 @@ export default function Skills() {
   const logos = [
     {
       id: 1,
-      src: "/logos/Figma.png",
+      src: "/skills/Figma.svg",
       alt: "Figma",
     },
     {
       id: 2,
-      src: "/logos/Lightroom.png",
+      src: "/skills/lightroom_1.svg",
       alt: "Lightroom",
     },
     {
       id: 3,
-      src: "/logos/PS.png",
+      src: "/skills/photoshop.svg",
       alt: "Photoshop",
     },
     {
       id: 4,
-      src: "/logos/AI.png",
-      alt: "Adobe Illustrator",
+      src: "/skills/illustrator.svg",
+      alt: "Illustrator",
     },
     {
       id: 5,
-      src: "/logos/XD.png",
-      alt: "Adobe XD",
+      src: "/skills/XD_1.svg",
+      alt: "XD",
     },
     {
       id: 6,
-      src: "/logos/premiere pro.png",
+      src: "/skills/premiere pro_1.svg",
       alt: "Premiere Pro",
     },
     {
       id: 7,
-      src: "/logos/AE.png",
+      src: "/skills/after effect.svg",
       alt: "After Effects",
     },
     {
       id: 8,
-      src: "/logos/A.png",
-      alt: "Adobe",
+      src: "/skills/capcut.svg",
+      alt: "CapCut",
     },
   ];
 

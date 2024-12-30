@@ -25,13 +25,14 @@ export default function Projects() {
         {projects.map((project) => (
           <div key={project.id} className="absolute inset-0">
             <Image
-              className={`sticky top-0 w-full h-screen object-cover object-center brightness-90 transition-opacity duration-300 ${
+              className={`sticky top-0 w-full h-screen object-contain object-center brightness-90 transition-opacity duration-300 ${
                 project.id !== selectedProject?.id && "opacity-0"
               }`}
               src={project.homepage_image}
               width="1920"
               height="1080"
               alt={selectedProject?.title ?? ""}
+              style={{ backgroundColor: project.homepage_image_color }}
             />
           </div>
         ))}
