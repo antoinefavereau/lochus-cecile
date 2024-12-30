@@ -20,7 +20,7 @@ export interface DesignProject extends Project {
 }
 
 export interface BrandingProject extends Project {
-  mockup_images: [string, string, string, string?];
+  mockup_images: [string, string, string, string];
   branding_images: [string, string, string, string, string, string?];
 }
 

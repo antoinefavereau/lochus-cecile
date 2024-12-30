@@ -62,17 +62,35 @@ export default function Page() {
             </p>
           </div>
           {"mockup_images" in project && (
-            <div className="w-full grid grid-cols-2 gap-6 px-16 pt-32">
-              {project.mockup_images.map((image, index) => (
-                <Image
-                  key={index}
-                  className="rounded-lg w-full h-auto aspect-[4/3] object-cover object-center"
-                  src={image as string}
-                  alt={"Mockup " + index}
-                  width={1920}
-                  height={1080}
-                />
-              ))}
+            <div className="w-full grid grid-cols-5 grid-rows-5 gap-4 px-16 pt-32">
+              <Image
+                className="col-span-2 row-span-3 rounded-lg w-full h-0 min-h-full object-cover object-center"
+                src={project.mockup_images[0]}
+                alt={"Mockup 1"}
+                width={1920}
+                height={1080}
+              />
+              <Image
+                className="col-span-3 row-span-2 rounded-lg w-full h-0 min-h-full object-cover object-center"
+                src={project.mockup_images[2]}
+                alt={"Mockup 3"}
+                width={1920}
+                height={1080}
+              />
+              <Image
+                className="col-span-3 row-span-3 rounded-lg w-full h-auto object-cover object-center aspect-square"
+                src={project.mockup_images[3]}
+                alt={"Mockup 4"}
+                width={1920}
+                height={1080}
+              />
+              <Image
+                className="col-span-2 row-span-2 rounded-lg w-full h-auto object-cover object-center aspect-square"
+                src={project.mockup_images[1]}
+                alt={"Mockup 2"}
+                width={1920}
+                height={1080}
+              />
             </div>
           )}
           {"without_background_image" in project && (
