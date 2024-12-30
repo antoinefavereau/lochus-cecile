@@ -89,7 +89,7 @@ export default function Page() {
           <div className="w-full flex flex-col gap-8 pt-32 px-16">
             <h2 className="text-4xl font-thin">{project.paragraph_title}</h2>
             <div
-              className={`grid grid-cols-${project.paragraph_content.length}`}
+              className={`grid grid-cols-${project.paragraph_content.length} gap-6`}
             >
               {project.paragraph_content.map((content, index) => (
                 <p key={index} className="max-w-4xl text-2xl">
