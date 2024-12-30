@@ -102,7 +102,7 @@ export const fetchProjects = async () => {
       paragraph_content: [
         "J'ai eu pour mission de valoriser les actions et événements de l'association. J'ai géré la création de contenus visuels, la diffusion d'informations sur nos différents supports (réseaux sociaux, affiches) et veillé à maintenir une communication claire et dynamique pour engager les étudiants. Cette expérience m'a permis de développer des compétences en création graphique, en gestion de projet et en stratégie de communication tout en contribuant à la vie étudiante de mon ancienne université.",
       ],
-      link: "https://www.instagram.com/mmitv3/",
+      link: "https://www.instagram.com/fifo_orleans/",
       link_text: "Voir le compte Instagram",
       without_background_image: "/projects/Fifo_projet.png",
       full_width_image: "/projects/fifo_accueil_projet.png",
