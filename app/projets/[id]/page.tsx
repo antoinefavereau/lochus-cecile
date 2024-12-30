@@ -217,7 +217,7 @@ export default function Page() {
           {project.link && (
             <div className="w-full flex justify-center gap-8 px-16">
               <a
-                className="group flex items-center gap-4 text-primary font-semibold p-4"
+                className="group flex items-center gap-4 text-primary text-xl font-semibold p-4"
                 href={project.link}
                 target="_blank"
               >
