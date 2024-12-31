@@ -23,7 +23,11 @@ export default function Header() {
 
   const getNavItem = (href: string, label: string) => (
     <li key={href}>
-      <Link className="group block p-2 text-4xl md:text-base" href={href}>
+      <Link
+        className="group block p-2 text-4xl md:text-base"
+        href={href}
+        onClick={() => setIsMenuOpen(false)}
+      >
         <span className="relative block overflow-hidden">
           <span
             className={`block md:group-hover:-translate-y-full ${
@@ -48,7 +52,12 @@ export default function Header() {
         pathname === "/" ? "absolute" : "relative"
       } z-10 start-0 top-0 end-0 p-10 flex items-center justify-between`}
     >
-      <Link className="md:hidden relative z-50" href="/" title="Cécile Lochus">
+      <Link
+        className="md:hidden relative z-50"
+        href="/"
+        title="Cécile Lochus"
+        onClick={() => setIsMenuOpen(false)}
+      >
         <svg
           className={`h-12 w-auto ${
             isMenuOpen ? "text-black delay-300" : "text-white delay-0"
