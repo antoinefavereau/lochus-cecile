@@ -22,7 +22,10 @@ export default function Footer() {
     },
   ];
   return (
-    <footer id="contact" className="relative px-16 pt-72 pb-8 overflow-hidden">
+    <footer
+      id="contact"
+      className="relative px-8 md:px-16 pt-56 md:pt-64 pb-8 overflow-hidden"
+    >
       <Image
         className="absolute max-w-none w-[150vw] top-[90%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none"
         src="/ellipses.svg"
@@ -31,7 +34,7 @@ export default function Footer() {
         height={1080}
       />
       <Image
-        className="absolute top-8 right-0 select-none pointer-events-none"
+        className="absolute top-64 xs:top-56 md:top-64 -translate-y-[30%] right-4 md:right-0 lg:-right-12 w-[calc(6rem+40%)] h-auto select-none pointer-events-none"
         src="/etoile.svg"
         alt="étoile"
         width={600}
@@ -49,7 +52,7 @@ export default function Footer() {
           {socials.map((social) => (
             <a
               key={social.name}
-              className="text-2xl font-light"
+              className="text-xl md:text-2xl font-light"
               href={social.url}
               target="_blank"
             >
@@ -57,9 +60,11 @@ export default function Footer() {
             </a>
           ))}
         </div>
-        <div className="flex items-baseline gap-24">
-          <h2 className="text-9xl font-thin tracking-[0.25em]">Contact</h2>
-          <p className="text-sm font-light">
+        <div className="flex items-baseline gap-4 xs:gap-8 md:gap-16 lg:gap-20">
+          <h2 className="text-5xl xs:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-thin tracking-[0.2rem] xs:tracking-[0.25em]">
+            Contact
+          </h2>
+          <p className="text-xs xs:text-sm font-light">
             Développé par{" "}
             <a
               className="underline"
@@ -73,10 +78,11 @@ export default function Footer() {
         </div>
       </div>
       <Link
-        className="absolute bottom-52 right-8 flex flex-col items-center"
+        className="absolute bottom-52 right-4 md:right-8 flex flex-col items-center"
         href="#"
       >
         <svg
+          className="w-12 xs:w-16 md:w-20 h-auto"
           width="78"
           height="78"
           viewBox="0 0 78 78"
@@ -96,7 +102,9 @@ export default function Footer() {
             strokeLinejoin="round"
           />
         </svg>
-        <span className="text-2xl font-extralight">Retour en haut</span>
+        <span className="text-sm xs:text-base md:text-xl font-extralight">
+          Retour en haut
+        </span>
       </Link>
     </footer>
   );
