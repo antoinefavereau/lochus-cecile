@@ -1,5 +1,15 @@
+import Image from "next/image";
+
+interface List {
+  id: number;
+  title: string;
+  company: string;
+  date: string;
+  list: string[];
+}
+
 export default function Formations() {
-  const experiences = [
+  const experiences: List[] = [
     {
       id: 1,
       title: "Cadreuse",
@@ -45,7 +55,7 @@ export default function Formations() {
     },
   ];
 
-  const formations = [
+  const formations: List[] = [
     {
       id: 1,
       title: "BUT MMI",
@@ -87,60 +97,54 @@ export default function Formations() {
     },
   ];
 
+  const list = (title: string, items: List[]) => {
+    return (
+      <div className="flex flex-col gap-8">
+        <h2 className="text-2xl font-bold">{title}</h2>
+        <div>
+          {items.map((item) => (
+            <div
+              className="group py-8 flex flex-col border-t-2 border-veryLight last:border-b-2"
+              key={item.id}
+            >
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex flex-col">
+                  <h3 className="font-bold">{item.title}</h3>
+                  <p>{item.company}</p>
+                </div>
+                <div className="flex items-center gap-8">
+                  <p>{item.date}</p>
+                  <Image
+                    className="block md:hidden transform group-hover:rotate-180 transition-transform duration-300"
+                    src="/Chevron Down.svg"
+                    alt="chevron"
+                    width={20}
+                    height={20}
+                  />
+                </div>
+              </div>
+              <ul
+                className="pt-8 h-0 overflow-hidden group-hover:h-fit transition-height duration-500 ease-in-out"
+                style={{ interpolateSize: "allow-keywords" }}
+              >
+                {item.list.map((content, index) => (
+                  <li key={index}>{content}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <section id="formations" className="grid grid-cols-2 gap-16 p-32">
-      <div className="flex flex-col gap-8">
-        <h2 className="text-2xl font-bold">Expériences</h2>
-        <div>
-          {experiences.map((experience) => (
-            <div
-              className="group py-8 flex flex-col border-t-2 border-veryLight last:border-b-2"
-              key={experience.id}
-            >
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex flex-col">
-                  <h3 className="font-bold">{experience.title}</h3>
-                  <p>{experience.company}</p>
-                </div>
-                <p>{experience.date}</p>
-              </div>
-              <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-max-height duration-500">
-                <ul className="pt-8">
-                  {experience.list.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col gap-8">
-        <h2 className="text-2xl font-bold">Formations</h2>
-        <div>
-          {formations.map((formation) => (
-            <div
-              className="group py-8 flex flex-col border-t-2 border-veryLight last:border-b-2"
-              key={formation.id}
-            >
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex flex-col">
-                  <h3 className="font-bold">{formation.title}</h3>
-                  <p>{formation.company}</p>
-                </div>
-                <p>{formation.date}</p>
-              </div>
-              <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-max-height duration-500">
-                <ul className="pt-8">
-                  {formation.list.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+    <section
+      id="formations"
+      className="grid md:grid-cols-2 gap-40 md:gap-16 py-24 px-8 xs:px-16 lg:px-24"
+    >
+      {list("Expériences", experiences)}
+      {list("Formations", formations)}
     </section>
   );
 }
