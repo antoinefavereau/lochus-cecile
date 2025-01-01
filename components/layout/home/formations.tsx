@@ -141,7 +141,7 @@ export default function Formations() {
   return (
     <section
       id="formations"
-      className="grid md:grid-cols-2 gap-40 md:gap-16 py-24 px-8 xs:px-16 lg:px-24"
+      className="grid md:grid-cols-2 gap-40 md:gap-16 py-16 px-8 xs:px-16 lg:px-24"
     >
       {list("Expériences", experiences)}
       {list("Formations", formations)}
