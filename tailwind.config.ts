@@ -63,17 +63,13 @@ export default {
           "0%": { transform: "translate(-50%, -50%) rotate(0deg)" },
           "100%": { transform: "translate(-50%, -50%) rotate(-360deg)" },
         },
-        marquee: {
+        verticalMarquee: {
           "0%": { transform: "translateY(0%)" },
-          "100%": { transform: "translateY(-100%)" },
-        },
-        marquee2: {
-          "0%": { transform: "translateY(100%)" },
-          "100%": { transform: "translateY(0%)" },
+          "100%": { transform: "translateY(-50%)" },
         },
         horizontalMarquee: {
           "0%": { transform: "translateX(0%)" },
-          "100%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(-50%)" },
         },
       },
       screens: {

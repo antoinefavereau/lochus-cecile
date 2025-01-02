@@ -49,31 +49,33 @@ export default function Projects() {
           </Link>
         ))}
       </div>
-      <Link className="group flex py-4 overflow-hidden" href="/projets">
-        {new Array(20).fill(0).map((_, index) => (
-          <div
-            key={index}
-            className="shrink-0 flex items-center gap-4 pe-16 text-2xl animate-[horizontalMarquee_3s_linear_infinite]"
-          >
-            <span>Voir plus de projets</span>
-            <svg
-              className="text-primary rotate-[-30deg] group-hover:rotate-0 transition-rotate duration-300 ease-in-out"
-              width="25"
-              height="24"
-              viewBox="0 0 25 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+      <Link className="group py-4 overflow-hidden" href="/projets">
+        <div className="w-max flex gap-16 px-8 animate-[horizontalMarquee_30s_linear_infinite]">
+          {new Array(20).fill(0).map((_, index) => (
+            <div
+              key={index}
+              className="flex items-center gap-4 text-2xl"
             >
-              <path
-                d="M1.70898 12.0693L22.709 12.0693M22.709 12.0693L12.629 1.98926M22.709 12.0693L12.629 22.1493"
-                stroke="currentcolor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </div>
-        ))}
+              <span>Voir plus de projets</span>
+              <svg
+                className="text-primary rotate-[-30deg] group-hover:rotate-0 transition-rotate duration-300 ease-in-out"
+                width="25"
+                height="24"
+                viewBox="0 0 25 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.70898 12.0693L22.709 12.0693M22.709 12.0693L12.629 1.98926M22.709 12.0693L12.629 22.1493"
+                  stroke="currentcolor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+          ))}
+        </div>
       </Link>
     </section>
   );
