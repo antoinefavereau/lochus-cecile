@@ -28,7 +28,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative flex flex-col gap-16 xs:gap-24 md:gap-32 p-8 xs:p-16 lg:p-24"
+      className="relative flex flex-col gap-16 xs:gap-24 md:gap-32 pt-16 pb-32 px-8 xs:px-16 lg:px-24"
     >
       <Image
         className="absolute top-16 right-[calc(10vw-2rem)] w-[16vw] h-auto"
@@ -44,7 +44,7 @@ export default function About() {
         width={250}
         height={250}
       />
-      <h2 className="relative self-start pt-8 md:pt-12 text-xl xs:text-3xl md:text-4xl lg:text-5xl font-extrabold w-[calc(100vw-8rem)] xs:w-[calc(100vw-14rem)] md:w-[calc(100vw-20rem)] max-w-2xl">
+      <h2 className="relative self-start pt-8 md:pt-12 text-xl xs:text-3xl md:text-4xl lg:text-5xl font-extrabold w-[calc(100vw-7.5rem)] xs:w-[calc(100vw-14rem)] md:w-[calc(100vw-20rem)] max-w-2xl">
         <span className="absolute start-0 top-0 w-[7ch] h-[2px] bg-primary"></span>
         {"Hello, étudiante en BUT MMI, je suis "}
         <span className="text-primary inline-block h-[2ch] translate-y-[6px] xs:translate-y-[11px] md:translate-y-[16px] lg:translate-y-[23px] overflow-hidden">
@@ -64,7 +64,7 @@ export default function About() {
         </span>
       </h2>
       <div className="self-end flex flex-col items-start gap-10 md:gap-14 w-[calc(100vw-8rem)] xs:w-[calc(100vw-14rem)] md:w-[calc(100vw-20rem)] max-w-2xl">
-        <p className="text-sm xs:text-base md:text-lg text-light">
+        <p className="text-base md:text-lg text-light">
           {
             "Je suis passionnée par le multimédia, j'aime explorer et approfondir différents domaines créatifs. J'ai un désir constant de découvrir et d'apprendre pour nourrir ma créativité et me pousser à relever de nouveaux défis."
           }
