@@ -126,7 +126,7 @@ export default function Formations() {
             >
               <div className="flex items-center justify-between gap-2">
                 <div className="flex flex-col">
-                  <h3 className="font-bold">{title + "-" + item.title}</h3>
+                  <h3 className="font-bold">{item.title}</h3>
                   <p>{item.company}</p>
                 </div>
                 <div className="flex items-center gap-8">
