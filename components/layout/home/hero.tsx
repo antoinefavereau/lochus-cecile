@@ -55,7 +55,7 @@ export default function Hero() {
           );
         })}
       </div>
-      <h1 className="relative flex flex-col items-center gap-5 text-4xl xs:text-5xl md:text-7xl font-extrabold text-center">
+      <h1 className="relative flex flex-col items-center gap-5 pt-16 text-4xl xs:text-5xl md:text-7xl font-extrabold text-center">
         <span className="text-3xl xs:text-4xl md:text-6xl font-medium text-primary">
           Portfolio
         </span>
