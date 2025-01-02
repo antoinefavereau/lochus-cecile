@@ -47,8 +47,11 @@ export default function BigText() {
   };
 
   return (
-    <section className="flex px-36 py-32">
-      <p className="text-5xl max-w-4xl leading-[4rem]" ref={container}>
+    <section className="flex py-16 px-8 md:px-16 lg:px-24">
+      <p
+        className="text-2xl xs:text-3xl md:text-4xl lg:text-5xl max-w-lg xs:max-w-xl md:max-w-2xl lg:max-w-3xl !leading-[1.2em]"
+        ref={container}
+      >
         {splitText("Je déborde de ")}
         <strong className="text-primary font-normal">
           {splitText("passion pour le design")}
