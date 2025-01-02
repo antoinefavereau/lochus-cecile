@@ -164,8 +164,15 @@ export default function Formations() {
   return (
     <section
       id="formations"
-      className="grid md:grid-cols-2 gap-40 md:gap-16 py-16 px-8 xs:px-16 lg:px-24"
+      className="relative grid md:grid-cols-2 gap-40 md:gap-16 py-16 px-8 xs:px-16 lg:px-24 overflow-hidden"
     >
+      <Image
+        className="absolute max-w-none w-[240vw] xs:w-[200vw] md:w-[140vw] lg:w-[120vw] top-[90%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-[120deg] select-none pointer-events-none"
+        src="/ellipses.svg"
+        alt="ellipses"
+        width={1920}
+        height={1080}
+      />
       {list("Expériences", experiences)}
       {list("Formations", formations)}
     </section>

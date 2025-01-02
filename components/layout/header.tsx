@@ -1,12 +1,10 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
 export default function Header() {
-  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -51,11 +49,7 @@ export default function Header() {
   );
 
   return (
-    <header
-      className={`${
-        pathname === "/" ? "absolute" : "relative"
-      } z-10 start-0 top-0 end-0 p-10 flex items-center justify-between`}
-    >
+    <header className="absolute z-10 start-0 top-0 end-0 p-10 flex items-center justify-between">
       <Link
         className="md:hidden relative z-50"
         href="/"

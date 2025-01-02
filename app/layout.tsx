@@ -3,7 +3,6 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import Header from "../components/layout/header";
 import Footer from "../components/layout/footer";
-import { IsMobileProvider } from "@/context/IsMobileProvider";
 
 export const metadata: Metadata = {
   title: "Lochus Cécile",
@@ -18,12 +17,10 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`antialiased`}>
-        <IsMobileProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-          <Analytics />
-        </IsMobileProvider>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        <Analytics />
       </body>
     </html>
   );

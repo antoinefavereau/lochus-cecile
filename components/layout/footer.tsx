@@ -27,7 +27,7 @@ export default function Footer() {
       className="relative px-8 md:px-16 pt-56 md:pt-64 pb-8 overflow-hidden"
     >
       <Image
-        className="absolute max-w-none w-[150vw] top-[90%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none"
+        className="absolute max-w-none w-[240vw] xs:w-[200vw] md:w-[140vw] lg:w-[120vw] top-[90%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none"
         src="/ellipses.svg"
         alt="ellipses"
         width={1920}
