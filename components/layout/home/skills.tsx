@@ -47,7 +47,7 @@ export default function Skills() {
   return (
     <section id="skills" className="md:h-screen py-16 px-4 xs:px-8 md:px-16 lg:px-24">
       <div className="md:h-full bg-white text-black flex flex-col md:flex-row items-center justify-between gap-16 py-12 md:py-0 md:px-12 rounded-[3rem]">
-        <div className="flex flex-col gap-8 md:gap-12 py-0 md:py-16 px-8 md:px-0 md:max-w-xl">
+        <div className="flex flex-col gap-8 md:gap-12 py-0 md:py-16 px-8 md:px-0 md:max-w-xl text-center md:text-start">
           <h2 className="text-3xl xs:text-4xl md:text-5xl lg:text-6xl font-extrabold">
             Compétences
           </h2>
