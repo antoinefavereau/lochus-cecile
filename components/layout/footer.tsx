@@ -42,7 +42,7 @@ export default function Footer() {
       />
       <div className="relative flex flex-col items-start gap-24">
         <Image
-          className="mx-4"
+          className="w-10 sm:w-12 h-auto md:mx-4"
           src="/logoPortfolio_1.svg"
           alt="Logo"
           width={48}
@@ -52,7 +52,7 @@ export default function Footer() {
           {socials.map((social) => (
             <a
               key={social.name}
-              className="text-xl md:text-2xl font-light"
+              className="text-lg xs:text-xl md:text-2xl font-light"
               href={social.url}
               target="_blank"
             >
@@ -61,7 +61,7 @@ export default function Footer() {
           ))}
         </div>
         <div className="flex items-baseline gap-4 xs:gap-8 md:gap-16 lg:gap-20">
-          <h2 className="text-5xl xs:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-thin tracking-[0.2rem] xs:tracking-[0.25em]">
+          <h2 className="text-4xl xs:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-thin tracking-[0.2rem] xs:tracking-[0.25em]">
             Contact
           </h2>
           <p className="text-xs xs:text-sm font-light">
@@ -102,7 +102,7 @@ export default function Footer() {
             strokeLinejoin="round"
           />
         </svg>
-        <span className="text-sm xs:text-base md:text-xl font-extralight">
+        <span className="text-xs xs:text-base md:text-lg font-extralight">
           Retour en haut
         </span>
       </Link>
