@@ -124,23 +124,23 @@ export default function Formations() {
               className="group py-8 flex flex-col border-t-2 border-veryLight last:border-b-2"
               onClick={() => handleClick(title + "-" + item.title)}
             >
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex flex-col">
+              <div className="flex flex-col gap-2">
+                <div className="w-full flex justify-between items-center gap-4">
                   <h3 className="font-bold">{item.title}</h3>
-                  <p>{item.company}</p>
+                  <div className="shrink-0 flex items-center gap-4">
+                    <p className="text-sm md:text-base">{item.date}</p>
+                    <Image
+                      className={`block md:hidden transform md:group-hover:rotate-180 ${
+                        openItemId === title + "-" + item.title && "rotate-180"
+                      } transition-transform duration-300`}
+                      src="/Chevron Down.svg"
+                      alt="chevron"
+                      width={20}
+                      height={20}
+                    />
+                  </div>
                 </div>
-                <div className="flex items-center gap-8">
-                  <p>{item.date}</p>
-                  <Image
-                    className={`block md:hidden transform md:group-hover:rotate-180 ${
-                      openItemId === title + "-" + item.title && "rotate-180"
-                    } transition-transform duration-300`}
-                    src="/Chevron Down.svg"
-                    alt="chevron"
-                    width={20}
-                    height={20}
-                  />
-                </div>
+                <p>{item.company}</p>
               </div>
               <div
                 className={`h-0 overflow-hidden md:group-hover:h-fit ${
