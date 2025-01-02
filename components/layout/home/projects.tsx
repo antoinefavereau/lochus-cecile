@@ -5,12 +5,13 @@ import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { fetchProjects } from "@/lib/data";
 import { Project } from "@/types/project";
+import { useIsMobile } from "@/context/IsMobileProvider";
 
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
   const projectRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,15 +20,6 @@ export default function Projects() {
       setSelectedProject(fetchedProjects[0]);
     };
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {

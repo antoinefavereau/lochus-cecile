@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
+import { useIsMobile } from "@/context/IsMobileProvider";
 
 interface List {
   id: number;
@@ -9,6 +13,18 @@ interface List {
 }
 
 export default function Formations() {
+  const [openItemId, setOpenItemId] = useState<string | null>(null);
+  const isMobile = useIsMobile();
+
+  const handleClick = (id: string) => {
+    if (!isMobile) return;
+    if (openItemId === id) {
+      setOpenItemId(null);
+    } else {
+      setOpenItemId(id);
+    }
+  };
+
   const experiences: List[] = [
     {
       id: 1,
@@ -104,18 +120,21 @@ export default function Formations() {
         <div>
           {items.map((item) => (
             <div
-              className="group py-8 flex flex-col border-t-2 border-veryLight last:border-b-2"
               key={item.id}
+              className="group py-8 flex flex-col border-t-2 border-veryLight last:border-b-2"
+              onClick={() => handleClick(title + "-" + item.title)}
             >
               <div className="flex items-center justify-between gap-2">
                 <div className="flex flex-col">
-                  <h3 className="font-bold">{item.title}</h3>
+                  <h3 className="font-bold">{title + "-" + item.title}</h3>
                   <p>{item.company}</p>
                 </div>
                 <div className="flex items-center gap-8">
                   <p>{item.date}</p>
                   <Image
-                    className="block md:hidden transform group-hover:rotate-180 transition-transform duration-300"
+                    className={`block md:hidden transform md:group-hover:rotate-180 ${
+                      openItemId === title + "-" + item.title && "rotate-180"
+                    } transition-transform duration-300`}
                     src="/Chevron Down.svg"
                     alt="chevron"
                     width={20}
@@ -124,7 +143,9 @@ export default function Formations() {
                 </div>
               </div>
               <div
-                className="h-0 overflow-hidden group-hover:h-fit transition-height duration-500 ease-in-out"
+                className={`h-0 overflow-hidden md:group-hover:h-fit ${
+                  openItemId === title + "-" + item.title && "!h-fit"
+                } transition-height duration-500 ease-in-out`}
                 style={{ interpolateSize: "allow-keywords" }}
               >
                 <ul className="pt-8">
