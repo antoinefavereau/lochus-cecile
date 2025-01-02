@@ -32,9 +32,9 @@ export default function Header() {
         href={href}
         onClick={() => setIsMenuOpen(false)}
       >
-        <span className="relative block overflow-hidden">
+        <span className="relative block leading-normal overflow-hidden">
           <span
-            className={`block md:group-hover:-translate-y-full ${
+            className={`block leading-normal md:group-hover:-translate-y-full ${
               isMenuOpen
                 ? "delay-500 md:delay-0"
                 : "translate-y-full md:translate-y-0"
@@ -42,7 +42,7 @@ export default function Header() {
           >
             {label}
           </span>
-          <span className="absolute md:group-hover:-translate-y-full transition-transform duration-500 ease-in-out">
+          <span className="absolute leading-normal md:group-hover:-translate-y-full transition-transform duration-500 ease-in-out">
             {label}
           </span>
         </span>
@@ -131,7 +131,7 @@ export default function Header() {
           !isMenuOpen && "invisible md:visible delay-300"
         } transition-all`}
       >
-        <ul className="w-full flex flex-col md:flex-row items-center justify-evenly gap-4 text-black md:text-white">
+        <ul className="w-full flex flex-col md:flex-row items-center justify-evenly text-black md:text-white">
           {leftLinks.map(({ href, label }) => getNavItem(href, label))}
           <li className="hidden md:block">
             <Link href="/" title="Cécile Lochus">
