@@ -10,7 +10,7 @@ const categories: string[] = [
   "Tous",
   "Ui/Ux Design",
   "Audiovisuel",
-  "Branding",
+  "Design Graphique",
   "Communication",
 ];
 

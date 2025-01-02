@@ -1,6 +1,6 @@
 import {
   DesignProject,
-  BrandingProject,
+  GraphicDesignProject,
   SoacialMediasProject,
   AudiovisualProject,
 } from "@/types/project";
@@ -8,7 +8,7 @@ import {
 export const fetchProjects = async () => {
   const projects: (
     | DesignProject
-    | BrandingProject
+    | GraphicDesignProject
     | SoacialMediasProject
     | AudiovisualProject
   )[] = [
@@ -44,7 +44,7 @@ export const fetchProjects = async () => {
       homepage_image: "/projects/mockup3.png",
       homepage_image_color: "#E8E9EA",
       projectspage_image: "/projects/mockup3.png",
-      category: "Branding",
+      category: "Design Graphique",
       year: "2024",
       image_main: "/projects/utopia_projet_haut.png",
       description:

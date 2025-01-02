@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import {
   AudiovisualProject,
-  BrandingProject,
+  GraphicDesignProject,
   DesignProject,
   SoacialMediasProject,
 } from "@/types/project";
@@ -16,7 +16,7 @@ export default function Page() {
   const name = id as string;
   const [project, setProject] = useState<
     | DesignProject
-    | BrandingProject
+    | GraphicDesignProject
     | SoacialMediasProject
     | AudiovisualProject
     | null

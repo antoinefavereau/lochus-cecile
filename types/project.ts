@@ -4,7 +4,11 @@ export interface Project {
   homepage_image: string;
   homepage_image_color: string;
   projectspage_image: string;
-  category: "Ui/Ux Design" | "Audiovisuel" | "Branding" | "Communication";
+  category:
+    | "Ui/Ux Design"
+    | "Audiovisuel"
+    | "Design Graphique"
+    | "Communication";
   year: string;
   image_main: string;
   description: string;
@@ -19,7 +23,7 @@ export interface DesignProject extends Project {
   what_comes_form_it: string;
 }
 
-export interface BrandingProject extends Project {
+export interface GraphicDesignProject extends Project {
   mockup_images: [string, string, string, string];
   branding_images: [string, string, string, string, string, string?];
 }
