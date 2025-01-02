@@ -123,14 +123,16 @@ export default function Formations() {
                   />
                 </div>
               </div>
-              <ul
-                className="pt-8 h-0 overflow-hidden group-hover:h-fit transition-height duration-500 ease-in-out"
+              <div
+                className="h-0 overflow-hidden group-hover:h-fit transition-height duration-500 ease-in-out"
                 style={{ interpolateSize: "allow-keywords" }}
               >
-                {item.list.map((content, index) => (
-                  <li key={index}>{content}</li>
-                ))}
-              </ul>
+                <ul className="pt-8">
+                  {item.list.map((content, index) => (
+                    <li key={index}>{content}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           ))}
         </div>
