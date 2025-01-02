@@ -22,7 +22,7 @@ export default function Hero() {
   return (
     <section className="relative flex flex-col items-center justify-center gap-16 h-screen">
       <div
-        className="absolute -inset-16 xs:-inset-8 md:inset-0 flex items-center justify-center select-none pointer-events-none"
+        className="absolute -inset-16 xs:-inset-8 bottom-0 md:inset-0 flex items-center justify-center select-none pointer-events-none"
         style={{
           perspective: "1000px",
         }}
