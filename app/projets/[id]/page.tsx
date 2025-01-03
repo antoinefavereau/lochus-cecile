@@ -33,15 +33,21 @@ export default function Page() {
     };
     fetchData();
   }, [name]);
+
   return (
     <div className="flex flex-col items-center gap-24 pt-48">
       {project === null && <p>Chargement...</p>}
       {project !== null && (
         <>
-          <div className="w-full flex flex-col gap-8 px-16">
-            <div className="flex justify-between items-center gap-4">
-              <h1 className="text-7xl font-extralight">{project?.title}</h1>
-              <div className="flex align-center gap-16 text-light">
+          <div className="w-full flex flex-col gap-4 md:gap-8 md:px-16">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <h1 className="text-4xl md:text-7xl font-extralight">
+                {project?.title}
+              </h1>
+              <p className="md:hidden text-lg text-light pb-8">
+                {project?.category}
+              </p>
+              <div className="hidden md:flex align-center gap-16 text-light">
                 {[project.year, project.category].map((info) => (
                   <p key={info} className="relative pb-6">
                     <span>{info}</span>
@@ -51,41 +57,44 @@ export default function Page() {
               </div>
             </div>
             <Image
-              className="w-full h-auto rounded-lg"
+              className="w-full h-auto md:rounded-lg"
               src={project.image_main}
               alt={project.title}
               width={1920}
               height={1080}
             />
-            <p className="self-end pt-16 max-w-4xl text-3xl">
-              {project.description}
+            <p className="md:hidden text-light self-end pe-10">
+              {project.year}
             </p>
           </div>
+          <p className="self-end max-w-none md:max-w-4xl text-base md:text-3xl px-8 md:px-16">
+            {project.description}
+          </p>
           {"mockup_images" in project && (
-            <div className="w-full grid grid-cols-5 grid-rows-5 gap-4 px-16 pt-32">
+            <div className="w-full grid grid-cols-1 md:grid-cols-5 md:grid-rows-5 gap-4 px-4 md:px-16 pt-32">
               <Image
-                className="col-span-2 row-span-3 rounded-lg w-full h-0 min-h-full object-cover object-center"
+                className="md:col-span-2 md:row-span-3 rounded-lg w-full h-auto md:h-0 md:min-h-full object-cover object-center"
                 src={project.mockup_images[0]}
                 alt={"Mockup 1"}
                 width={1920}
                 height={1080}
               />
               <Image
-                className="col-span-3 row-span-2 rounded-lg w-full h-0 min-h-full object-cover object-center"
+                className="md:col-span-3 md:row-span-2 rounded-lg w-full h-auto md:h-0 md:min-h-full object-cover object-center"
                 src={project.mockup_images[2]}
                 alt={"Mockup 3"}
                 width={1920}
                 height={1080}
               />
               <Image
-                className="col-span-3 row-span-3 rounded-lg w-full h-auto object-cover object-center aspect-square"
+                className="md:col-span-3 md:row-span-3 rounded-lg w-full h-auto object-cover object-center md:aspect-square"
                 src={project.mockup_images[3]}
                 alt={"Mockup 4"}
                 width={1920}
                 height={1080}
               />
               <Image
-                className="col-span-2 row-span-2 rounded-lg w-full h-auto object-cover object-center aspect-square"
+                className="md:col-span-2 md:row-span-2 rounded-lg w-full h-auto object-cover object-center md:aspect-square"
                 src={project.mockup_images[1]}
                 alt={"Mockup 2"}
                 width={1920}
@@ -94,9 +103,9 @@ export default function Page() {
             </div>
           )}
           {"without_background_image" in project && (
-            <div className="w-full flex flex-col gap-8 px-16">
+            <div className="w-full flex justify-center gap-8 px-4 md:px-16">
               <Image
-                className="w-full h-auto"
+                className="w-[80%] max-w-3xl h-auto"
                 src={project.without_background_image}
                 alt={"Image"}
                 width={1920}
@@ -104,20 +113,22 @@ export default function Page() {
               />
             </div>
           )}
-          <div className="w-full flex flex-col gap-8 pt-32 px-16">
-            <h2 className="text-4xl font-thin">{project.paragraph_title}</h2>
+          <div className="w-full flex flex-col gap-6 md:gap-8 px-8 md:px-16">
+            <h2 className="text-3xl md:text-4xl font-thin">
+              {project.paragraph_title}
+            </h2>
             <div
-              className={`grid grid-cols-${project.paragraph_content.length} gap-6`}
+              className={`grid md:grid-cols-${project.paragraph_content.length} gap-6`}
             >
               {project.paragraph_content.map((content, index) => (
-                <p key={index} className="max-w-4xl text-2xl">
+                <p key={index} className="max-w-4xl text-base md:text-2xl">
                   {content}
                 </p>
               ))}
             </div>
           </div>
           {"images" in project && (
-            <div className="w-full grid grid-cols-2 gap-6 px-16">
+            <div className="w-full grid md:grid-cols-2 gap-6 px-4 md:px-16">
               {project.images.length === 3 && (
                 <>
                   <div className="flex flex-col gap-6">
@@ -137,7 +148,7 @@ export default function Page() {
                     />
                   </div>
                   <Image
-                    className="rounded-lg w-full h-auto row-span-2 self-center"
+                    className="rounded-lg w-full h-auto md:row-span-2 self-center"
                     src={project.images[2]}
                     alt={"Image 3"}
                     width={1920}
@@ -159,14 +170,14 @@ export default function Page() {
             </div>
           )}
           {"what_comes_form_it" in project && (
-            <div className="w-full flex flex-col items-center gap-8 px-16">
-              <p className="max-w-4xl text-3xl text-center">
+            <div className="w-full flex flex-col items-center gap-8 px-8 md:px-16">
+              <p className="max-w-4xl text-base md:text-3xl text-center">
                 {project.what_comes_form_it}
               </p>
             </div>
           )}
           {"branding_images" in project && (
-            <div className="w-full flex flex-col gap-4 px-16 pt-32">
+            <div className="w-full flex flex-col gap-4 px-4 md:px-16">
               <Image
                 className="rounded-lg w-full h-auto"
                 src={project.branding_images[0]}
@@ -176,22 +187,22 @@ export default function Page() {
               />
               <div className="grid grid-cols-6 gap-4">
                 <Image
-                  className="col-span-3 rounded-lg w-full h-auto object-cover object-center"
+                  className="col-span-6 md:col-span-3 rounded-lg w-full h-auto object-cover object-center"
                   src={project.branding_images[1]}
                   alt={"Branding 2"}
                   width={1920}
                   height={1080}
                 />
-                <div className="grid gap-4 col-span-2 h-full">
+                <div className="grid gap-4 col-span-4 md:col-span-2 md:h-full">
                   <Image
-                    className="rounded-lg w-full h-0 min-h-full object-cover object-center"
+                    className="rounded-lg w-full h-auto md:h-0 md:min-h-full object-cover object-center"
                     src={project.branding_images[2]}
                     alt={"Branding 3"}
                     width={1920}
                     height={1080}
                   />
                   <Image
-                    className="rounded-lg w-full h-0 min-h-full object-cover object-center"
+                    className="rounded-lg w-full h-auto md:h-0 md:min-h-full object-cover object-center"
                     src={project.branding_images[3]}
                     alt={"Branding 4"}
                     width={1920}
@@ -199,7 +210,7 @@ export default function Page() {
                   />
                 </div>
                 <Image
-                  className="col-span-1 rounded-lg w-full h-0 min-h-full object-cover object-center"
+                  className="col-span-2 md:col-span-1 rounded-lg w-full h-0 min-h-full object-cover object-center"
                   src={project.branding_images[4]}
                   alt={"Branding 5"}
                   width={1920}
@@ -225,7 +236,7 @@ export default function Page() {
           )}
           {"full_width_image" in project && (
             <Image
-              className="w-full h-auto mt-16"
+              className="w-full h-auto"
               src={project.full_width_image}
               alt={"Full width image"}
               width={1920}
@@ -233,9 +244,9 @@ export default function Page() {
             />
           )}
           {project.link && (
-            <div className="w-full flex justify-center gap-8 px-16">
+            <div className="w-full flex justify-center gap-8 px-8">
               <a
-                className="group flex items-center gap-4 text-primary text-xl font-semibold p-4"
+                className="group flex items-center gap-4 text-primary text-base md:text-xl font-semibold p-4"
                 href={project.link}
                 target="_blank"
               >
@@ -259,7 +270,6 @@ export default function Page() {
               </a>
             </div>
           )}
-          <div className="w-full flex flex-col gap-8 px-16"></div>
         </>
       )}
     </div>
