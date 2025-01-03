@@ -73,7 +73,7 @@ export default function Page() {
           <Link
             href={`/projets/${project.title}`}
             key={project.title}
-            className="group flex flex-col gap-1 md:odd:-mt-8"
+            className="group flex flex-col gap-1 pb-2 md:odd:-mt-8"
           >
             <div className="rounded-lg overflow-hidden">
               <Image
@@ -85,10 +85,10 @@ export default function Page() {
               />
             </div>
             <div className="flex justify-between items-center py-4">
-              <div className="flex items-center gap-4">
-                <h2 className="text-3xl">{project.title}</h2>
+              <div className="flex items-center gap-2 md:gap-4">
+                <h2 className="text-xl md:text-3xl">{project.title}</h2>
                 <svg
-                  className="text-primary rotate-[-30deg] group-hover:rotate-0 transition-rotate duration-300 ease-in-out"
+                  className="w-4 md:w-6 h-auto text-primary rotate-[-30deg] group-hover:rotate-0 transition-rotate duration-300 ease-in-out"
                   width="25"
                   height="24"
                   viewBox="0 0 25 24"
@@ -104,7 +104,7 @@ export default function Page() {
                   />
                 </svg>
               </div>
-              <p className="text-light">
+              <p className="text-sm md:text-base text-light">
                 {project.category} | {project.year}
               </p>
             </div>
