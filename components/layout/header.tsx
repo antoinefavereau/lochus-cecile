@@ -94,26 +94,26 @@ export default function Header() {
         <ellipse cx="359.5" cy="567.5" rx="359.5" ry="567.5" fill="white" />
       </svg>
       <button
-        className={`md:hidden relative z-50 h-8 w-10`}
+        className={`md:hidden relative z-50 h-6 w-9`}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         title="Menu"
       >
         <div
-          className={`absolute left-0 right-0 h-1 ${
+          className={`absolute left-0 right-0 h-[3px] ${
             isMenuOpen
               ? "top-1/2 -translate-y-1/2 rotate-45 bg-black delay-0"
               : "top-0 bg-white delay-300"
           } transition-all duration-500 ease-in-out`}
         ></div>
         <div
-          className={`absolute left-0 right-0 h-1 top-1/2 -translate-y-1/2 ${
+          className={`absolute left-0 right-0 h-[3px] top-1/2 -translate-y-1/2 ${
             isMenuOpen
               ? "opacity-0 bg-black delay-0"
               : "opacity-100 bg-white delay-300"
           } transition-all duration-300 ease-in-out`}
         ></div>
         <div
-          className={`absolute left-0 right-0 h-1 ${
+          className={`absolute left-0 right-0 h-[3px] ${
             isMenuOpen
               ? "bottom-1/2 translate-y-1/2 -rotate-45 bg-black delay-0"
               : "bottom-0 bg-white delay-300"
