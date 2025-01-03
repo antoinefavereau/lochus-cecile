@@ -105,7 +105,7 @@ export const fetchProjects = async () => {
       link: "https://www.instagram.com/fifo_orleans/",
       link_text: "Voir le compte Instagram",
       without_background_image: "/projects/Fifo_projet.png",
-      full_width_image: "/projects/fifo_accueil_projet.png",
+      full_width_image: "/projects/mockupcarteFIFO.png",
     },
   ];
   return projects;
