@@ -49,7 +49,7 @@ export default function Header() {
   );
 
   return (
-    <header className="absolute z-10 start-0 top-0 end-0 p-10 flex items-center justify-between">
+    <header className="absolute z-10 start-0 top-0 end-0 py-16 px-10 flex items-center justify-between">
       <Link
         className="md:hidden relative z-50"
         href="/"
@@ -57,7 +57,7 @@ export default function Header() {
         onClick={() => setIsMenuOpen(false)}
       >
         <svg
-          className={`h-12 w-auto ${
+          className={`h-10 w-auto ${
             isMenuOpen ? "text-black delay-300" : "text-white delay-0"
           } transition-all duration-500 ease-in-out`}
           xmlns="http://www.w3.org/2000/svg"
