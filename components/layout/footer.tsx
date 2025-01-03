@@ -78,30 +78,26 @@ export default function Footer() {
         </div>
       </div>
       <Link
-        className="absolute bottom-52 right-4 md:right-8 flex flex-col items-center"
+        className="group absolute bottom-52 right-4 md:right-8 flex flex-col items-center gap-2"
         href="#"
       >
-        <svg
-          className="w-12 xs:w-16 md:w-20 h-auto"
-          width="78"
-          height="78"
-          viewBox="0 0 78 78"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M39 52V26M39 26L27.625 37.375M39 26L50.375 37.375"
-            stroke="currentcolor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M6.5 39C6.5 56.9491 21.0509 71.5 39 71.5C56.9493 71.5 71.5 56.9491 71.5 39C71.5 21.0507 56.9493 6.5 39 6.5C21.0509 6.5 6.5 21.0507 6.5 39Z"
-            stroke="currentcolor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        <div className="relative w-12 xs:w-16 md:w-20 aspect-square rounded-full border-[1px] border-current overflow-hidden">
+          <svg
+            className="absolute w-full h-full top-0 left-0 group-hover:animate-[arrowUp_0.5s_ease-in-out]"
+            width="78"
+            height="78"
+            viewBox="0 0 78 78"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M39 52V26M39 26L27.625 37.375M39 26L50.375 37.375"
+              stroke="currentcolor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </div>
         <span className="text-xs xs:text-base md:text-lg font-extralight">
           Retour en haut
         </span>
