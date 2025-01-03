@@ -34,7 +34,7 @@ export default function Page() {
     fetchData();
   }, [name]);
   return (
-    <div className="flex flex-col items-center gap-24 pt-16">
+    <div className="flex flex-col items-center gap-24 pt-48">
       {project === null && <p>Chargement...</p>}
       {project !== null && (
         <>
