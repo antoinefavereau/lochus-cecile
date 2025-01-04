@@ -20,7 +20,7 @@ export default function Hero() {
     },
     {
       radiusRatio: 0.3,
-      words: ["Design graphique", "Social Média"],
+      words: ["Design graphique", "Communication"],
     },
   ];
 
