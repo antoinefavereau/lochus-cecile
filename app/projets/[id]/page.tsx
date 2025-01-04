@@ -67,7 +67,7 @@ export default function Page() {
               {project.year}
             </p>
           </div>
-          <p className="self-end max-w-none md:max-w-4xl text-base md:text-3xl px-8 md:px-16">
+          <p className="self-start max-w-none md:max-w-4xl text-base md:text-3xl px-8 md:px-16">
             {project.description}
           </p>
           {"mockup_images" in project && (
