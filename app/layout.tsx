@@ -6,7 +6,10 @@ import Footer from "../components/layout/footer";
 import { IsMobileProvider } from "@/context/IsMobileProvider";
 
 export const metadata: Metadata = {
-  title: "Lochus Cécile",
+  title: {
+    default: "Cécile Lochus",
+    template: "%s | Cécile Lochus",
+  },
   description: "Portfolio de Cécile Lochus",
 };
 

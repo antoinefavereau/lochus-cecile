@@ -1,38 +1,26 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import {
-  AudiovisualProject,
-  GraphicDesignProject,
-  DesignProject,
-  SoacialMediasProject,
-} from "@/types/project";
 import { fetchProject } from "@/lib/data";
 import Image from "next/image";
+import { Metadata } from "next";
 
-export default function Page() {
-  const { id } = useParams();
-  const name = id as string;
-  const [project, setProject] = useState<
-    | DesignProject
-    | GraphicDesignProject
-    | SoacialMediasProject
-    | AudiovisualProject
-    | null
-  >(null);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const project = await fetchProject(id);
+  return {
+    title: project.title,
+  };
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const fetchedProject = await fetchProject(name);
-        setProject(fetchedProject);
-      } catch (error) {
-        console.error("Error fetching project:", error);
-      }
-    };
-    fetchData();
-  }, [name]);
+export default async function Page({
+  params,
+}: {
+  readonly params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const project = await fetchProject(id);
 
   return (
     <div className="flex flex-col items-center gap-24 pt-48">
