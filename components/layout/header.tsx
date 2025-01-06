@@ -20,15 +20,33 @@ export default function Header() {
   const rightLinks = [
     { href: "/#skills", label: "Compétences" },
     { href: "/projets", label: "Projets" },
-    { href: "/#contact", label: "Contact" },
+    { href: "#contact", label: "Contact" },
   ];
+
+  const scrollToSection = (id: string) => {
+    if (
+      (window.location.pathname === "/" && id.startsWith("/#")) ||
+      id.startsWith("#")
+    ) {
+      const element = document.querySelector(id.replace("/", ""));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      window.location.href = id;
+    }
+  };
 
   const getNavItem = (href: string, label: string) => (
     <li key={href}>
       <Link
         className="group block p-2 text-4xl md:text-base"
         href={href}
-        onClick={() => setIsMenuOpen(false)}
+        scroll={false}
+        onClick={() => {
+          setIsMenuOpen(false);
+          scrollToSection(href);
+        }}
       >
         <span className="relative block leading-normal overflow-hidden">
           <span
@@ -53,8 +71,12 @@ export default function Header() {
       <Link
         className="md:hidden relative z-50"
         href="/"
+        scroll={false}
         title="Cécile Lochus"
-        onClick={() => setIsMenuOpen(false)}
+        onClick={() => {
+          setIsMenuOpen(false);
+          scrollToSection("/");
+        }}
       >
         <svg
           className={`h-10 w-auto ${
@@ -128,7 +150,7 @@ export default function Header() {
         <ul className="w-full flex flex-col md:flex-row items-center justify-evenly text-black md:text-white">
           {leftLinks.map(({ href, label }) => getNavItem(href, label))}
           <li className="hidden md:block">
-            <Link href="/" title="Cécile Lochus">
+            <Link href="/" scroll={false} title="Cécile Lochus">
               <Image
                 className="h-12 w-auto"
                 src="/logoPortfolio_1.svg"

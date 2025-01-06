@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -80,6 +82,10 @@ export default function Footer() {
       <Link
         className="group absolute bottom-52 right-4 md:right-8 flex flex-col items-center gap-2"
         href="#"
+        onClick={(event) => {
+          event.preventDefault();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
       >
         <div className="relative w-12 xs:w-16 md:w-20 aspect-square rounded-full border-[1px] border-current overflow-hidden">
           <svg
