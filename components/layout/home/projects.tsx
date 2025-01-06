@@ -43,7 +43,7 @@ export default function Projects() {
 
   return (
     <section className="flex flex-col gap-8 py-16">
-      <div className="relative flex flex-col items-center gap-32 px-8 pt-64 pb-80 min-h-screen">
+      <div className="relative flex flex-col items-center gap-32 md:gap-40 px-8 py-[50vh] min-h-screen">
         {projects.map((project) => (
           <div key={project.id} className="absolute inset-0">
             <Image
