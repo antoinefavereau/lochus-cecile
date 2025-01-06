@@ -1,5 +1,31 @@
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
+import { useIsMobile } from "@/context/IsMobileProvider";
+
+interface List {
+  id: number;
+  title: string;
+  company: string;
+  date: string;
+  list: string[];
+}
+
 export default function Formations() {
-  const experiences = [
+  const [openItemId, setOpenItemId] = useState<string | null>(null);
+  const isMobile = useIsMobile();
+
+  const handleClick = (id: string) => {
+    if (!isMobile) return;
+    if (openItemId === id) {
+      setOpenItemId(null);
+    } else {
+      setOpenItemId(id);
+    }
+  };
+
+  const experiences: List[] = [
     {
       id: 1,
       title: "Cadreuse",
@@ -45,7 +71,7 @@ export default function Formations() {
     },
   ];
 
-  const formations = [
+  const formations: List[] = [
     {
       id: 1,
       title: "BUT MMI",
@@ -87,60 +113,68 @@ export default function Formations() {
     },
   ];
 
+  const list = (title: string, items: List[]) => {
+    return (
+      <div className="flex flex-col gap-8">
+        <h2 className="text-2xl font-bold">{title}</h2>
+        <div>
+          {items.map((item) => (
+            <div
+              key={item.id}
+              className="group py-8 flex flex-col border-t-2 border-veryLight last:border-b-2"
+              onClick={() => handleClick(title + "-" + item.title)}
+            >
+              <div className="flex flex-col gap-2">
+                <div className="w-full flex justify-between items-center gap-4">
+                  <h3 className="font-bold">{item.title}</h3>
+                  <div className="shrink-0 flex items-center gap-4">
+                    <p className="text-sm md:text-base">{item.date}</p>
+                    <Image
+                      className={`block md:hidden transform md:group-hover:rotate-180 ${
+                        openItemId === title + "-" + item.title && "rotate-180"
+                      } transition-transform duration-300`}
+                      src="/Chevron Down.svg"
+                      alt="chevron"
+                      width={20}
+                      height={20}
+                    />
+                  </div>
+                </div>
+                <p>{item.company}</p>
+              </div>
+              <div
+                className={`h-0 overflow-hidden md:group-hover:h-fit ${
+                  openItemId === title + "-" + item.title && "!h-fit"
+                } transition-height duration-500 ease-in-out`}
+                style={{ interpolateSize: "allow-keywords" }}
+              >
+                <ul className="pt-8">
+                  {item.list.map((content, index) => (
+                    <li key={index}>{content}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <section id="formations" className="grid grid-cols-2 gap-16 p-32">
-      <div className="flex flex-col gap-8">
-        <h2 className="text-2xl font-bold">Expériences</h2>
-        <div>
-          {experiences.map((experience) => (
-            <div
-              className="group py-8 flex flex-col border-t-2 border-veryLight last:border-b-2"
-              key={experience.id}
-            >
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex flex-col">
-                  <h3 className="font-bold">{experience.title}</h3>
-                  <p>{experience.company}</p>
-                </div>
-                <p>{experience.date}</p>
-              </div>
-              <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-max-height duration-500">
-                <ul className="pt-8">
-                  {experience.list.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col gap-8">
-        <h2 className="text-2xl font-bold">Formations</h2>
-        <div>
-          {formations.map((formation) => (
-            <div
-              className="group py-8 flex flex-col border-t-2 border-veryLight last:border-b-2"
-              key={formation.id}
-            >
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex flex-col">
-                  <h3 className="font-bold">{formation.title}</h3>
-                  <p>{formation.company}</p>
-                </div>
-                <p>{formation.date}</p>
-              </div>
-              <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-max-height duration-500">
-                <ul className="pt-8">
-                  {formation.list.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+    <section
+      id="formations"
+      className="relative grid md:grid-cols-2 gap-40 md:gap-16 py-16 px-8 xs:px-16 lg:px-24 overflow-hidden"
+    >
+      <Image
+        className="absolute max-w-none w-[240vw] xs:w-[200vw] md:w-[140vw] lg:w-[120vw] top-[90%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-[120deg] select-none pointer-events-none"
+        src="/ellipses.svg"
+        alt="ellipses"
+        width={1920}
+        height={1080}
+      />
+      {list("Expériences", experiences)}
+      {list("Formations", formations)}
     </section>
   );
 }

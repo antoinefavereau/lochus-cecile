@@ -14,7 +14,7 @@ export default function Button({
   };
   return (
     <button
-      className={`font-medium rounded-lg text-white transition-all duration-300 ${variants[variant]}`}
+      className={`text-sm xs:text-base md:text-lg font-medium rounded-lg text-white transition-all duration-300 ${variants[variant]}`}
       {...props}
     >
       {children}

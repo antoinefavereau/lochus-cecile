@@ -19,6 +19,42 @@ export default {
         sans: ["Poppins", "system-ui"],
       },
       keyframes: {
+        scrollDot: {
+          "0%, 20%": {
+            top: "8px",
+            left: "8px",
+            height: "8px",
+          },
+          "40%": {
+            top: "8px",
+            left: "8px",
+            height: "24px",
+          },
+          "60%, 80%": {
+            top: "24px",
+            left: "8px",
+            height: "8px",
+          },
+          "100%": {
+            top: "8px",
+            left: "8px",
+            height: "8px",
+          },
+        },
+        scrollDashes: {
+          "0%, 20%": {
+            top: "8px",
+            height: "24px",
+          },
+          "40%, 80%": {
+            top: "32px",
+            height: "0px",
+          },
+          "100%": {
+            top: "8px",
+            height: "24px",
+          },
+        },
         customSpin: {
           "0%": { transform: "rotateZ(-15deg) skewX(35deg) rotate(0deg)" },
           "100%": { transform: "rotateZ(-15deg) skewX(35deg) rotate(360deg)" },
@@ -27,14 +63,23 @@ export default {
           "0%": { transform: "translate(-50%, -50%) rotate(0deg)" },
           "100%": { transform: "translate(-50%, -50%) rotate(-360deg)" },
         },
-        marquee: {
+        verticalMarquee: {
           "0%": { transform: "translateY(0%)" },
-          "100%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(-50%)" },
         },
-        marquee2: {
-          "0%": { transform: "translateY(100%)" },
-          "100%": { transform: "translateY(0%)" },
+        horizontalMarquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
         },
+        arrowUp: {
+          "0%": { transform: "translateY(0)" },
+          "49%": { transform: "translateY(-100%)" },
+          "50%": { transform: "translateY(100%)" },
+          "100%": { transform: "translateY(0)" },
+        },
+      },
+      screens: {
+        xs: "576px",
       },
     },
   },
