@@ -83,7 +83,7 @@ export default function Header() {
         className={`md:hidden fixed h-auto translate-x-1/2 -translate-y-1/2 ${
           isMenuOpen
             ? "w-[160vw] right-1/2 top-1/2 ease-out"
-            : "w-0 right-[60px] top-[64px]"
+            : "w-0 right-[56px] top-[80px]"
         } transition-all duration-500 ease-in`}
         width="719"
         height="1135"
