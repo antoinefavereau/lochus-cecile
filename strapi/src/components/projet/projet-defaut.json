@@ -1,0 +1,70 @@
+{
+  "collectionName": "components_projet_projet_defauts",
+  "info": {
+    "displayName": "projet_defaut"
+  },
+  "options": {},
+  "attributes": {
+    "titre": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "categorie": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::categorie.categorie"
+    },
+    "annee": {
+      "type": "date",
+      "required": true
+    },
+    "description": {
+      "type": "blocks",
+      "required": true
+    },
+    "image_home": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "couleur_image_home": {
+      "type": "string",
+      "required": true
+    },
+    "image_projets": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "image_principale": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "paragraphe": {
+      "type": "component",
+      "repeatable": false,
+      "component": "paragraphe.paragraphe",
+      "required": true
+    },
+    "lien": {
+      "type": "component",
+      "repeatable": false,
+      "component": "lien.lien"
+    }
+  }
+}

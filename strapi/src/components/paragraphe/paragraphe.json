@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_paragraphe_paragraphes",
+  "info": {
+    "displayName": "paragraphe",
+    "icon": "filter",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "titre": {
+      "type": "string",
+      "required": true
+    },
+    "texte_1": {
+      "type": "blocks",
+      "required": true
+    },
+    "texte_2": {
+      "type": "blocks"
+    }
+  }
+}
