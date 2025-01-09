@@ -1,6 +1,7 @@
 import { fetchProject } from "@/lib/data";
 import Image from "next/image";
 import { Metadata } from "next";
+import MoreProjects from "@/components/layout/moreProjects";
 
 export async function generateMetadata({
   params,
@@ -258,6 +259,7 @@ export default async function Page({
               </a>
             </div>
           )}
+          <MoreProjects />
         </>
       )}
     </div>

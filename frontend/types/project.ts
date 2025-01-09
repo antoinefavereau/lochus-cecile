@@ -1,4 +1,4 @@
-export interface Project {
+export interface ProjectType {
   id: number;
   title: string;
   homepage_image: string;
@@ -18,21 +18,21 @@ export interface Project {
   link_text?: string;
 }
 
-export interface DesignProject extends Project {
+export interface DesignProject extends ProjectType {
   images: [string, string, string, string?];
   what_comes_form_it: string;
 }
 
-export interface GraphicDesignProject extends Project {
+export interface GraphicDesignProject extends ProjectType {
   mockup_images: [string, string, string, string];
   branding_images: [string, string, string, string, string, string?];
 }
 
-export interface SoacialMediasProject extends Project {
+export interface SoacialMediasProject extends ProjectType {
   without_background_image: string;
   full_width_image: string;
 }
 
-export interface AudiovisualProject extends Project {
+export interface AudiovisualProject extends ProjectType {
   video: string;
 }

@@ -4,12 +4,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { fetchProjects } from "@/lib/data";
-import { Project } from "@/types/project";
+import { ProjectType } from "@/types/project";
 import { useIsMobile } from "@/context/IsMobileProvider";
 
 export default function Projects() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [projects, setProjects] = useState<ProjectType[]>([]);
+  const [selectedProject, setSelectedProject] = useState<ProjectType | null>(
+    null
+  );
   const projectRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const isMobile = useIsMobile();
 
@@ -26,7 +28,7 @@ export default function Projects() {
     if (!isMobile) return;
     const handleScroll = () => {
       const centerY = window.innerHeight / 2;
-      let closest = { dist: Infinity, project: null as Project | null };
+      let closest = { dist: Infinity, project: null as ProjectType | null };
       projectRefs.current.forEach((el, i) => {
         if (!el) return;
         const rect = el.getBoundingClientRect();
@@ -77,7 +79,10 @@ export default function Projects() {
       <Link className="group py-4 overflow-hidden" href="/projets">
         <div className="w-max flex gap-10 md:gap-16 px-5 md:px-8 animate-[horizontalMarquee_30s_linear_infinite]">
           {new Array(20).fill(0).map((_, index) => (
-            <div key={index} className="flex items-center gap-4 text-lg md:text-2xl">
+            <div
+              key={index}
+              className="flex items-center gap-4 text-lg md:text-2xl"
+            >
               <span>Voir plus de projets</span>
               <svg
                 className="w-5 md:w-6 h-auto text-primary rotate-[-30deg] group-hover:rotate-0 transition-rotate duration-300 ease-in-out"
