@@ -65,12 +65,9 @@ export default function MoreProjects() {
           ))}
         </Swiper>
         <div className="relative flex justify-end px-8 md:px-16">
-          <div
-            ref={paginationRef}
-            className=""
-          ></div>
+          <div ref={paginationRef}></div>
           <Link
-            className="group flex items-center gap-4 text-lg"
+            className="group relative flex items-center gap-4 text-lg"
             href="/projets"
           >
             <span>Voir tous les projets</span>
