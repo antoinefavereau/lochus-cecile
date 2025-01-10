@@ -66,8 +66,8 @@ export default function Skills() {
         trigger: container,
         markers: true,
         start: "top bottom",
-        end: "top 60%",
-        scrub: 1,
+        end: "top 50%",
+        scrub: true,
       },
     });
   });
