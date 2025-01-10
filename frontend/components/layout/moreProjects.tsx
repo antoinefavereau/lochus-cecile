@@ -36,11 +36,11 @@ export default function MoreProjects() {
   }, []);
 
   return (
-    <div className="w-full flex flex-col gap-16">
-      <div className="px-16 md:px-32">
-        <h2 className="relative text-3xl pb-4">
+    <div className="w-full flex flex-col gap-12 md:gap-16">
+      <div className="px-8 md:px-16 lg:px-24">
+        <h2 className="relative text-xl md:text-2xl lg:text-3xl pb-4">
           <span>Plus de projets</span>
-          <span className="absolute bottom-0 start-0 w-full max-w-28 h-0.5 bg-primary"></span>
+          <span className="absolute bottom-0 start-0 w-full max-w-16 md:max-w-28 h-0.5 bg-primary"></span>
         </h2>
       </div>
       <div className="flex flex-col gap-8">
@@ -67,7 +67,7 @@ export default function MoreProjects() {
         <div className="relative flex justify-end px-8 md:px-16">
           <div ref={paginationRef}></div>
           <Link
-            className="group relative flex items-center gap-4 text-lg"
+            className="group relative flex items-center gap-4 text-base md:text-lg"
             href="/projets"
           >
             <span>Voir tous les projets</span>

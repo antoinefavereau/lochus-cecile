@@ -41,4 +41,9 @@ body {
   transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
+
+  @media screen and (max-width: 768px) {
+    bottom: calc(100% + 1rem) !important;
+    top: unset !important;
+  }
 }
