@@ -50,15 +50,22 @@ export default function Footer() {
           width={48}
           height={48}
         />
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-2">
           {socials.map((social) => (
             <a
               key={social.name}
-              className="text-lg xs:text-xl md:text-2xl font-light"
+              className="group block p-2 text-lg xs:text-xl md:text-2xl font-light"
               href={social.url}
               target="_blank"
             >
-              {social.name}
+              <span className="relative block leading-normal overflow-hidden">
+                <span className="block leading-normal group-hover:-translate-y-full translate-y-0 transition-all duration-500 ease-in-out">
+                  {social.name}
+                </span>
+                <span className="absolute leading-normal group-hover:-translate-y-full transition-transform duration-500 ease-in-out">
+                  {social.name}
+                </span>
+              </span>
             </a>
           ))}
         </div>
