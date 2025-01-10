@@ -1,6 +1,17 @@
+"use client";
+
 import Image from "next/image";
+import { useRef } from "react";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function Skills() {
+  gsap.registerPlugin(useGSAP);
+  gsap.registerPlugin(ScrollTrigger);
+
+  const containerRef = useRef(null);
+
   const logos = [
     {
       id: 1,
@@ -44,9 +55,32 @@ export default function Skills() {
     },
   ];
 
+  useGSAP(() => {
+    if (!containerRef.current) return;
+
+    const container = containerRef.current;
+
+    gsap.from(container, {
+      scale: 0.8,
+      scrollTrigger: {
+        trigger: container,
+        markers: true,
+        start: "top bottom",
+        end: "top 60%",
+        scrub: 1,
+      },
+    });
+  });
+
   return (
-    <section id="skills" className="md:h-screen py-16 px-4 xs:px-8 md:px-16 lg:px-24">
-      <div className="md:h-full bg-white text-black flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16 py-16 md:py-0 md:px-12 rounded-[3rem]">
+    <section
+      id="skills"
+      className="md:h-screen py-16 px-4 xs:px-8 md:px-16 lg:px-24"
+    >
+      <div
+        ref={containerRef}
+        className="md:h-full bg-white text-black flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16 py-16 md:py-0 md:px-12 rounded-[3rem]"
+      >
         <div className="flex flex-col gap-8 md:gap-12 py-0 md:py-16 px-8 md:px-0 md:max-w-xl">
           <h2 className="text-3xl xs:text-4xl md:text-5xl lg:text-6xl font-extrabold">
             Compétences
