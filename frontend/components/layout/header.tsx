@@ -23,29 +23,13 @@ export default function Header() {
     { href: "#contact", label: "Contact" },
   ];
 
-  const scrollToSection = (id: string) => {
-    if (
-      (window.location.pathname === "/" && id.startsWith("/#")) ||
-      id.startsWith("#")
-    ) {
-      const element = document.querySelector(id.replace("/", ""));
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    } else {
-      window.location.href = id;
-    }
-  };
-
   const getNavItem = (href: string, label: string) => (
     <li key={href}>
       <Link
         className="group block p-2 text-4xl md:text-base"
         href={href}
-        scroll={false}
         onClick={() => {
           setIsMenuOpen(false);
-          scrollToSection(href);
         }}
       >
         <span className="relative block leading-normal overflow-hidden">
@@ -75,7 +59,6 @@ export default function Header() {
         title="Cécile Lochus"
         onClick={() => {
           setIsMenuOpen(false);
-          scrollToSection("/");
         }}
       >
         <svg
