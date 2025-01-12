@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import SliceInText from "../ui/sliceInText";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,15 +34,17 @@ export default function Header() {
         }}
       >
         <span className="relative block leading-normal overflow-hidden">
-          <span
-            className={`block leading-normal md:group-hover:-translate-y-full ${
-              isMenuOpen
-                ? "delay-500 md:delay-0"
-                : "translate-y-full md:translate-y-0"
-            } transition-all duration-500 ease-in-out`}
-          >
-            {label}
-          </span>
+          <SliceInText>
+            <span
+              className={`block leading-normal md:group-hover:-translate-y-full ${
+                isMenuOpen
+                  ? "delay-500 md:delay-0"
+                  : "translate-y-full md:translate-y-0"
+              } transition-all duration-500 ease-in-out`}
+            >
+              {label}
+            </span>
+          </SliceInText>
           <span className="absolute leading-normal md:group-hover:-translate-y-full transition-transform duration-500 ease-in-out">
             {label}
           </span>

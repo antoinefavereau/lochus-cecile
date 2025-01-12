@@ -1,5 +1,6 @@
 "use client";
 
+import SliceInText from "@/components/ui/sliceInText";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -142,10 +143,10 @@ export default function Hero() {
         })()}
       </div>
       <h1 className="relative flex flex-col items-center gap-5 pt-16 text-4xl xs:text-5xl md:text-7xl font-extrabold text-center">
-        <span className="text-3xl xs:text-4xl md:text-6xl font-medium text-primary">
+        <SliceInText className="text-3xl xs:text-4xl md:text-6xl font-medium text-primary">
           Portfolio
-        </span>
-        <span>LOCHUS Cécile</span>
+        </SliceInText>
+        <SliceInText>LOCHUS Cécile</SliceInText>
       </h1>
       <a
         href="#about"

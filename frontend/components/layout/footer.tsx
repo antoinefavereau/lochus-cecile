@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import SliceInText from "../ui/sliceInText";
 
 interface Social {
   name: string;
@@ -59,10 +60,12 @@ export default function Footer() {
               target="_blank"
             >
               <span className="relative block leading-normal overflow-hidden">
-                <span className="block leading-normal group-hover:-translate-y-full translate-y-0 transition-all duration-500 ease-in-out">
-                  {social.name}
-                </span>
-                <span className="absolute leading-normal group-hover:-translate-y-full transition-transform duration-500 ease-in-out">
+                <SliceInText>
+                  <span className="block group-hover:-translate-y-full translate-y-0 transition-transform duration-500 ease-in-out">
+                    {social.name}
+                  </span>
+                </SliceInText>
+                <span className="absolute group-hover:-translate-y-full transition-transform duration-500 ease-in-out">
                   {social.name}
                 </span>
               </span>
@@ -70,20 +73,24 @@ export default function Footer() {
           ))}
         </div>
         <div className="flex items-baseline gap-4 xs:gap-8 md:gap-16 lg:gap-20">
-          <h2 className="text-4xl xs:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-thin tracking-[0.2rem] xs:tracking-[0.25em]">
-            Contact
-          </h2>
-          <p className="text-xs xs:text-sm font-light">
-            Développé par{" "}
-            <a
-              className="underline"
-              href="https://antoinefavereau.fr"
-              target="_blank"
-              rel="noopener"
-            >
-              Antoine Favereau
-            </a>
-          </p>
+          <SliceInText>
+            <h2 className="text-4xl xs:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-thin tracking-[0.2rem] xs:tracking-[0.25em]">
+              Contact
+            </h2>
+          </SliceInText>
+          <SliceInText>
+            <p className="text-xs xs:text-sm font-light">
+              Développé par{" "}
+              <a
+                className="underline"
+                href="https://antoinefavereau.fr"
+                target="_blank"
+                rel="noopener"
+              >
+                Antoine Favereau
+              </a>
+            </p>
+          </SliceInText>
         </div>
       </div>
       <Link
