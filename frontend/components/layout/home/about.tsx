@@ -2,7 +2,10 @@
 
 import Image from "next/image";
 import Button from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 export default function About() {
   const [titles, setTitles] = useState([
@@ -12,6 +15,48 @@ export default function About() {
     "rigoureuse",
   ]);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const boxRef = useRef(null);
+  const paragraphRef = useRef(null);
+  const lineRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    if (!boxRef.current || !paragraphRef.current || !lineRef.current) return;
+
+    gsap.from(boxRef.current, {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: boxRef.current,
+        toggleActions: "restart none restart none",
+      },
+    });
+
+    gsap.from(paragraphRef.current, {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: paragraphRef.current,
+        toggleActions: "restart none restart none",
+      },
+    });
+
+    gsap.from(lineRef.current, {
+      width: 0,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: lineRef.current,
+        toggleActions: "restart none restart none",
+      },
+    });
+  });
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -45,26 +90,31 @@ export default function About() {
         height={250}
       />
       <h2 className="relative self-start pt-8 md:pt-12 text-xl xs:text-3xl md:text-4xl lg:text-5xl font-extrabold w-[calc(100vw-7.5rem)] xs:w-[calc(100vw-14rem)] md:w-[calc(100vw-20rem)] max-w-2xl">
-        <span className="absolute start-0 top-0 w-[7ch] h-[2px] bg-primary"></span>
-        {"Hello, étudiante en BUT MMI, je suis "}
-        <span className="text-primary inline-block h-[2ch] translate-y-[6px] xs:translate-y-[11px] md:translate-y-[16px] lg:translate-y-[23px] overflow-hidden">
-          <div
-            className="transform transition-transform duration-300 ease-in-out"
-            style={{
-              transform: `translateY(${-(currentIndex + 1) * 2}ch)`,
-              paddingTop: `${currentIndex * 2}ch`,
-            }}
-          >
-            {titles.map((title, index) => (
-              <span key={title + index} className="block h-[2ch]">
-                {title}
-              </span>
-            ))}
-          </div>
-        </span>
+        <span
+          ref={lineRef}
+          className="absolute start-0 top-0 w-[7ch] h-[2px] bg-primary"
+        ></span>
+        <div ref={boxRef}>
+          {"Hello, étudiante en BUT MMI, je suis "}
+          <span className="text-primary inline-block h-[2ch] translate-y-[6px] xs:translate-y-[11px] md:translate-y-[16px] lg:translate-y-[23px] overflow-hidden">
+            <div
+              className="transform transition-transform duration-300 ease-in-out"
+              style={{
+                transform: `translateY(${-(currentIndex + 1) * 2}ch)`,
+                paddingTop: `${currentIndex * 2}ch`,
+              }}
+            >
+              {titles.map((title, index) => (
+                <span key={title + index} className="block h-[2ch]">
+                  {title}
+                </span>
+              ))}
+            </div>
+          </span>
+        </div>
       </h2>
       <div className="self-end flex flex-col items-start gap-10 md:gap-14 w-[calc(100vw-8rem)] xs:w-[calc(100vw-14rem)] md:w-[calc(100vw-20rem)] max-w-2xl">
-        <p className="text-base md:text-lg text-light">
+        <p ref={paragraphRef} className="text-base md:text-lg text-light">
           {
             "Je suis passionnée par le multimédia, j'aime explorer et approfondir différents domaines créatifs. J'ai un désir constant de découvrir et d'apprendre pour nourrir ma créativité et me pousser à relever de nouveaux défis."
           }
