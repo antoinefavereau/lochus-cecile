@@ -119,7 +119,7 @@ export default function About() {
             "Je suis passionnée par le multimédia, j'aime explorer et approfondir différents domaines créatifs. J'ai un désir constant de découvrir et d'apprendre pour nourrir ma créativité et me pousser à relever de nouveaux défis."
           }
         </p>
-        <a href="/Cécile_Lochus_CV.pdf" download>
+        <a ref={cvRef} href="/Cécile_Lochus_CV.pdf" target="_blank">
           <Button variant="outlined">CV</Button>
         </a>
       </div>
