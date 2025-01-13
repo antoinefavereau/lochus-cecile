@@ -34,7 +34,7 @@ export default function ProjectsContent({
         width={1920}
         height={1080}
       />
-      <div className="flex flex-col items-center gap-12 text-center">
+      <div className="relative flex flex-col items-center gap-12 text-center">
         <SliceInText>
           <h1 className="text-6xl sm:text-7xl md:text-8xl font-thin text-primary">
             Projets
