@@ -30,8 +30,7 @@ export default function About() {
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top 80%",
-        end: "bottom top",
-        toggleActions: "restart reset restart reset",
+        toggleActions: "play none none reset",
       },
     });
 

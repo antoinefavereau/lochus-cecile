@@ -1,31 +1,42 @@
+import { useEffect, useRef, RefObject } from "react";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
+
+interface SliceInTextProps {
+  addRef?: (ref: RefObject<HTMLDivElement | null>) => void;
+  triggerRef?: React.RefObject<HTMLDivElement>;
+  children: React.ReactNode;
+}
 
 export default function SliceInText({
+  addRef,
+  triggerRef,
   children,
   ...props
-}: React.HTMLAttributes<HTMLSpanElement> & { children: React.ReactNode }) {
-  const boxRef = useRef(null);
+}: React.HTMLAttributes<HTMLSpanElement> & SliceInTextProps) {
+  const boxRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
+  useEffect(() => {
     if (!boxRef.current) return;
 
-    const box = boxRef.current;
+    if (addRef) {
+      addRef(boxRef);
+    } else {
+      gsap.from(boxRef.current, {
+        y: 100,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: triggerRef?.current || boxRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reset",
+        },
+      });
+    }
+  }, [addRef, triggerRef]);
 
-    gsap.from(box, {
-      y: 100,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: boxRef.current,
-        toggleActions: "restart none restart none",
-      },
-    });
-  });
   return (
     <span className="relative overflow-hidden">
       <div ref={boxRef} {...props}>

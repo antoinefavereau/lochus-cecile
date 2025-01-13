@@ -1,8 +1,14 @@
 "use client";
 
+import { RefObject, useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
 import SliceInText from "../ui/sliceInText";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Social {
   name: string;
@@ -10,6 +16,10 @@ interface Social {
 }
 
 export default function Footer() {
+  const triggerRef = useRef<HTMLDivElement | null>(null);
+  const timeline = useRef<gsap.core.Timeline | null>(null);
+  const isFirst = useRef(true);
+
   const socials: Social[] = [
     {
       name: "Email",
@@ -24,6 +34,33 @@ export default function Footer() {
       url: "https://www.behance.net/ccilelochus/moodboards",
     },
   ];
+
+  useGSAP(() => {
+    if (!triggerRef.current) return;
+
+    timeline.current = gsap.timeline({
+      defaults: { duration: 1, ease: "power2.out" },
+      scrollTrigger: {
+        trigger: triggerRef.current,
+        start: "top 80%",
+        toggleActions: "play none none reset",
+      },
+    });
+  });
+
+  const addElementToTimeline = (boxRef: RefObject<HTMLDivElement | null>) => {
+    if (!boxRef.current || !timeline.current) return;
+
+    timeline.current.from(
+      boxRef.current,
+      {
+        y: 100,
+      },
+      isFirst.current ? undefined : "-=0.7"
+    );
+    isFirst.current = false;
+  };
+
   return (
     <footer
       id="contact"
@@ -43,7 +80,10 @@ export default function Footer() {
         width={600}
         height={600}
       />
-      <div className="relative flex flex-col items-start gap-24">
+      <div
+        ref={triggerRef}
+        className="relative flex flex-col items-start gap-24"
+      >
         <Image
           className="w-10 sm:w-12 h-auto md:mx-4"
           src="/logoPortfolio_1.svg"
@@ -60,7 +100,7 @@ export default function Footer() {
               target="_blank"
             >
               <span className="relative block leading-normal overflow-hidden">
-                <SliceInText>
+                <SliceInText addRef={(ref) => addElementToTimeline(ref)}>
                   <span className="block group-hover:-translate-y-full translate-y-0 transition-transform duration-500 ease-in-out">
                     {social.name}
                   </span>
@@ -73,12 +113,12 @@ export default function Footer() {
           ))}
         </div>
         <div className="flex items-baseline gap-4 xs:gap-8 md:gap-16 lg:gap-20">
-          <SliceInText>
+          <SliceInText addRef={(ref) => addElementToTimeline(ref)}>
             <h2 className="text-4xl xs:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-thin tracking-[0.2rem] xs:tracking-[0.25em]">
               Contact
             </h2>
           </SliceInText>
-          <SliceInText>
+          <SliceInText addRef={(ref) => addElementToTimeline(ref)}>
             <p className="text-xs xs:text-sm font-light">
               Développé par{" "}
               <a
