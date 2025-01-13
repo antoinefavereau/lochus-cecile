@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "sh fetch-lfs.sh && next build",
     "start": "next start",
     "lint": "next lint"
   },
