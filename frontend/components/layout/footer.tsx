@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useMemo, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
-import SliceInText from "../ui/sliceInText";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import SliceInText from "../ui/sliceInText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -62,7 +62,7 @@ export default function Footer() {
       tl.from(
         ref.current,
         {
-          y: 100,
+          y: "100%",
         },
         index === 0 ? undefined : "-=0.7"
       );
@@ -71,13 +71,13 @@ export default function Footer() {
     tl.from(
       contactRef.current,
       {
-        y: 100,
+        y: "100%",
       },
       "-=0.7"
     ).from(
       devByRef.current,
       {
-        y: 100,
+        y: "100%",
       },
       "-=0.7"
     );

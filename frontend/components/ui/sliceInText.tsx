@@ -22,20 +22,9 @@ export default function SliceInText({
   useGSAP(() => {
     if (!boxRef.current) return;
 
-    if (animationRef) {
-      gsap.from(animationRef.current, {
-        y: 100,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: triggerRef?.current || boxRef.current,
-          start: "top 80%",
-          toggleActions: "play none none reset",
-        },
-      });
-    } else {
+    if (!animationRef) {
       gsap.from(boxRef.current, {
-        y: 100,
+        y: "100%",
         duration: 1,
         ease: "power2.out",
         scrollTrigger: {
