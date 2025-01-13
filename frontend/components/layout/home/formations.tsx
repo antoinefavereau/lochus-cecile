@@ -1,8 +1,13 @@
 "use client";
 
+import { useRef, useState } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { useState } from "react";
 import { useIsMobile } from "@/context/IsMobileProvider";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface List {
   id: number;
@@ -15,6 +20,28 @@ interface List {
 export default function Formations() {
   const [openItemId, setOpenItemId] = useState<string | null>(null);
   const isMobile = useIsMobile();
+
+  const containerRef = useRef(null);
+  const experiencesRef = useRef(null);
+  const formationsRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const tl = gsap.timeline({
+      defaults: { duration: 1, ease: "power2.out" },
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+        toggleActions: "play none none reset",
+      },
+    });
+
+    const fadeUp = { y: 100, opacity: 0 };
+
+    tl.from(experiencesRef.current, fadeUp);
+    tl.from(formationsRef.current, fadeUp, "-=0.6");
+  });
 
   const handleClick = (id: string) => {
     if (!isMobile) return;
@@ -115,7 +142,10 @@ export default function Formations() {
 
   const list = (title: string, items: List[]) => {
     return (
-      <div className="flex flex-col gap-8">
+      <div
+        ref={title === "Expériences" ? experiencesRef : formationsRef}
+        className="flex flex-col gap-8"
+      >
         <h2 className="text-2xl font-bold">{title}</h2>
         <div>
           {items.map((item) => (
@@ -163,6 +193,7 @@ export default function Formations() {
 
   return (
     <section
+      ref={containerRef}
       id="formations"
       className="relative grid md:grid-cols-2 gap-40 md:gap-16 py-16 px-8 xs:px-16 lg:px-24 overflow-hidden"
     >
