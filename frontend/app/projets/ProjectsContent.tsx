@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ProjectType } from "@/types/project";
 import Project from "@/components/layout/project";
+import SliceInText from "@/components/ui/sliceInText";
 
 export default function ProjectsContent({
   projects,
@@ -34,9 +35,11 @@ export default function ProjectsContent({
         height={1080}
       />
       <div className="flex flex-col items-center gap-12 text-center">
-        <h1 className="text-6xl sm:text-7xl md:text-8xl font-thin text-primary">
-          Projets
-        </h1>
+        <SliceInText>
+          <h1 className="text-6xl sm:text-7xl md:text-8xl font-thin text-primary">
+            Projets
+          </h1>
+        </SliceInText>
         <p className="max-w-3xl text-base sm:text-lg md:text-xl">
           Voici quelques projets sur lesquels j&apos;ai eu la chance de
           travailler. Chaque expérience m&apos;a permis d&apos;apprendre,
