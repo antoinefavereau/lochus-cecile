@@ -1,12 +1,12 @@
 "use client";
 
-import { RefObject, useRef } from "react";
+import React, { useMemo, useRef } from "react";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
 import SliceInText from "../ui/sliceInText";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,29 +16,40 @@ interface Social {
 }
 
 export default function Footer() {
-  const triggerRef = useRef<HTMLDivElement | null>(null);
-  const timeline = useRef<gsap.core.Timeline | null>(null);
-  const isFirst = useRef(true);
+  const triggerRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
+  const devByRef = useRef<HTMLDivElement>(null);
 
-  const socials: Social[] = [
-    {
-      name: "Email",
-      url: "mailto:cecile.lochus@laposte.net",
-    },
-    {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/in/cécile-lochus/",
-    },
-    {
-      name: "Behance",
-      url: "https://www.behance.net/ccilelochus/moodboards",
-    },
-  ];
+  const socials: Social[] = useMemo(
+    () => [
+      {
+        name: "Email",
+        url: "mailto:cecile.lochus@laposte.net",
+      },
+      {
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/cécile-lochus/",
+      },
+      {
+        name: "Behance",
+        url: "https://www.behance.net/ccilelochus/moodboards",
+      },
+    ],
+    []
+  );
+
+  const socialsRefs = useMemo(
+    () => socials.map(() => React.createRef<HTMLDivElement>()),
+    [socials]
+  );
 
   useGSAP(() => {
     if (!triggerRef.current) return;
+    if (!socialsRefs[0].current) return;
+    if (!contactRef.current) return;
+    if (!devByRef.current) return;
 
-    timeline.current = gsap.timeline({
+    const tl = gsap.timeline({
       defaults: { duration: 1, ease: "power2.out" },
       scrollTrigger: {
         trigger: triggerRef.current,
@@ -46,20 +57,31 @@ export default function Footer() {
         toggleActions: "play none none reset",
       },
     });
-  });
 
-  const addElementToTimeline = (boxRef: RefObject<HTMLDivElement | null>) => {
-    if (!boxRef.current || !timeline.current) return;
+    socialsRefs.forEach((ref, index) => {
+      tl.from(
+        ref.current,
+        {
+          y: 100,
+        },
+        index === 0 ? undefined : "-=0.7"
+      );
+    });
 
-    timeline.current.from(
-      boxRef.current,
+    tl.from(
+      contactRef.current,
       {
         y: 100,
       },
-      isFirst.current ? undefined : "-=0.7"
+      "-=0.7"
+    ).from(
+      devByRef.current,
+      {
+        y: 100,
+      },
+      "-=0.7"
     );
-    isFirst.current = false;
-  };
+  });
 
   return (
     <footer
@@ -89,7 +111,7 @@ export default function Footer() {
           height={48}
         />
         <div ref={triggerRef} className="relative flex flex-col gap-2">
-          {socials.map((social) => (
+          {socials.map((social, index) => (
             <a
               key={social.name}
               className="group block p-2 text-lg xs:text-xl md:text-2xl font-light"
@@ -97,7 +119,7 @@ export default function Footer() {
               target="_blank"
             >
               <span className="relative block leading-normal overflow-hidden">
-                <SliceInText addRef={(ref) => addElementToTimeline(ref)}>
+                <SliceInText animationRef={socialsRefs[index]}>
                   <span className="block group-hover:-translate-y-full translate-y-0 transition-transform duration-500 ease-in-out">
                     {social.name}
                   </span>
@@ -110,12 +132,12 @@ export default function Footer() {
           ))}
         </div>
         <div className="flex items-baseline gap-4 xs:gap-8 md:gap-16 lg:gap-20">
-          <SliceInText addRef={(ref) => addElementToTimeline(ref)}>
+          <SliceInText animationRef={contactRef}>
             <h2 className="text-4xl xs:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-thin tracking-[0.2rem] xs:tracking-[0.25em]">
               Contact
             </h2>
           </SliceInText>
-          <SliceInText addRef={(ref) => addElementToTimeline(ref)}>
+          <SliceInText animationRef={devByRef}>
             <p className="text-xs xs:text-sm font-light">
               Développé par{" "}
               <a
