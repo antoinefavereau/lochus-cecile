@@ -2,6 +2,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { usePathname } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,6 +18,8 @@ export default function SliceInText({
   children,
   ...props
 }: React.HTMLAttributes<HTMLSpanElement> & SliceInTextProps) {
+  const pathName = usePathname();
+
   const boxRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -34,7 +37,7 @@ export default function SliceInText({
         },
       });
     }
-  });
+  }, [pathName]);
 
   return (
     <span className="relative overflow-hidden">

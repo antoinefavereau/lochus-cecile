@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import SliceInText from "../ui/sliceInText";
+import { usePathname } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,6 +17,8 @@ interface Social {
 }
 
 export default function Footer() {
+  const pathName = usePathname();
+
   const triggerRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
   const devByRef = useRef<HTMLDivElement>(null);
@@ -81,7 +84,7 @@ export default function Footer() {
       },
       "-=0.7"
     );
-  });
+  }, [pathName]);
 
   return (
     <footer
