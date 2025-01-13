@@ -80,10 +80,7 @@ export default function Footer() {
         width={600}
         height={600}
       />
-      <div
-        ref={triggerRef}
-        className="relative flex flex-col items-start gap-24"
-      >
+      <div className="relative flex flex-col items-start gap-24">
         <Image
           className="w-10 sm:w-12 h-auto md:mx-4"
           src="/logoPortfolio_1.svg"
@@ -91,7 +88,7 @@ export default function Footer() {
           width={48}
           height={48}
         />
-        <div className="flex flex-col gap-2">
+        <div ref={triggerRef} className="relative flex flex-col gap-2">
           {socials.map((social) => (
             <a
               key={social.name}
