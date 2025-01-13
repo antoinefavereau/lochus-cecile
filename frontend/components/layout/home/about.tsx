@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Button from "@/components/ui/button";
-import { useEffect, useRef, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -16,46 +16,33 @@ export default function About() {
   ]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const boxRef = useRef(null);
+  const containerRef = useRef(null);
+  const titleRef = useRef(null);
   const paragraphRef = useRef(null);
+  const cvRef = useRef(null);
   const lineRef = useRef(null);
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    if (!boxRef.current || !paragraphRef.current || !lineRef.current) return;
-
-    gsap.from(boxRef.current, {
-      y: 100,
-      opacity: 0,
-      duration: 1,
-      ease: "power2.out",
+    const tl = gsap.timeline({
+      defaults: { duration: 1, ease: "power2.out" },
       scrollTrigger: {
-        trigger: boxRef.current,
-        toggleActions: "restart none restart none",
+        trigger: containerRef.current,
+        start: "top 80%",
+        end: "bottom top",
+        toggleActions: "restart reset restart reset",
       },
     });
 
-    gsap.from(paragraphRef.current, {
-      y: 100,
-      opacity: 0,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: paragraphRef.current,
-        toggleActions: "restart none restart none",
-      },
-    });
+    const fadeUp = { y: 100, opacity: 0 };
 
-    gsap.from(lineRef.current, {
+    tl.from(lineRef.current, {
       width: 0,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: lineRef.current,
-        toggleActions: "restart none restart none",
-      },
-    });
+    })
+      .from(titleRef.current, fadeUp, "-=0.7")
+      .from(paragraphRef.current, fadeUp, "-=0.7")
+      .from(cvRef.current, fadeUp, "-=0.7");
   });
 
   useEffect(() => {
@@ -72,6 +59,7 @@ export default function About() {
 
   return (
     <section
+      ref={containerRef}
       id="about"
       className="relative flex flex-col gap-16 xs:gap-24 md:gap-32 pt-16 pb-32 px-8 xs:px-16 lg:px-24"
     >
@@ -94,7 +82,7 @@ export default function About() {
           ref={lineRef}
           className="absolute start-0 top-0 w-[7ch] h-[2px] bg-primary"
         ></span>
-        <div ref={boxRef}>
+        <div ref={titleRef}>
           {"Hello, étudiante en BUT MMI, je suis "}
           <span className="text-primary inline-block h-[2ch] translate-y-[6px] xs:translate-y-[11px] md:translate-y-[16px] lg:translate-y-[23px] overflow-hidden">
             <div
@@ -119,7 +107,12 @@ export default function About() {
             "Je suis passionnée par le multimédia, j'aime explorer et approfondir différents domaines créatifs. J'ai un désir constant de découvrir et d'apprendre pour nourrir ma créativité et me pousser à relever de nouveaux défis."
           }
         </p>
-        <a href="/Cécile_Lochus_CV.pdf" target="_blank">
+        <a
+          ref={cvRef}
+          className="inline-block"
+          href="/Cécile_Lochus_CV.pdf"
+          target="_blank"
+        >
           <Button variant="outlined">CV</Button>
         </a>
       </div>
