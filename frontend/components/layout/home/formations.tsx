@@ -38,7 +38,7 @@ export default function Formations() {
         scrollTrigger: {
           trigger: experiencesContainerRef.current,
           start: "top 80%",
-          toggleActions: "play none none reset",
+          toggleActions: "play none none reverse",
         },
       });
       gsap.from(formationsRef.current, {
@@ -46,7 +46,7 @@ export default function Formations() {
         scrollTrigger: {
           trigger: formationsContainerRef.current,
           start: "top 80%",
-          toggleActions: "play none none reset",
+          toggleActions: "play none none reverse",
         },
       });
     } else {
@@ -56,7 +56,7 @@ export default function Formations() {
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 80%",
-            toggleActions: "play none none reset",
+            toggleActions: "play none none reverse",
           },
         })
         .from(experiencesRef.current, fadeUp)

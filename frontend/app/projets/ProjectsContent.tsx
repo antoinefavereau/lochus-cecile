@@ -37,7 +37,7 @@ export default function ProjectsContent({
         scrollTrigger: {
           trigger: triggerRef.current,
           start: "top 80%",
-          toggleActions: "play none none reset",
+          toggleActions: "play none none reverse",
         },
       })
       .from(titleRef.current, { y: "100%" })
