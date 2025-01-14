@@ -22,26 +22,47 @@ export default function Formations() {
   const isMobile = useIsMobile();
 
   const containerRef = useRef(null);
+  const experiencesContainerRef = useRef(null);
   const experiencesRef = useRef(null);
+  const formationsContainerRef = useRef(null);
   const formationsRef = useRef(null);
 
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const tl = gsap.timeline({
-      defaults: { duration: 1, ease: "power2.out" },
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-        toggleActions: "play none none reset",
-      },
-    });
-
     const fadeUp = { y: 100, opacity: 0 };
 
-    tl.from(experiencesRef.current, fadeUp);
-    tl.from(formationsRef.current, fadeUp, "-=0.6");
-  });
+    if (isMobile) {
+      gsap.from(experiencesRef.current, {
+        ...fadeUp,
+        scrollTrigger: {
+          trigger: experiencesContainerRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reset",
+        },
+      });
+      gsap.from(formationsRef.current, {
+        ...fadeUp,
+        scrollTrigger: {
+          trigger: formationsContainerRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reset",
+        },
+      });
+    } else {
+      gsap
+        .timeline({
+          defaults: { duration: 1, ease: "power2.out" },
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reset",
+          },
+        })
+        .from(experiencesRef.current, fadeUp)
+        .from(formationsRef.current, fadeUp, "-=0.6");
+    }
+  }, [isMobile]);
 
   const handleClick = (id: string) => {
     if (!isMobile) return;
@@ -143,49 +164,58 @@ export default function Formations() {
   const list = (title: string, items: List[]) => {
     return (
       <div
-        ref={title === "Expériences" ? experiencesRef : formationsRef}
-        className="flex flex-col gap-8"
+        ref={
+          title === "Expériences"
+            ? experiencesContainerRef
+            : formationsContainerRef
+        }
       >
-        <h2 className="text-2xl font-bold">{title}</h2>
-        <div>
-          {items.map((item) => (
-            <div
-              key={item.id}
-              className="group py-8 flex flex-col border-t-2 border-veryLight last:border-b-2"
-              onClick={() => handleClick(title + "-" + item.title)}
-            >
-              <div className="flex flex-col gap-2">
-                <div className="w-full flex justify-between items-center gap-4">
-                  <h3 className="font-bold">{item.title}</h3>
-                  <div className="shrink-0 flex items-center gap-4">
-                    <p className="text-sm md:text-base">{item.date}</p>
-                    <Image
-                      className={`block md:hidden transform md:group-hover:rotate-180 ${
-                        openItemId === title + "-" + item.title && "rotate-180"
-                      } transition-transform duration-300`}
-                      src="/Chevron Down.svg"
-                      alt="chevron"
-                      width={20}
-                      height={20}
-                    />
-                  </div>
-                </div>
-                <p>{item.company}</p>
-              </div>
+        <div
+          ref={title === "Expériences" ? experiencesRef : formationsRef}
+          className="flex flex-col gap-8"
+        >
+          <h2 className="text-2xl font-bold">{title}</h2>
+          <div>
+            {items.map((item) => (
               <div
-                className={`h-0 overflow-hidden md:group-hover:h-fit ${
-                  openItemId === title + "-" + item.title && "!h-fit"
-                } transition-height duration-500 ease-in-out`}
-                style={{ interpolateSize: "allow-keywords" }}
+                key={item.id}
+                className="group py-8 flex flex-col border-t-2 border-veryLight last:border-b-2"
+                onClick={() => handleClick(title + "-" + item.title)}
               >
-                <ul className="pt-8">
-                  {item.list.map((content, index) => (
-                    <li key={index}>{content}</li>
-                  ))}
-                </ul>
+                <div className="flex flex-col gap-2">
+                  <div className="w-full flex justify-between items-center gap-4">
+                    <h3 className="font-bold">{item.title}</h3>
+                    <div className="shrink-0 flex items-center gap-4">
+                      <p className="text-sm md:text-base">{item.date}</p>
+                      <Image
+                        className={`block md:hidden transform md:group-hover:rotate-180 ${
+                          openItemId === title + "-" + item.title &&
+                          "rotate-180"
+                        } transition-transform duration-300`}
+                        src="/Chevron Down.svg"
+                        alt="chevron"
+                        width={20}
+                        height={20}
+                      />
+                    </div>
+                  </div>
+                  <p>{item.company}</p>
+                </div>
+                <div
+                  className={`h-0 overflow-hidden md:group-hover:h-fit ${
+                    openItemId === title + "-" + item.title && "!h-fit"
+                  } transition-height duration-500 ease-in-out`}
+                  style={{ interpolateSize: "allow-keywords" }}
+                >
+                  <ul className="pt-8">
+                    {item.list.map((content, index) => (
+                      <li key={index}>{content}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     );
