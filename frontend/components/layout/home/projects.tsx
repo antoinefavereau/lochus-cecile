@@ -62,7 +62,6 @@ export default function Projects() {
       y: "-200",
       scrollTrigger: {
         trigger: container,
-        markers: true,
         start: "top bottom",
         end: "top top",
         scrub: true,

@@ -64,7 +64,6 @@ export default function Skills() {
       scale: 0.8,
       scrollTrigger: {
         trigger: container,
-        markers: true,
         start: "top bottom",
         end: "top 50%",
         scrub: true,
