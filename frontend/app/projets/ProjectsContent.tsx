@@ -21,24 +21,17 @@ export default function ProjectsContent({
   const [activeCategory, setActiveCategory] = useState<string>(categories[0]);
   const [filteredList, setFilteredList] = useState<ProjectType[]>([]);
 
-  const triggerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const descriptionRef = useRef<HTMLDivElement>(null);
   const filtersRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    if (!triggerRef.current) return;
     if (!titleRef.current) return;
     if (!descriptionRef.current) return;
 
     gsap
       .timeline({
         defaults: { duration: 1, ease: "power2.out" },
-        scrollTrigger: {
-          trigger: triggerRef.current,
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
       })
       .from(titleRef.current, { y: "100%" })
       .from(descriptionRef.current, { y: 100, opacity: 0 }, "-=0.7")
@@ -55,10 +48,7 @@ export default function ProjectsContent({
   }, [activeCategory, projects]);
 
   return (
-    <div
-      ref={triggerRef}
-      className="relative flex flex-col items-center gap-24 md:gap-32 p-8 pt-48 overflow-hidden"
-    >
+    <div className="relative flex flex-col items-center gap-24 md:gap-32 p-8 pt-48 overflow-hidden">
       <Image
         className="absolute max-w-none w-[240vw] xs:w-[200vw] md:w-[140vw] lg:w-[120vw] top-12 left-1/2 transform -translate-x-1/2 -translate-y-1/4 select-none pointer-events-none"
         src="/ellipses.svg"
