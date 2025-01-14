@@ -40,10 +40,10 @@ export default function SliceInText({
   }, [pathName]);
 
   return (
-    <span className="relative overflow-hidden">
+    <div className="relative overflow-hidden">
       <div ref={animationRef || boxRef} {...props}>
         {children}
       </div>
-    </span>
+    </div>
   );
 }
