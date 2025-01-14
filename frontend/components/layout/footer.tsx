@@ -84,6 +84,10 @@ export default function Footer() {
       },
       "-=0.7"
     );
+
+    return () => {
+      tl.kill();
+    };
   }, [pathName]);
 
   return (
@@ -116,13 +120,16 @@ export default function Footer() {
         <div ref={triggerRef} className="relative flex flex-col gap-2">
           {socials.map((social, index) => (
             <a
-              key={social.name}
+              key={`${social.name}-${index}`}
               className="group block p-2 text-lg xs:text-xl md:text-2xl font-light"
               href={social.url}
               target="_blank"
             >
               <span className="relative block leading-normal overflow-hidden">
-                <SliceInText animationRef={socialsRefs[index]}>
+                <SliceInText
+                  key={`${pathName}-social-${index}`}
+                  animationRef={socialsRefs[index]}
+                >
                   <span className="block group-hover:-translate-y-full translate-y-0 transition-transform duration-500 ease-in-out">
                     {social.name}
                   </span>
@@ -135,12 +142,12 @@ export default function Footer() {
           ))}
         </div>
         <div className="flex items-baseline gap-4 xs:gap-8 md:gap-16 lg:gap-20">
-          <SliceInText animationRef={contactRef}>
+          <SliceInText key={`${pathName}-contact`} animationRef={contactRef}>
             <h2 className="text-4xl xs:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-thin tracking-[0.2rem] xs:tracking-[0.25em]">
               Contact
             </h2>
           </SliceInText>
-          <SliceInText animationRef={devByRef}>
+          <SliceInText key={`${pathName}-devBy`} animationRef={devByRef}>
             <p className="text-xs xs:text-sm font-light">
               Développé par{" "}
               <a
