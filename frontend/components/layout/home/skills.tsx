@@ -6,11 +6,11 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export default function Skills() {
-  gsap.registerPlugin(useGSAP);
-  gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
+export default function Skills() {
   const containerRef = useRef(null);
+  const boxRef = useRef(null);
 
   const logos = [
     {
@@ -57,13 +57,12 @@ export default function Skills() {
 
   useGSAP(() => {
     if (!containerRef.current) return;
+    if (!boxRef.current) return;
 
-    const container = containerRef.current;
-
-    gsap.from(container, {
+    gsap.from(containerRef.current, {
       scale: 0.8,
       scrollTrigger: {
-        trigger: container,
+        trigger: boxRef.current,
         start: "top bottom",
         end: "top 50%",
         scrub: true,
@@ -73,11 +72,12 @@ export default function Skills() {
 
   return (
     <section
+      ref={containerRef}
       id="skills"
       className="md:h-screen py-16 px-4 xs:px-8 md:px-16 lg:px-24"
     >
       <div
-        ref={containerRef}
+        ref={boxRef}
         className="md:h-full bg-white text-black flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16 py-16 md:py-0 md:px-12 rounded-[3rem]"
       >
         <div className="flex flex-col gap-8 md:gap-12 py-0 md:py-16 px-8 md:px-0 md:max-w-xl">
