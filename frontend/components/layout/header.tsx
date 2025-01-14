@@ -136,7 +136,7 @@ export default function Header() {
         <ul className="w-full flex flex-col md:flex-row items-center justify-evenly text-black md:text-white">
           {leftLinks.map(({ href, label }) => getNavItem(href, label))}
           <li className="hidden md:block">
-            <Link href="/" scroll={false} title="Cécile Lochus">
+            <Link href="/" title="Cécile Lochus">
               <Image
                 className="h-12 w-auto"
                 src="/logoPortfolio_1.svg"

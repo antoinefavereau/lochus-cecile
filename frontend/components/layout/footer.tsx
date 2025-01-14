@@ -110,13 +110,15 @@ export default function Footer() {
         height={600}
       />
       <div className="relative flex flex-col items-start gap-24">
-        <Image
-          className="w-10 sm:w-12 h-auto md:mx-4"
-          src="/logoPortfolio_1.svg"
-          alt="Logo"
-          width={48}
-          height={48}
-        />
+        <Link href="/#top" title="Cécile Lochus">
+          <Image
+            className="w-10 sm:w-12 h-auto md:mx-4"
+            src="/logoPortfolio_1.svg"
+            alt="Logo"
+            width={48}
+            height={48}
+          />
+        </Link>
         <div ref={triggerRef} className="relative flex flex-col gap-2">
           {socials.map((social, index) => (
             <a
