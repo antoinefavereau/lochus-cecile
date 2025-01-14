@@ -1,17 +1,7 @@
-import {
-  DesignProject,
-  GraphicDesignProject,
-  SoacialMediasProject,
-  AudiovisualProject,
-} from "@/types/project";
+import { ProjectType } from "@/types/project";
 
 export const fetchProjects = async () => {
-  const projects: (
-    | DesignProject
-    | GraphicDesignProject
-    | SoacialMediasProject
-    | AudiovisualProject
-  )[] = [
+  const projects: ProjectType[] = [
     {
       id: 1,
       title: "Audio-to-text",

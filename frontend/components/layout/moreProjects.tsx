@@ -6,26 +6,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-import {
-  AudiovisualProject,
-  DesignProject,
-  GraphicDesignProject,
-  SoacialMediasProject,
-} from "@/types/project";
+import { ProjectType } from "@/types/project";
 import Project from "./project";
 import Link from "next/link";
 
 export default function MoreProjects() {
   const paginationRef = useRef(null);
 
-  const [projects, setProjects] = useState<
-    (
-      | DesignProject
-      | GraphicDesignProject
-      | SoacialMediasProject
-      | AudiovisualProject
-    )[]
-  >([]);
+  const [projects, setProjects] = useState<ProjectType[]>([]);
 
   useEffect(() => {
     async function fetchData() {
