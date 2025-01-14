@@ -46,7 +46,7 @@ export default function BigText() {
   };
 
   return (
-    <section className="relative flex py-16 pb-32 px-8 md:px-16 lg:px-24 z-10 bg-background">
+    <section className="relative flex py-32 pb-48 px-8 md:px-16 lg:px-24 z-10 bg-background">
       <p
         className="text-2xl xs:text-3xl md:text-4xl max-w-lg xs:max-w-xl md:max-w-2xl lg:max-w-4xl !leading-[1.2em]"
         ref={container}
