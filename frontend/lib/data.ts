@@ -43,7 +43,7 @@ export const fetchProjects = async () => {
       paragraph_content: [
         "Le logo s'inspire d'une bobine de film pour représenter l'univers du cinéma. Pour garder l'authenticité et l'histoire du cinéma Utopia, j'ai repris les ailes d'anges de son ancienne identité. Le style du logo mélange tradition et modernité, avec une typographie harmonieuse qui apporte une touche contemporaine. Il est adapté à l'esthétique du journal officiel du cinéma tout en restant texturé et vintage, et s'intègre parfaitement aux supports actuels comme un site web.",
       ],
-      link: "https://www.behance.net/ccilelochus/moodboards",
+      link: "https://www.behance.net/gallery/216909157/Charte-Graphique-Utopia",
       mockup_images: [
         "/projects/mockup1.png",
         "/projects/mockup2.png",
