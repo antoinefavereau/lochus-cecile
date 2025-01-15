@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projet_design_graphiques",
+  "info": {
+    "singularName": "projet-design-graphique",
+    "pluralName": "projet-design-graphiques",
+    "displayName": "Projet Design Graphique"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "projet_defaut": {
+      "type": "component",
+      "repeatable": false,
+      "component": "projet.projet-defaut",
+      "required": true
+    },
+    "images_mockup": {
+      "displayName": "images_mockup",
+      "type": "component",
+      "repeatable": false,
+      "component": "projet.images-mockup",
+      "required": true
+    },
+    "images_branding": {
+      "displayName": "images_branding",
+      "type": "component",
+      "repeatable": false,
+      "component": "projet.images-branding",
+      "required": true
+    }
+  }
+}
