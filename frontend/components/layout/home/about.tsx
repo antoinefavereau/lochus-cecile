@@ -7,6 +7,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function About() {
   const [titles, setTitles] = useState([
     "créative",
@@ -21,27 +23,63 @@ export default function About() {
   const paragraphRef = useRef(null);
   const cvRef = useRef(null);
   const lineRef = useRef(null);
+  const rightStarRef = useRef(null);
+  const leftStarRef = useRef(null);
 
   useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const tl = gsap.timeline({
-      defaults: { duration: 1, ease: "power2.out" },
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-        toggleActions: "play none none reverse",
-      },
-    });
+    if (!containerRef.current) return;
+    if (!titleRef.current) return;
+    if (!paragraphRef.current) return;
+    if (!cvRef.current) return;
+    if (!lineRef.current) return;
+    if (!rightStarRef.current) return;
+    if (!leftStarRef.current) return;
 
     const fadeUp = { y: 100, opacity: 0 };
 
-    tl.from(lineRef.current, {
-      width: 0,
-    })
+    gsap
+      .timeline({
+        defaults: { duration: 1, ease: "power2.out" },
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      })
+      .from(lineRef.current, {
+        width: 0,
+      })
       .from(titleRef.current, fadeUp, "-=0.7")
       .from(paragraphRef.current, fadeUp, "-=0.7")
       .from(cvRef.current, fadeUp, "-=0.7");
+
+    gsap.fromTo(
+      rightStarRef.current,
+      { yPercent: -50 },
+      {
+        yPercent: 50,
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.5,
+        },
+      }
+    );
+
+    gsap.fromTo(
+      leftStarRef.current,
+      { yPercent: -50 },
+      {
+        yPercent: 50,
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.5,
+        },
+      }
+    );
   });
 
   useEffect(() => {
@@ -63,6 +101,7 @@ export default function About() {
       className="relative flex flex-col gap-16 xs:gap-24 md:gap-32 pt-16 pb-32 px-8 xs:px-16 lg:px-24"
     >
       <Image
+        ref={rightStarRef}
         className="absolute top-16 right-[calc(10vw-2rem)] w-[16vw] h-auto"
         src="/Stars.svg"
         alt=""
@@ -70,6 +109,7 @@ export default function About() {
         height={200}
       />
       <Image
+        ref={leftStarRef}
         className="absolute top-40 xs:top-60 md:top-72 lg:top-80 left-0 w-[20vw] h-auto"
         src="/Star.svg"
         alt=""
