@@ -1,7 +1,7 @@
 "use client";
 
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { fetchProjects } from "@/lib/data";
-import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -21,9 +21,13 @@ export default function MoreProjects() {
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
-  const seeAllRef = useRef<HTMLAnchorElement>(null);
-
+  const seeAllRef = useRef<HTMLDivElement>(null);
   const [projects, setProjects] = useState<ProjectType[]>([]);
+
+  const projectsRefs = useMemo(
+    () => projects.map(() => React.createRef<HTMLDivElement>()),
+    [projects]
+  );
 
   useEffect(() => {
     async function fetchData() {
@@ -39,7 +43,7 @@ export default function MoreProjects() {
     if (!lineRef.current) return;
     if (!seeAllRef.current) return;
 
-    gsap
+    const tl = gsap
       .timeline({
         defaults: { duration: 1, ease: "power2.out" },
         scrollTrigger: {
@@ -49,9 +53,21 @@ export default function MoreProjects() {
         },
       })
       .from(titleRef.current, { y: "100%" })
-      .from(lineRef.current, { width: 0 }, "-=1")
-      .from(seeAllRef.current, { y: 100, opacity: 0 }, "-=0.5");
-  });
+      .from(lineRef.current, { width: 0 }, "-=1");
+
+    projectsRefs.forEach((ref, index) => {
+      tl.from(
+        ref.current,
+        {
+          x: "100",
+          opacity: 0,
+        },
+        index === 0 ? undefined : "-=0.7"
+      );
+    });
+
+    tl.from(seeAllRef.current, { y: "100%" }, "-=0.7");
+  }, [projectsRefs]);
 
   return (
     <div ref={containerRef} className="w-full flex flex-col gap-12 md:gap-16">
@@ -81,37 +97,38 @@ export default function MoreProjects() {
           }}
           modules={[Pagination]}
         >
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <SwiperSlide key={project.id} className="px-4 md:px-8">
-              <Project project={project} />
+              <Project animationRef={projectsRefs[index]} project={project} />
             </SwiperSlide>
           ))}
         </Swiper>
         <div className="relative flex justify-end px-8 md:px-16">
           <div ref={paginationRef}></div>
-          <Link
-            ref={seeAllRef}
-            className="group relative flex items-center gap-4 text-base md:text-lg"
-            href="/projets"
-          >
-            <span>Voir tous les projets</span>
-            <svg
-              className="w-5 h-auto text-primary rotate-[-30deg] group-hover:rotate-0 transition-rotate duration-300 ease-in-out"
-              width="25"
-              height="24"
-              viewBox="0 0 25 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+          <SliceInText animationRef={seeAllRef}>
+            <Link
+              className="group relative flex items-center gap-4 text-base md:text-lg"
+              href="/projets"
             >
-              <path
-                d="M1.70898 12.0693L22.709 12.0693M22.709 12.0693L12.629 1.98926M22.709 12.0693L12.629 22.1493"
-                stroke="currentcolor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </Link>
+              <span>Voir tous les projets</span>
+              <svg
+                className="w-5 h-auto text-primary rotate-[-30deg] group-hover:rotate-0 transition-rotate duration-300 ease-in-out"
+                width="25"
+                height="24"
+                viewBox="0 0 25 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.70898 12.0693L22.709 12.0693M22.709 12.0693L12.629 1.98926M22.709 12.0693L12.629 22.1493"
+                  stroke="currentcolor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </Link>
+          </SliceInText>
         </div>
       </div>
     </div>
