@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_projet_projet_ui_ux_designs",
+  "info": {
+    "displayName": "Projet Ui/Ux Design"
+  },
+  "options": {},
+  "attributes": {
+    "images": {
+      "type": "component",
+      "repeatable": false,
+      "component": "projet.images",
+      "required": true
+    },
+    "ce_qui_en_decoule": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

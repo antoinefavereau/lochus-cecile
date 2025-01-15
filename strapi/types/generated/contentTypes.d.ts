@@ -372,7 +372,8 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiCategorieCategorie extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
-    displayName: 'categorie';
+    description: '';
+    displayName: 'Categorie';
     pluralName: 'categories';
     singularName: 'categorie';
   };
@@ -397,137 +398,58 @@ export interface ApiCategorieCategorie extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiProjetAudiovisuelProjetAudiovisuel
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'projet_audiovisuels';
-  info: {
-    displayName: 'Projet Audiovisuel';
-    pluralName: 'projet-audiovisuels';
-    singularName: 'projet-audiovisuel';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::projet-audiovisuel.projet-audiovisuel'
-    > &
-      Schema.Attribute.Private;
-    projet_defaut: Schema.Attribute.Component<'projet.projet-defaut', false>;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    video: Schema.Attribute.Media<'files' | 'videos'> &
-      Schema.Attribute.Required;
-  };
-}
-
-export interface ApiProjetCommunicationProjetCommunication
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'projet_communications';
+export interface ApiProjetProjet extends Struct.CollectionTypeSchema {
+  collectionName: 'projets';
   info: {
     description: '';
-    displayName: 'Projet Communication';
-    pluralName: 'projet-communications';
-    singularName: 'projet-communication';
+    displayName: 'Projet';
+    pluralName: 'projets';
+    singularName: 'projet';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    annee: Schema.Attribute.Date & Schema.Attribute.Required;
+    categorie: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::categorie.categorie'
+    >;
+    champs_categorie: Schema.Attribute.DynamicZone<
+      [
+        'projet.projet-ui-ux-design',
+        'projet.projet-design-graphique',
+        'projet.projet-communication',
+        'projet.projet-audiovisuel',
+      ]
+    > &
+      Schema.Attribute.Required;
+    couleur_image_home: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'#171717'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    image_large: Schema.Attribute.Media<'images' | 'files'> &
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    image_home: Schema.Attribute.Media<'images' | 'files' | 'videos'> &
       Schema.Attribute.Required;
-    image_sans_fond: Schema.Attribute.Media<'images' | 'files'> &
+    image_principale: Schema.Attribute.Media<'images' | 'files'> &
       Schema.Attribute.Required;
+    image_projets: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    lien: Schema.Attribute.Component<'lien.lien', false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::projet-communication.projet-communication'
+      'api::projet.projet'
     > &
       Schema.Attribute.Private;
-    projet_defaut: Schema.Attribute.Component<'projet.projet-defaut', false> &
+    paragraphe: Schema.Attribute.Component<'paragraphe.paragraphe', false> &
       Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiProjetDesignGraphiqueProjetDesignGraphique
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'projet_design_graphiques';
-  info: {
-    displayName: 'Projet Design Graphique';
-    pluralName: 'projet-design-graphiques';
-    singularName: 'projet-design-graphique';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    images_branding: Schema.Attribute.Component<
-      'projet.images-branding',
-      false
-    > &
-      Schema.Attribute.Required;
-    images_mockup: Schema.Attribute.Component<'projet.images-mockup', false> &
-      Schema.Attribute.Required;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::projet-design-graphique.projet-design-graphique'
-    > &
-      Schema.Attribute.Private;
-    projet_defaut: Schema.Attribute.Component<'projet.projet-defaut', false> &
-      Schema.Attribute.Required;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiProjetUiUxDesignProjetUiUxDesign
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'projet_ui_ux_designs';
-  info: {
-    description: '';
-    displayName: 'Projet Ui/Ux Design';
-    pluralName: 'projet-ui-ux-designs';
-    singularName: 'projet-ui-ux-design';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    ce_qui_en_decoule: Schema.Attribute.Blocks & Schema.Attribute.Required;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    images: Schema.Attribute.Component<'projet.images', false> &
-      Schema.Attribute.Required;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::projet-ui-ux-design.projet-ui-ux-design'
-    > &
-      Schema.Attribute.Private;
-    projet_defaut: Schema.Attribute.Component<'projet.projet-defaut', false> &
-      Schema.Attribute.Required;
-    publishedAt: Schema.Attribute.DateTime;
+    titre: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1044,10 +966,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::categorie.categorie': ApiCategorieCategorie;
-      'api::projet-audiovisuel.projet-audiovisuel': ApiProjetAudiovisuelProjetAudiovisuel;
-      'api::projet-communication.projet-communication': ApiProjetCommunicationProjetCommunication;
-      'api::projet-design-graphique.projet-design-graphique': ApiProjetDesignGraphiqueProjetDesignGraphique;
-      'api::projet-ui-ux-design.projet-ui-ux-design': ApiProjetUiUxDesignProjetUiUxDesign;
+      'api::projet.projet': ApiProjetProjet;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

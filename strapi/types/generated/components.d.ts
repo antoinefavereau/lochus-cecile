@@ -23,8 +23,8 @@ export interface ParagrapheParagraphe extends Struct.ComponentSchema {
     icon: 'filter';
   };
   attributes: {
-    texte_1: Schema.Attribute.Blocks & Schema.Attribute.Required;
-    texte_2: Schema.Attribute.Blocks;
+    texte_1: Schema.Attribute.Text & Schema.Attribute.Required;
+    texte_2: Schema.Attribute.Text;
     titre: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
@@ -82,10 +82,35 @@ export interface ProjetImagesMockup extends Struct.ComponentSchema {
   };
 }
 
+export interface ProjetProjetAudiovisuel extends Struct.ComponentSchema {
+  collectionName: 'components_projet_projet_audiovisuels';
+  info: {
+    displayName: 'Projet Audiovisuel';
+  };
+  attributes: {
+    video: Schema.Attribute.Media<'files' | 'videos'> &
+      Schema.Attribute.Required;
+  };
+}
+
+export interface ProjetProjetCommunication extends Struct.ComponentSchema {
+  collectionName: 'components_projet_projet_communications';
+  info: {
+    displayName: 'Projet Communication';
+  };
+  attributes: {
+    image_large: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    image_sans_fond: Schema.Attribute.Media<'files' | 'images'> &
+      Schema.Attribute.Required;
+  };
+}
+
 export interface ProjetProjetDefaut extends Struct.ComponentSchema {
   collectionName: 'components_projet_projet_defauts';
   info: {
-    displayName: 'projet_defaut';
+    description: '';
+    displayName: 'Projet Defaut';
   };
   attributes: {
     annee: Schema.Attribute.Date & Schema.Attribute.Required;
@@ -110,6 +135,34 @@ export interface ProjetProjetDefaut extends Struct.ComponentSchema {
   };
 }
 
+export interface ProjetProjetDesignGraphique extends Struct.ComponentSchema {
+  collectionName: 'components_projet_projet_design_graphiques';
+  info: {
+    displayName: 'Projet Design Graphique';
+  };
+  attributes: {
+    images_branding: Schema.Attribute.Component<
+      'projet.images-branding',
+      false
+    > &
+      Schema.Attribute.Required;
+    images_mockup: Schema.Attribute.Component<'projet.images-mockup', false> &
+      Schema.Attribute.Required;
+  };
+}
+
+export interface ProjetProjetUiUxDesign extends Struct.ComponentSchema {
+  collectionName: 'components_projet_projet_ui_ux_designs';
+  info: {
+    displayName: 'Projet Ui/Ux Design';
+  };
+  attributes: {
+    ce_qui_en_decoule: Schema.Attribute.Text & Schema.Attribute.Required;
+    images: Schema.Attribute.Component<'projet.images', false> &
+      Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -118,7 +171,11 @@ declare module '@strapi/strapi' {
       'projet.images': ProjetImages;
       'projet.images-branding': ProjetImagesBranding;
       'projet.images-mockup': ProjetImagesMockup;
+      'projet.projet-audiovisuel': ProjetProjetAudiovisuel;
+      'projet.projet-communication': ProjetProjetCommunication;
       'projet.projet-defaut': ProjetProjetDefaut;
+      'projet.projet-design-graphique': ProjetProjetDesignGraphique;
+      'projet.projet-ui-ux-design': ProjetProjetUiUxDesign;
     }
   }
 }

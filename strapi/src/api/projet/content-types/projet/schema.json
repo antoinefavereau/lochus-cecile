@@ -1,10 +1,16 @@
 {
-  "collectionName": "components_projet_projet_defauts",
+  "kind": "collectionType",
+  "collectionName": "projets",
   "info": {
-    "displayName": "Projet Defaut",
+    "singularName": "projet",
+    "pluralName": "projets",
+    "displayName": "Projet",
     "description": ""
   },
-  "options": {},
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
   "attributes": {
     "titre": {
       "type": "string",
@@ -21,7 +27,7 @@
       "required": true
     },
     "description": {
-      "type": "blocks",
+      "type": "text",
       "required": true
     },
     "image_home": {
@@ -36,6 +42,8 @@
     },
     "couleur_image_home": {
       "type": "string",
+      "default": "#171717",
+      "regex": "#?([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})",
       "required": true
     },
     "image_projets": {
@@ -66,6 +74,16 @@
       "type": "component",
       "repeatable": false,
       "component": "lien.lien"
+    },
+    "champs_categorie": {
+      "type": "dynamiczone",
+      "components": [
+        "projet.projet-ui-ux-design",
+        "projet.projet-design-graphique",
+        "projet.projet-communication",
+        "projet.projet-audiovisuel"
+      ],
+      "required": true
     }
   }
 }
