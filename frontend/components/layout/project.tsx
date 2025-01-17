@@ -8,10 +8,18 @@ import { ProjectType } from "@/types/project";
 
 gsap.registerPlugin(ScrollTrigger);
 
+interface ProjectProps {
+  animationRef?: React.RefObject<HTMLDivElement | null>;
+  project: ProjectType;
+  hasMarginTop?: boolean;
+}
+
 export default function Project({
+  animationRef,
   project,
   hasMarginTop,
-}: Readonly<{ project: ProjectType; hasMarginTop?: boolean }>) {
+  ...props
+}: React.HTMLAttributes<HTMLSpanElement> & ProjectProps) {
   const triggerRef = useRef<HTMLAnchorElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
 
@@ -19,17 +27,19 @@ export default function Project({
     if (!triggerRef.current) return;
     if (!boxRef.current) return;
 
-    gsap.from(boxRef.current, {
-      y: 100,
-      opacity: 0,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: triggerRef.current,
-        start: "top 80%",
-        toggleActions: "play none none reverse",
-      },
-    });
+    if (!animationRef) {
+      gsap.from(boxRef.current, {
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: triggerRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    }
   });
 
   return (
@@ -40,8 +50,9 @@ export default function Project({
       className={`group flex flex-col gap-1 pb-2 ${
         hasMarginTop && "md:odd:-mt-8"
       }`}
+      {...props}
     >
-      <div ref={boxRef}>
+      <div ref={animationRef || boxRef}>
         <div className="rounded-lg overflow-hidden">
           <Image
             className="w-full h-auto aspect-[4/3] object-cover object-center group-hover:scale-105 transition-transform duration-300 ease-in-out"

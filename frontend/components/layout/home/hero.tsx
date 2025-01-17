@@ -56,6 +56,7 @@ export default function Hero() {
   }, []);
 
   useEffect(() => {
+    let animationId: number;
     const lastTimeRef = { current: performance.now() };
 
     function animate(currentTime: number) {
@@ -65,10 +66,12 @@ export default function Hero() {
 
       lastTimeRef.current = currentTime;
 
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
     }
 
-    requestAnimationFrame(animate);
+    animationId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationId);
   }, []);
 
   return (

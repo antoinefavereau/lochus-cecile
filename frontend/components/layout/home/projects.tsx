@@ -10,10 +10,9 @@ import { fetchProjects } from "@/lib/data";
 import { ProjectType } from "@/types/project";
 import { useIsMobile } from "@/context/IsMobileProvider";
 
-export default function Projects() {
-  gsap.registerPlugin(useGSAP);
-  gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
+export default function Projects() {
   const [projects, setProjects] = useState<ProjectType[]>([]);
   const [selectedProject, setSelectedProject] = useState<ProjectType | null>(
     null
@@ -23,6 +22,8 @@ export default function Projects() {
 
   const containerRef = useRef(null);
   const contentRef = useRef(null);
+
+  const marqueeRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,6 +36,7 @@ export default function Projects() {
 
   useEffect(() => {
     if (!isMobile) return;
+
     const handleScroll = () => {
       const centerY = window.innerHeight / 2;
       let closest = { dist: Infinity, project: null as ProjectType | null };
@@ -53,26 +55,44 @@ export default function Projects() {
   }, [isMobile, projects]);
 
   useGSAP(() => {
-    if (!containerRef.current || !contentRef.current) return;
+    if (!containerRef.current) return;
+    if (!contentRef.current) return;
+    if (!marqueeRef.current) return;
 
-    const container = containerRef.current;
-    const content = contentRef.current;
-
-    gsap.from(content, {
-      y: "-200",
+    const animation1 = gsap.from(contentRef.current, {
+      y: "-300",
       scrollTrigger: {
-        trigger: container,
+        trigger: containerRef.current,
         start: "top bottom",
         end: "top top",
         scrub: true,
       },
     });
-  });
+
+    const animation2 = gsap.to(marqueeRef.current, {
+      x: "-50%",
+      ease: "none",
+      scrollTrigger: {
+        trigger: marqueeRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 0.5,
+      },
+    });
+
+    return () => {
+      animation1.kill();
+      animation2.kill();
+    };
+  }, []);
 
   return (
-    <section ref={containerRef} className="pb-16">
-      <div ref={contentRef} className="flex flex-col gap-8">
-        <div className="relative flex flex-col items-center gap-32 md:gap-40 px-8 py-[50vh] min-h-screen">
+    <section className="pb-16">
+      <div ref={containerRef} className="flex flex-col gap-8">
+        <div
+          ref={contentRef}
+          className="relative flex flex-col items-center gap-32 md:gap-40 px-8 py-[50vh] min-h-screen"
+        >
           {projects.map((project) => (
             <div key={project.id} className="absolute inset-0">
               <Image
@@ -104,11 +124,14 @@ export default function Projects() {
           ))}
         </div>
         <Link className="group py-4 overflow-hidden" href="/projets">
-          <div className="w-max flex gap-10 md:gap-16 px-5 md:px-8 animate-[horizontalMarquee_30s_linear_infinite]">
+          <div
+            ref={marqueeRef}
+            className="w-max max-w-[150%] flex gap-10 md:gap-16 px-5 md:px-8"
+          >
             {new Array(20).fill(0).map((_, index) => (
               <div
-                key={index}
-                className="flex items-center gap-4 text-lg md:text-2xl"
+                key={_ + index}
+                className="shrink-0 flex items-center gap-4 text-lg md:text-2xl"
               >
                 <span>Voir plus de projets</span>
                 <svg
