@@ -4,14 +4,13 @@ import type { MetadataRoute } from "next";
 const BASE_URL = "https://cecile-lochus.fr";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const data = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/projets");
-  if (!data.ok) {
-    return [];
-  }
-  const projects = (await data.json()).data;
+  let dynamicUrls: MetadataRoute.Sitemap = [];
 
-  const dynamicUrls = projects.map(
-    (project: ApiProjetProjet["attributes"]) => ({
+  const data = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/projets");
+  if (data.ok) {
+    const projects = (await data.json()).data;
+
+    dynamicUrls = projects.map((project: ApiProjetProjet["attributes"]) => ({
       url: `${BASE_URL}/projets/${project.titre}`,
       lastModified: new Date(),
       changeFrequency: "monthly" as
@@ -24,8 +23,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         | "never"
         | undefined,
       priority: 0.8,
-    })
-  );
+    }));
+  }
 
   return [
     {
