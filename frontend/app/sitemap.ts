@@ -5,6 +5,9 @@ const BASE_URL = "https://cecile-lochus.fr";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const data = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/projets");
+  if (!data.ok) {
+    return [];
+  }
   const projects = (await data.json()).data;
 
   const dynamicUrls = projects.map(
