@@ -86,7 +86,7 @@ export default function Formations() {
     },
     {
       id: 2,
-      title: "Animatrice en centre de loisir",
+      title: "Animatrice en centre de loisirs",
       company: "Brou et Cloyes",
       date: "2023 - Présent",
       list: [
