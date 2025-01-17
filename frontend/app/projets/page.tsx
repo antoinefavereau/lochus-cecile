@@ -1,4 +1,3 @@
-import { fetchProjects } from "@/lib/data";
 import { Metadata } from "next";
 import ProjectsContent from "./ProjectsContent";
 
@@ -15,7 +14,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const projects = await fetchProjects();
+  const data = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/projets?populate=*");
+  const projects = (await data.json()).data;
 
   return (
     <ProjectsContent

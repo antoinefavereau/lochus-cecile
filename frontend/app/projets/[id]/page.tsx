@@ -1,4 +1,3 @@
-import { fetchProject } from "@/lib/data";
 import { Metadata } from "next";
 import MoreProjects from "@/components/layout/moreProjects";
 import ProjectContent from "./ProjectContent";
@@ -9,9 +8,13 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }): Promise<Metadata> {
   const { id } = await params;
-  const project = await fetchProject(id);
+  const data = await fetch(
+    process.env.NEXT_PUBLIC_API_URL + `/api/projets/?filters[titre][$eq]=${id}`
+  );
+  const project = (await data.json()).data;
+
   return {
-    title: project.title,
+    title: project.titre,
   };
 }
 
@@ -21,17 +24,16 @@ export default async function Page({
   readonly params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const project = await fetchProject(id);
+  const data = await fetch(
+    process.env.NEXT_PUBLIC_API_URL +
+      `/api/projets/?filters[titre][$eq]=${id}&populate=*`
+  );
+  const project = (await data.json()).data[0];
 
   return (
     <div className="flex flex-col items-center gap-24 pt-48">
-      {project === null && <p>Chargement...</p>}
-      {project !== null && (
-        <>
-          <ProjectContent project={project} />
-          <MoreProjects />
-        </>
-      )}
+      <ProjectContent project={project} />
+      <MoreProjects />
     </div>
   );
 }

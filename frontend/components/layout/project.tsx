@@ -4,13 +4,13 @@ import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ProjectType } from "@/types/project";
+import { ApiProjetProjet } from "@/types/generated/contentTypes";
 
 gsap.registerPlugin(ScrollTrigger);
 
 interface ProjectProps {
   animationRef?: React.RefObject<HTMLDivElement | null>;
-  project: ProjectType;
+  project: ApiProjetProjet["attributes"];
   hasMarginTop?: boolean;
 }
 
@@ -42,11 +42,13 @@ export default function Project({
     }
   });
 
+  console.log("project", project);
+
   return (
     <Link
       ref={triggerRef}
-      href={`/projets/${project.title}`}
-      key={project.title}
+      href={`/projets/${project.titre}`}
+      key={project.titre}
       className={`group flex flex-col gap-1 pb-2 ${
         hasMarginTop && "md:odd:-mt-8"
       }`}
@@ -56,15 +58,15 @@ export default function Project({
         <div className="rounded-lg overflow-hidden">
           <Image
             className="w-full h-auto aspect-[4/3] object-cover object-center group-hover:scale-105 transition-transform duration-300 ease-in-out"
-            src={project.projectspage_image}
-            alt={project.title}
+            src={process.env.NEXT_PUBLIC_API_URL + project.image_projets.url}
+            alt={project.image_projets.name}
             width={1920}
             height={1080}
           />
         </div>
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center gap-2 md:gap-4">
-            <h2 className="text-xl md:text-3xl">{project.title}</h2>
+            <h2 className="text-xl md:text-3xl">{project.titre}</h2>
             <svg
               className="w-4 md:w-6 h-auto text-primary rotate-[-30deg] group-hover:rotate-0 transition-rotate duration-300 ease-in-out"
               width="25"
@@ -83,7 +85,7 @@ export default function Project({
             </svg>
           </div>
           <p className="text-sm md:text-base text-light">
-            {project.category} | {project.year}
+            {project.categorie.titre} | {new Date(project.annee).getFullYear()}
           </p>
         </div>
       </div>
