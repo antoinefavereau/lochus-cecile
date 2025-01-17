@@ -42,8 +42,6 @@ export default function Project({
     }
   });
 
-  console.log("project", project);
-
   return (
     <Link
       ref={triggerRef}

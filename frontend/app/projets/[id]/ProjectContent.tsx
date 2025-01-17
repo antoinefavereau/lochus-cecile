@@ -55,8 +55,6 @@ export default function ProjectContent({
     });
   });
 
-  console.log(project);
-
   return (
     <>
       <div className="w-full flex flex-col gap-4 md:gap-8 md:px-16">
