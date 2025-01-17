@@ -369,6 +369,40 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAccueilAccueil extends Struct.SingleTypeSchema {
+  collectionName: 'accueils';
+  info: {
+    description: '';
+    displayName: 'Accueil';
+    pluralName: 'accueils';
+    singularName: 'accueil';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    competences: Schema.Attribute.Component<'accueil.competence', true>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    cv: Schema.Attribute.Media<'files'> & Schema.Attribute.Required;
+    experiences: Schema.Attribute.Component<'accueil.parcours', true>;
+    formations: Schema.Attribute.Component<'accueil.parcours', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::accueil.accueil'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    texte_competences: Schema.Attribute.Text & Schema.Attribute.Required;
+    texte_presentation: Schema.Attribute.Text & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCategorieCategorie extends Struct.CollectionTypeSchema {
   collectionName: 'categories';
   info: {
@@ -965,6 +999,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::accueil.accueil': ApiAccueilAccueil;
       'api::categorie.categorie': ApiCategorieCategorie;
       'api::projet.projet': ApiProjetProjet;
       'plugin::content-releases.release': PluginContentReleasesRelease;

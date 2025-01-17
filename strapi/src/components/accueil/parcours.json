@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_accueil_parcours",
+  "info": {
+    "displayName": "parcours",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "titre": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "string",
+      "required": true
+    },
+    "lieu": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "component",
+      "repeatable": true,
+      "component": "textes.texte"
+    }
+  }
+}

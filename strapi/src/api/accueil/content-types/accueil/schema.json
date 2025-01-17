@@ -1,0 +1,47 @@
+{
+  "kind": "singleType",
+  "collectionName": "accueils",
+  "info": {
+    "singularName": "accueil",
+    "pluralName": "accueils",
+    "displayName": "Accueil",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "texte_presentation": {
+      "type": "text",
+      "required": true
+    },
+    "cv": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "formations": {
+      "type": "component",
+      "repeatable": true,
+      "component": "accueil.parcours"
+    },
+    "experiences": {
+      "type": "component",
+      "repeatable": true,
+      "component": "accueil.parcours"
+    },
+    "texte_competences": {
+      "type": "text",
+      "required": true
+    },
+    "competences": {
+      "type": "component",
+      "repeatable": true,
+      "component": "accueil.competence"
+    }
+  }
+}

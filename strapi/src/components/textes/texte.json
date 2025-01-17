@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_textes_textes",
+  "info": {
+    "displayName": "texte"
+  },
+  "options": {},
+  "attributes": {
+    "texte": {
+      "type": "text",
+      "required": false
+    }
+  }
+}

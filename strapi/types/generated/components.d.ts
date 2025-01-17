@@ -1,5 +1,31 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface AccueilCompetence extends Struct.ComponentSchema {
+  collectionName: 'components_accueil_competences';
+  info: {
+    displayName: 'competence';
+  };
+  attributes: {
+    logo: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    titre: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface AccueilParcours extends Struct.ComponentSchema {
+  collectionName: 'components_accueil_parcours';
+  info: {
+    description: '';
+    displayName: 'parcours';
+  };
+  attributes: {
+    date: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.Component<'textes.texte', true>;
+    lieu: Schema.Attribute.String & Schema.Attribute.Required;
+    titre: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface LienLien extends Struct.ComponentSchema {
   collectionName: 'components_lien_liens';
   info: {
@@ -163,9 +189,21 @@ export interface ProjetProjetUiUxDesign extends Struct.ComponentSchema {
   };
 }
 
+export interface TextesTexte extends Struct.ComponentSchema {
+  collectionName: 'components_textes_textes';
+  info: {
+    displayName: 'texte';
+  };
+  attributes: {
+    texte: Schema.Attribute.Text;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'accueil.competence': AccueilCompetence;
+      'accueil.parcours': AccueilParcours;
       'lien.lien': LienLien;
       'paragraphe.paragraphe': ParagrapheParagraphe;
       'projet.images': ProjetImages;
@@ -176,6 +214,7 @@ declare module '@strapi/strapi' {
       'projet.projet-defaut': ProjetProjetDefaut;
       'projet.projet-design-graphique': ProjetProjetDesignGraphique;
       'projet.projet-ui-ux-design': ProjetProjetUiUxDesign;
+      'textes.texte': TextesTexte;
     }
   }
 }
