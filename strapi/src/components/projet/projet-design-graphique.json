@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_projet_projet_design_graphiques",
+  "info": {
+    "displayName": "Projet Design Graphique"
+  },
+  "options": {},
+  "attributes": {
+    "images_mockup": {
+      "type": "component",
+      "repeatable": false,
+      "component": "projet.images-mockup",
+      "required": true
+    },
+    "images_branding": {
+      "type": "component",
+      "repeatable": false,
+      "component": "projet.images-branding",
+      "required": true
+    }
+  }
+}

@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ProjectType } from "@/types/project";
 import Project from "@/components/layout/project";
 import SliceInText from "@/components/ui/sliceInText";
+import { ApiProjetProjet } from "@/types/generated/contentTypes";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,11 +15,13 @@ export default function ProjectsContent({
   projects,
   categories,
 }: Readonly<{
-  projects: ProjectType[];
+  projects: ApiProjetProjet["attributes"][];
   categories: string[];
 }>) {
   const [activeCategory, setActiveCategory] = useState<string>(categories[0]);
-  const [filteredList, setFilteredList] = useState<ProjectType[]>([]);
+  const [filteredList, setFilteredList] = useState<
+    ApiProjetProjet["attributes"][]
+  >([]);
 
   const titleRef = useRef<HTMLDivElement>(null);
   const descriptionRef = useRef<HTMLDivElement>(null);
@@ -42,7 +44,8 @@ export default function ProjectsContent({
     setFilteredList(
       projects.filter(
         (project) =>
-          activeCategory === "Tous" || activeCategory === project.category
+          activeCategory === "Tous" ||
+          activeCategory === project.categorie.titre
       )
     );
   }, [activeCategory, projects]);
@@ -91,7 +94,7 @@ export default function ProjectsContent({
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full max-w-6xl mt-8">
         {filteredList.map((project) => (
-          <Project key={project.id} project={project} hasMarginTop />
+          <Project key={project.titre} project={project} hasMarginTop />
         ))}
       </div>
     </div>

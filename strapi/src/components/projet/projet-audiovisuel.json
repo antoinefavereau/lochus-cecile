@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_projet_projet_audiovisuels",
+  "info": {
+    "displayName": "Projet Audiovisuel"
+  },
+  "options": {},
+  "attributes": {
+    "video": {
+      "allowedTypes": [
+        "files",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}
