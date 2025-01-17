@@ -26,13 +26,18 @@ export default function Projects() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch(
-        process.env.NEXT_PUBLIC_API_URL + "/api/projets?populate=*"
-      );
-      const fetchedProjects = (await data.json()).data;
+      let projects = [];
+      try {
+        const data = await fetch(
+          process.env.NEXT_PUBLIC_API_URL + "/api/projets?populate=*"
+        );
+        projects = (await data.json()).data;
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
 
-      setProjects(fetchedProjects);
-      setSelectedProject(fetchedProjects[0]);
+      setProjects(projects);
+      setSelectedProject(projects[0]);
     };
     fetchData();
   }, []);

@@ -30,10 +30,15 @@ export default function MoreProjects() {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await fetch(
-        process.env.NEXT_PUBLIC_API_URL + "/api/projets?populate=*"
-      );
-      const projects = (await data.json()).data;
+      let projects = [];
+      try {
+        const data = await fetch(
+          process.env.NEXT_PUBLIC_API_URL + "/api/projets?populate=*"
+        );
+        projects = (await data.json()).data;
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
       setProjects(projects);
     }
     fetchData();

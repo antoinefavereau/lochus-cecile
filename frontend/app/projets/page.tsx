@@ -14,8 +14,13 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const data = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/projets?populate=*");
-  const projects = (await data.json()).data;
+  let projects = [];
+  try {
+    const data = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/projets?populate=*");
+    projects = (await data.json()).data;
+  } catch (error) {
+    console.error("Error fetching projects:", error);
+  }
 
   return (
     <ProjectsContent
