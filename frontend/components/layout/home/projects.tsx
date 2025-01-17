@@ -110,7 +110,7 @@ export default function Projects() {
                 className={`sticky top-0 w-full h-screen object-contain object-center brightness-90 transition-opacity duration-300 ${
                   project.titre !== selectedProject?.titre && "opacity-0"
                 }`}
-                src={"http://localhost:1337" + project.image_home.url}
+                src={process.env.NEXT_PUBLIC_API_URL + project.image_home.url}
                 width="1920"
                 height="1080"
                 alt={selectedProject?.titre ?? ""}
