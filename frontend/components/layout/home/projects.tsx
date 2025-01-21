@@ -68,9 +68,8 @@ export default function Projects() {
   useGSAP(() => {
     if (!containerRef.current) return;
     if (!contentRef.current) return;
-    if (!marqueeRef.current) return;
 
-    const animation1 = gsap.from(contentRef.current, {
+    gsap.from(contentRef.current, {
       y: "-300",
       scrollTrigger: {
         trigger: containerRef.current,
@@ -79,8 +78,12 @@ export default function Projects() {
         scrub: true,
       },
     });
+  }, []);
 
-    const animation2 = gsap.to(marqueeRef.current, {
+  useGSAP(() => {
+    if (!marqueeRef.current) return;
+
+    gsap.to(marqueeRef.current, {
       x: "-50%",
       ease: "none",
       scrollTrigger: {
@@ -90,12 +93,7 @@ export default function Projects() {
         scrub: 0.5,
       },
     });
-
-    return () => {
-      animation1.kill();
-      animation2.kill();
-    };
-  }, []);
+  }, [marqueeRef.current]);
 
   return (
     <section className="pb-16">
