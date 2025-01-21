@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useRef } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
@@ -12,8 +12,8 @@ import { usePathname } from "next/navigation";
 gsap.registerPlugin(ScrollTrigger);
 
 interface Social {
-  name: string;
-  url: string;
+  titre: string;
+  lien: string;
 }
 
 export default function Footer() {
@@ -23,23 +23,19 @@ export default function Footer() {
   const contactRef = useRef<HTMLDivElement>(null);
   const devByRef = useRef<HTMLDivElement>(null);
 
-  const socials: Social[] = useMemo(
-    () => [
-      {
-        name: "Email",
-        url: "mailto:cecile.lochus@laposte.net",
-      },
-      {
-        name: "LinkedIn",
-        url: "https://www.linkedin.com/in/cécile-lochus/",
-      },
-      {
-        name: "Behance",
-        url: "https://www.behance.net/ccilelochus/moodboards",
-      },
-    ],
-    []
-  );
+  const [socials, setSocials] = useState<Social[]>([]);
+
+  useMemo(() => {
+    const fetchData = async () => {
+      const data = await fetch(
+        process.env.NEXT_PUBLIC_API_URL + "/api/reseaux-sociaux?populate=*"
+      );
+      const footerData = (await data.json()).data;
+
+      setSocials(footerData.lien);
+    };
+    fetchData();
+  }, []);
 
   const socialsRefs = useMemo(
     () => socials.map(() => React.createRef<HTMLDivElement>()),
@@ -48,7 +44,7 @@ export default function Footer() {
 
   useGSAP(() => {
     if (!triggerRef.current) return;
-    if (!socialsRefs[0].current) return;
+    if (!socialsRefs.length || !socialsRefs[0].current) return;
     if (!contactRef.current) return;
     if (!devByRef.current) return;
 
@@ -88,7 +84,7 @@ export default function Footer() {
     return () => {
       tl.kill();
     };
-  }, [pathName]);
+  }, [pathName, socialsRefs]);
 
   return (
     <footer
@@ -122,10 +118,12 @@ export default function Footer() {
         <div ref={triggerRef} className="relative flex flex-col gap-2">
           {socials.map((social, index) => (
             <a
-              key={`${social.name}-${index}`}
+              key={`${social.titre}-${index}`}
               className="group block p-2 text-lg xs:text-xl md:text-2xl font-light"
-              href={social.url}
+              href={social.lien}
               target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Visit ${social.titre}`}
             >
               <span className="relative block leading-normal overflow-hidden">
                 <SliceInText
@@ -133,11 +131,11 @@ export default function Footer() {
                   animationRef={socialsRefs[index]}
                 >
                   <span className="block group-hover:-translate-y-full translate-y-0 transition-transform duration-500 ease-in-out">
-                    {social.name}
+                    {social.titre}
                   </span>
                 </SliceInText>
                 <span className="absolute group-hover:-translate-y-full transition-transform duration-500 ease-in-out">
-                  {social.name}
+                  {social.titre}
                 </span>
               </span>
             </a>

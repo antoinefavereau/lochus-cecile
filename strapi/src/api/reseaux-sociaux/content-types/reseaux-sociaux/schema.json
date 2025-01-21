@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "reseaux_sociauxes",
+  "info": {
+    "singularName": "reseaux-sociaux",
+    "pluralName": "reseaux-sociauxes",
+    "displayName": "Reseaux sociaux"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "lien": {
+      "type": "component",
+      "repeatable": true,
+      "component": "lien.lien"
+    }
+  }
+}

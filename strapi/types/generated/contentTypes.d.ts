@@ -491,6 +491,35 @@ export interface ApiProjetProjet extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiReseauxSociauxReseauxSociaux
+  extends Struct.SingleTypeSchema {
+  collectionName: 'reseaux_sociauxes';
+  info: {
+    displayName: 'Reseaux sociaux';
+    pluralName: 'reseaux-sociauxes';
+    singularName: 'reseaux-sociaux';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    lien: Schema.Attribute.Component<'lien.lien', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::reseaux-sociaux.reseaux-sociaux'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1003,6 +1032,7 @@ declare module '@strapi/strapi' {
       'api::accueil.accueil': ApiAccueilAccueil;
       'api::categorie.categorie': ApiCategorieCategorie;
       'api::projet.projet': ApiProjetProjet;
+      'api::reseaux-sociaux.reseaux-sociaux': ApiReseauxSociauxReseauxSociaux;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

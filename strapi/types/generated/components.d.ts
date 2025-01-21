@@ -35,9 +35,7 @@ export interface LienLien extends Struct.ComponentSchema {
   };
   attributes: {
     lien: Schema.Attribute.String & Schema.Attribute.Required;
-    titre: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'Voir le projet'>;
+    titre: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
