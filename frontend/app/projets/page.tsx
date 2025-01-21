@@ -7,6 +7,16 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
+  let texte_description = "";
+  try {
+    const data = await fetch(
+      process.env.NEXT_PUBLIC_API_URL + "/api/page-projet"
+    );
+    texte_description = (await data.json()).data.texte_description;
+  } catch (error) {
+    console.error("Error fetching projects page description:", error);
+  }
+
   let projects = [];
   let categories: string[] = ["Tous"];
   try {
@@ -28,6 +38,7 @@ export default async function Page() {
 
   return (
     <ProjectsContent
+      texte_description={texte_description}
       projects={projects}
       categories={categories}
     ></ProjectsContent>

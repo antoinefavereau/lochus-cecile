@@ -12,9 +12,11 @@ import { ApiProjetProjet } from "@/types/generated/contentTypes";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ProjectsContent({
+  texte_description,
   projects,
   categories,
 }: Readonly<{
+  texte_description: string;
   projects: ApiProjetProjet["attributes"][];
   categories: string[];
 }>) {
@@ -69,10 +71,7 @@ export default function ProjectsContent({
           ref={descriptionRef}
           className="max-w-3xl text-base sm:text-lg md:text-xl"
         >
-          Voici quelques projets sur lesquels j&apos;ai eu la chance de
-          travailler. Chaque expérience m&apos;a permis d&apos;apprendre,
-          d&apos;explorer de nouvelles idées et de relever de passionnants
-          défis.
+          {texte_description}
         </p>
         <div
           ref={filtersRef}

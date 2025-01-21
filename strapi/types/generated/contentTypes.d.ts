@@ -433,6 +433,34 @@ export interface ApiCategorieCategorie extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiPageProjetPageProjet extends Struct.SingleTypeSchema {
+  collectionName: 'page_projets';
+  info: {
+    displayName: 'Page projets';
+    pluralName: 'page-projets';
+    singularName: 'page-projet';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::page-projet.page-projet'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    texte_description: Schema.Attribute.Text & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProjetProjet extends Struct.CollectionTypeSchema {
   collectionName: 'projets';
   info: {
@@ -1031,6 +1059,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::accueil.accueil': ApiAccueilAccueil;
       'api::categorie.categorie': ApiCategorieCategorie;
+      'api::page-projet.page-projet': ApiPageProjetPageProjet;
       'api::projet.projet': ApiProjetProjet;
       'api::reseaux-sociaux.reseaux-sociaux': ApiReseauxSociauxReseauxSociaux;
       'plugin::content-releases.release': PluginContentReleasesRelease;
