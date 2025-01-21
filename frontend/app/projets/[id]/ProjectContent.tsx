@@ -153,11 +153,14 @@ export default function ProjectContent({
           />
         </div>
       )}
-      {!!project.champs_categorie[0]?.without_background_image && (
+      {!!project.champs_categorie[0]?.image_sans_fond && (
         <div className="w-full flex justify-center gap-8 px-4 md:px-16">
           <Image
             className="w-[80%] max-w-3xl h-auto fade-up"
-            src={project.champs_categorie[0]?.without_background_image}
+            src={
+              process.env.NEXT_PUBLIC_API_URL +
+              project.champs_categorie[0]?.image_sans_fond.url
+            }
             alt={"Image"}
             width={1920}
             height={1080}
@@ -320,14 +323,23 @@ export default function ProjectContent({
       )}
       {!!project.champs_categorie[0]?.video && (
         <video className="fade-up" controls>
-          <source src={project.champs_categorie[0]?.video} type="video/mp4" />
+          <source
+            src={
+              process.env.NEXT_PUBLIC_API_URL +
+              project.champs_categorie[0]?.video.url
+            }
+            type="video/mp4"
+          />
           Votre navigateur ne supporte pas la vidéo.
         </video>
       )}
-      {!!project.champs_categorie[0]?.full_width_image && (
+      {!!project.champs_categorie[0]?.image_large && (
         <Image
           className="w-full h-auto fade-up"
-          src={project.champs_categorie[0]?.full_width_image}
+          src={
+            process.env.NEXT_PUBLIC_API_URL +
+            project.champs_categorie[0]?.image_large.url
+          }
           alt={"Full width image"}
           width={1920}
           height={1080}
