@@ -19,9 +19,8 @@
       "required": true
     },
     "description": {
-      "type": "component",
-      "repeatable": true,
-      "component": "textes.texte"
+      "type": "blocks",
+      "required": true
     }
   }
 }

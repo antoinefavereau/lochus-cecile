@@ -396,6 +396,7 @@ export interface ApiAccueilAccueil extends Struct.SingleTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     texte_competences: Schema.Attribute.Text & Schema.Attribute.Required;
+    texte_description: Schema.Attribute.Blocks & Schema.Attribute.Required;
     texte_presentation: Schema.Attribute.Text & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

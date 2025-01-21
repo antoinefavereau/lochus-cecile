@@ -20,7 +20,7 @@ export interface AccueilParcours extends Struct.ComponentSchema {
   };
   attributes: {
     date: Schema.Attribute.String & Schema.Attribute.Required;
-    description: Schema.Attribute.Component<'textes.texte', true>;
+    description: Schema.Attribute.Blocks & Schema.Attribute.Required;
     lieu: Schema.Attribute.String & Schema.Attribute.Required;
     titre: Schema.Attribute.String & Schema.Attribute.Required;
   };

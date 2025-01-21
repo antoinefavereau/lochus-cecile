@@ -9,7 +9,14 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function About() {
+interface Props {
+  data: {
+    texte_presentation: string;
+    cv: string;
+  };
+}
+
+export default function About({ data }: Readonly<Props>) {
   const [titles, setTitles] = useState([
     "créative",
     "empathique",
@@ -142,14 +149,12 @@ export default function About() {
       </h2>
       <div className="self-end flex flex-col items-start gap-10 md:gap-14 w-[calc(100vw-8rem)] xs:w-[calc(100vw-14rem)] md:w-[calc(100vw-20rem)] max-w-2xl">
         <p ref={paragraphRef} className="text-base md:text-lg text-light">
-          {
-            "Je suis passionnée par le multimédia, j'aime explorer et approfondir différents domaines créatifs. J'ai un désir constant de découvrir et d'apprendre pour nourrir ma créativité et me pousser à relever de nouveaux défis."
-          }
+          {data.texte_presentation}
         </p>
         <a
           ref={cvRef}
           className="inline-block"
-          href="/Cécile_Lochus_CV.pdf"
+          href={process.env.NEXT_PUBLIC_API_URL + data.cv}
           target="_blank"
         >
           <Button variant="outlined">CV</Button>
