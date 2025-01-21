@@ -109,43 +109,55 @@ export default function ProjectContent({
       <p className="self-start max-w-none md:max-w-4xl text-base md:text-3xl px-8 md:px-16 pb-16 fade-up">
         {project.description}
       </p>
-      {!!project.champs_categorie.mockup_images && (
+      {!!project.champs_categorie[0]?.images_mockup && (
         <div className="w-full grid grid-cols-1 md:grid-cols-5 md:grid-rows-5 gap-4 px-4 md:px-16 pt-32">
           <Image
             className="md:col-span-2 md:row-span-3 rounded-lg w-full h-auto md:h-0 md:min-h-full object-cover object-center fade-up"
-            src={project.champs_categorie.mockup_images[0]}
+            src={
+              process.env.NEXT_PUBLIC_API_URL +
+              project.champs_categorie[0]?.images_mockup.image_1.url
+            }
             alt={"Mockup 1"}
             width={1920}
             height={1080}
           />
           <Image
             className="md:col-span-3 md:row-span-2 rounded-lg w-full h-auto md:h-0 md:min-h-full object-cover object-center fade-up"
-            src={project.champs_categorie.mockup_images[2]}
+            src={
+              process.env.NEXT_PUBLIC_API_URL +
+              project.champs_categorie[0]?.images_mockup.image_2.url
+            }
             alt={"Mockup 3"}
             width={1920}
             height={1080}
           />
           <Image
             className="md:col-span-3 md:row-span-3 rounded-lg w-full h-auto object-cover object-center md:aspect-square fade-up"
-            src={project.champs_categorie.mockup_images[3]}
+            src={
+              process.env.NEXT_PUBLIC_API_URL +
+              project.champs_categorie[0]?.images_mockup.image_3.url
+            }
             alt={"Mockup 4"}
             width={1920}
             height={1080}
           />
           <Image
             className="md:col-span-2 md:row-span-2 rounded-lg w-full h-auto object-cover object-center md:aspect-square fade-up"
-            src={project.champs_categorie.mockup_images[1]}
+            src={
+              process.env.NEXT_PUBLIC_API_URL +
+              project.champs_categorie[0]?.images_mockup.image_4.url
+            }
             alt={"Mockup 2"}
             width={1920}
             height={1080}
           />
         </div>
       )}
-      {!!project.champs_categorie.without_background_image && (
+      {!!project.champs_categorie[0]?.without_background_image && (
         <div className="w-full flex justify-center gap-8 px-4 md:px-16">
           <Image
             className="w-[80%] max-w-3xl h-auto fade-up"
-            src={project.champs_categorie.without_background_image}
+            src={project.champs_categorie[0]?.without_background_image}
             alt={"Image"}
             width={1920}
             height={1080}
@@ -173,21 +185,27 @@ export default function ProjectContent({
           )}
         </div>
       </div>
-      {!!project.champs_categorie.images && (
+      {!!project.champs_categorie[0]?.images && (
         <div className="w-full grid md:grid-cols-2 gap-6 px-4 md:px-16">
-          {project.champs_categorie.images.length === 3 && (
+          {project.champs_categorie[0]?.images.image_4 === null && (
             <>
               <div className="flex flex-col gap-6">
                 <Image
                   className="rounded-lg w-full h-auto fade-up"
-                  src={project.champs_categorie.images[0]}
+                  src={
+                    process.env.NEXT_PUBLIC_API_URL +
+                    project.champs_categorie[0]?.images.image_1.url
+                  }
                   alt={"Image 1"}
                   width={1920}
                   height={1080}
                 />
                 <Image
                   className="rounded-lg w-full h-auto fade-up"
-                  src={project.champs_categorie.images[1]}
+                  src={
+                    process.env.NEXT_PUBLIC_API_URL +
+                    project.champs_categorie[0]?.images.image_2.url
+                  }
                   alt={"Image 2"}
                   width={1920}
                   height={1080}
@@ -195,40 +213,49 @@ export default function ProjectContent({
               </div>
               <Image
                 className="rounded-lg w-full h-auto md:row-span-2 self-center fade-up"
-                src={project.champs_categorie.images[2]}
+                src={
+                  process.env.NEXT_PUBLIC_API_URL +
+                  project.champs_categorie[0]?.images.image_3.url
+                }
                 alt={"Image 3"}
                 width={1920}
                 height={1080}
               />
             </>
           )}
-          {project.champs_categorie.images.length === 4 &&
-            project.champs_categorie.images.map(
-              (image: string, index: number) => (
-                <Image
-                  key={index}
-                  className="rounded-lg w-full h-auto aspect-[4/3] object-cover object-center fade-up"
-                  src={image}
-                  alt={"Image " + index}
-                  width={1920}
-                  height={1080}
-                />
-              )
-            )}
+          {project.champs_categorie[0]?.images.image_4 !== null &&
+            [
+              project.champs_categorie[0]?.images.image_1,
+              project.champs_categorie[0]?.images.image_2,
+              project.champs_categorie[0]?.images.image_3,
+              project.champs_categorie[0]?.images.image_4,
+            ].map((image: { url: string }, index: number) => (
+              <Image
+                key={index}
+                className="rounded-lg w-full h-auto aspect-[4/3] object-cover object-center fade-up"
+                src={process.env.NEXT_PUBLIC_API_URL + image.url}
+                alt={"Image " + index}
+                width={1920}
+                height={1080}
+              />
+            ))}
         </div>
       )}
-      {!!project.champs_categorie.what_comes_form_it && (
+      {!!project.champs_categorie[0]?.ce_qui_en_decoule && (
         <div className="w-full flex flex-col items-center gap-8 px-8 md:px-16">
           <p className="max-w-4xl text-base md:text-3xl text-center fade-up">
-            {project.champs_categorie.what_comes_form_it}
+            {project.champs_categorie[0]?.ce_qui_en_decoule}
           </p>
         </div>
       )}
-      {!!project.champs_categorie.branding_images && (
+      {!!project.champs_categorie[0]?.images_branding && (
         <div className="w-full flex flex-col gap-4 px-4 md:px-16">
           <Image
             className="rounded-lg w-full h-auto fade-up"
-            src={project.champs_categorie.branding_images[0]}
+            src={
+              process.env.NEXT_PUBLIC_API_URL +
+              project.champs_categorie[0]?.images_branding.image_1.url
+            }
             alt={"Branding 1"}
             width={1920}
             height={1080}
@@ -236,7 +263,10 @@ export default function ProjectContent({
           <div className="grid grid-cols-6 gap-4">
             <Image
               className="col-span-6 md:col-span-3 rounded-lg w-full h-auto object-cover object-center fade-up"
-              src={project.champs_categorie.branding_images[1]}
+              src={
+                process.env.NEXT_PUBLIC_API_URL +
+                project.champs_categorie[0]?.images_branding.image_2.url
+              }
               alt={"Branding 2"}
               width={1920}
               height={1080}
@@ -244,14 +274,20 @@ export default function ProjectContent({
             <div className="grid gap-4 col-span-4 md:col-span-2 md:h-full">
               <Image
                 className="rounded-lg w-full h-auto md:h-0 md:min-h-full object-cover object-center fade-up"
-                src={project.champs_categorie.branding_images[2]}
+                src={
+                  process.env.NEXT_PUBLIC_API_URL +
+                  project.champs_categorie[0]?.images_branding.image_3.url
+                }
                 alt={"Branding 3"}
                 width={1920}
                 height={1080}
               />
               <Image
                 className="rounded-lg w-full h-auto md:h-0 md:min-h-full object-cover object-center fade-up"
-                src={project.champs_categorie.branding_images[3]}
+                src={
+                  process.env.NEXT_PUBLIC_API_URL +
+                  project.champs_categorie[0]?.images_branding.image_4.url
+                }
                 alt={"Branding 4"}
                 width={1920}
                 height={1080}
@@ -259,16 +295,22 @@ export default function ProjectContent({
             </div>
             <Image
               className="col-span-2 md:col-span-1 rounded-lg w-full h-0 min-h-full object-cover object-center fade-up"
-              src={project.champs_categorie.branding_images[4]}
+              src={
+                process.env.NEXT_PUBLIC_API_URL +
+                project.champs_categorie[0]?.images_branding.image_5.url
+              }
               alt={"Branding 5"}
               width={1920}
               height={1080}
             />
           </div>
-          {project.champs_categorie.branding_images.length > 5 && (
+          {!!project.champs_categorie[0]?.images_branding.image_6 && (
             <Image
               className="rounded-lg w-full h-auto fade-up"
-              src={project.champs_categorie.branding_images[5] as string}
+              src={
+                process.env.NEXT_PUBLIC_API_URL +
+                project.champs_categorie[0]?.images_branding.image_6.url
+              }
               alt={"Branding 6"}
               width={1920}
               height={1080}
@@ -276,16 +318,16 @@ export default function ProjectContent({
           )}
         </div>
       )}
-      {!!project.champs_categorie.video && (
+      {!!project.champs_categorie[0]?.video && (
         <video className="fade-up" controls>
-          <source src={project.champs_categorie.video} type="video/mp4" />
+          <source src={project.champs_categorie[0]?.video} type="video/mp4" />
           Votre navigateur ne supporte pas la vidéo.
         </video>
       )}
-      {!!project.champs_categorie.full_width_image && (
+      {!!project.champs_categorie[0]?.full_width_image && (
         <Image
           className="w-full h-auto fade-up"
-          src={project.champs_categorie.full_width_image}
+          src={project.champs_categorie[0]?.full_width_image}
           alt={"Full width image"}
           width={1920}
           height={1080}
