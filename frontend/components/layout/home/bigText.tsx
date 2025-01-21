@@ -30,6 +30,7 @@ export default function BigText({ data }: Readonly<Props>) {
           stagger: 0.2,
           scrollTrigger: {
             trigger: container.current,
+            scroller: document.body,
             start: "top 75%",
             end: "bottom 75%",
             scrub: 1,

@@ -35,6 +35,7 @@ export default function Project({
         ease: "power2.out",
         scrollTrigger: {
           trigger: triggerRef.current,
+          scroller: document.body,
           start: "top 80%",
           toggleActions: "play none none reverse",
         },

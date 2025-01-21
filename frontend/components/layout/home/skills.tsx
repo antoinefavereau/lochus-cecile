@@ -34,6 +34,7 @@ export default function Skills({ data }: Readonly<Props>) {
       scale: 0.8,
       scrollTrigger: {
         trigger: boxRef.current,
+        scroller: document.body,
         start: "top bottom",
         end: "top 50%",
         scrub: true,

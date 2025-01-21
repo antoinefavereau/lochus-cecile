@@ -48,6 +48,7 @@ export default function ProjectContent({
         ...fadeUp,
         scrollTrigger: {
           trigger: element as Element,
+          scroller: document.body,
           start: () => `top ${window.innerHeight * 0.8 + 200}`,
           toggleActions: "play none none reverse",
         },

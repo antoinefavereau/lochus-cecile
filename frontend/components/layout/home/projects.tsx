@@ -73,6 +73,7 @@ export default function Projects() {
       y: "-300",
       scrollTrigger: {
         trigger: containerRef.current,
+        scroller: document.body,
         start: "top bottom",
         end: "top top",
         scrub: true,
@@ -88,6 +89,7 @@ export default function Projects() {
       ease: "none",
       scrollTrigger: {
         trigger: marqueeRef.current,
+        scroller: document.body,
         start: "top bottom",
         end: "bottom top",
         scrub: 0.5,

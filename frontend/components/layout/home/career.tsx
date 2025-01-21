@@ -29,8 +29,6 @@ export default function Career({ data }: Readonly<Props>) {
   const formationsRef = useRef(null);
 
   useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
     const fadeUp = { y: 100, opacity: 0 };
 
     if (isMobile) {
@@ -38,6 +36,7 @@ export default function Career({ data }: Readonly<Props>) {
         ...fadeUp,
         scrollTrigger: {
           trigger: experiencesContainerRef.current,
+          scroller: document.body,
           start: "top 80%",
           toggleActions: "play none none reverse",
         },
@@ -46,6 +45,7 @@ export default function Career({ data }: Readonly<Props>) {
         ...fadeUp,
         scrollTrigger: {
           trigger: formationsContainerRef.current,
+          scroller: document.body,
           start: "top 80%",
           toggleActions: "play none none reverse",
         },
@@ -56,6 +56,7 @@ export default function Career({ data }: Readonly<Props>) {
           defaults: { duration: 1, ease: "power2.out" },
           scrollTrigger: {
             trigger: containerRef.current,
+            scroller: document.body,
             start: "top 80%",
             toggleActions: "play none none reverse",
           },

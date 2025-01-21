@@ -4,12 +4,9 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Project from "@/components/layout/project";
 import SliceInText from "@/components/ui/sliceInText";
 import { ApiProjetProjet } from "@/types/generated/contentTypes";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function ProjectsContent({
   texte_description,

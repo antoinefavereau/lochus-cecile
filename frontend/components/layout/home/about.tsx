@@ -49,6 +49,7 @@ export default function About({ data }: Readonly<Props>) {
         defaults: { duration: 1, ease: "power2.out" },
         scrollTrigger: {
           trigger: containerRef.current,
+          scroller: document.body,
           start: "top 80%",
           toggleActions: "play none none reverse",
         },
@@ -67,6 +68,7 @@ export default function About({ data }: Readonly<Props>) {
         yPercent: 50,
         scrollTrigger: {
           trigger: containerRef.current,
+          scroller: document.body,
           start: "top bottom",
           end: "bottom top",
           scrub: 0.5,
@@ -81,6 +83,7 @@ export default function About({ data }: Readonly<Props>) {
         yPercent: 50,
         scrollTrigger: {
           trigger: containerRef.current,
+          scroller: document.body,
           start: "top bottom",
           end: "bottom top",
           scrub: 0.5,
