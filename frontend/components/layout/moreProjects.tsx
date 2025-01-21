@@ -75,7 +75,12 @@ export default function MoreProjects() {
     });
 
     tl.from(seeAllRef.current, { y: "100%" }, "-=0.7");
-  }, [projectsRefs]);
+  }, [
+    containerRef.current,
+    titleRef.current,
+    lineRef.current,
+    seeAllRef.current,
+  ]);
 
   return (
     <div ref={containerRef} className="w-full flex flex-col gap-12 md:gap-16">
