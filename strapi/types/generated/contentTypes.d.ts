@@ -519,6 +519,35 @@ export interface ApiProjetProjet extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiProjetsEnAvantProjetsEnAvant
+  extends Struct.SingleTypeSchema {
+  collectionName: 'projets_en_avants';
+  info: {
+    displayName: 'Projets en avant';
+    pluralName: 'projets-en-avants';
+    singularName: 'projets-en-avant';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::projets-en-avant.projets-en-avant'
+    > &
+      Schema.Attribute.Private;
+    projets: Schema.Attribute.Relation<'oneToMany', 'api::projet.projet'>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiReseauxSociauxReseauxSociaux
   extends Struct.SingleTypeSchema {
   collectionName: 'reseaux_sociauxes';
@@ -1061,6 +1090,7 @@ declare module '@strapi/strapi' {
       'api::categorie.categorie': ApiCategorieCategorie;
       'api::page-projet.page-projet': ApiPageProjetPageProjet;
       'api::projet.projet': ApiProjetProjet;
+      'api::projets-en-avant.projets-en-avant': ApiProjetsEnAvantProjetsEnAvant;
       'api::reseaux-sociaux.reseaux-sociaux': ApiReseauxSociauxReseauxSociaux;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

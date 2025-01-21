@@ -33,9 +33,10 @@ export default function MoreProjects() {
       let projects = [];
       try {
         const data = await fetch(
-          process.env.NEXT_PUBLIC_API_URL + "/api/projets?populate=*"
+          process.env.NEXT_PUBLIC_API_URL +
+            "/api/projets-en-avant?populate[projets][populate]=*"
         );
-        projects = (await data.json()).data;
+        projects = (await data.json()).data.projets;
       } catch (error) {
         console.error("Error fetching projects:", error);
       }
