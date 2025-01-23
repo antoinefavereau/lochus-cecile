@@ -6,17 +6,16 @@ import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { fetchProjects } from "@/lib/data";
-import { ProjectType } from "@/types/project";
 import { useIsMobile } from "@/context/IsMobileProvider";
+import { ApiProjetProjet } from "@/types/generated/contentTypes";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Projects() {
-  const [projects, setProjects] = useState<ProjectType[]>([]);
-  const [selectedProject, setSelectedProject] = useState<ProjectType | null>(
-    null
-  );
+  const [projects, setProjects] = useState<ApiProjetProjet["attributes"][]>([]);
+  const [selectedProject, setSelectedProject] = useState<
+    ApiProjetProjet["attributes"] | null
+  >(null);
   const projectRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const isMobile = useIsMobile();
 
@@ -27,9 +26,18 @@ export default function Projects() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const fetchedProjects = await fetchProjects();
-      setProjects(fetchedProjects);
-      setSelectedProject(fetchedProjects[0]);
+      let projects = [];
+      try {
+        const data = await fetch(
+          process.env.NEXT_PUBLIC_API_URL + "/api/projets?populate=*"
+        );
+        projects = (await data.json()).data;
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+
+      setProjects(projects);
+      setSelectedProject(projects[0]);
     };
     fetchData();
   }, []);
@@ -39,7 +47,10 @@ export default function Projects() {
 
     const handleScroll = () => {
       const centerY = window.innerHeight / 2;
-      let closest = { dist: Infinity, project: null as ProjectType | null };
+      let closest = {
+        dist: Infinity,
+        project: null as ApiProjetProjet["attributes"] | null,
+      };
       projectRefs.current.forEach((el, i) => {
         if (!el) return;
         const rect = el.getBoundingClientRect();
@@ -57,34 +68,34 @@ export default function Projects() {
   useGSAP(() => {
     if (!containerRef.current) return;
     if (!contentRef.current) return;
-    if (!marqueeRef.current) return;
 
-    const animation1 = gsap.from(contentRef.current, {
+    gsap.from(contentRef.current, {
       y: "-300",
       scrollTrigger: {
         trigger: containerRef.current,
+        scroller: document.body,
         start: "top bottom",
         end: "top top",
         scrub: true,
       },
     });
+  }, []);
 
-    const animation2 = gsap.to(marqueeRef.current, {
+  useGSAP(() => {
+    if (!marqueeRef.current) return;
+
+    gsap.to(marqueeRef.current, {
       x: "-50%",
       ease: "none",
       scrollTrigger: {
         trigger: marqueeRef.current,
+        scroller: document.body,
         start: "top bottom",
         end: "bottom top",
         scrub: 0.5,
       },
     });
-
-    return () => {
-      animation1.kill();
-      animation2.kill();
-    };
-  }, []);
+  }, [marqueeRef.current]);
 
   return (
     <section className="pb-16">
@@ -94,32 +105,32 @@ export default function Projects() {
           className="relative flex flex-col items-center gap-32 md:gap-40 px-8 py-[50vh] min-h-screen"
         >
           {projects.map((project) => (
-            <div key={project.id} className="absolute inset-0">
+            <div key={project.titre} className="absolute inset-0">
               <Image
                 className={`sticky top-0 w-full h-screen object-contain object-center brightness-90 transition-opacity duration-300 ${
-                  project.id !== selectedProject?.id && "opacity-0"
+                  project.titre !== selectedProject?.titre && "opacity-0"
                 }`}
-                src={project.homepage_image}
+                src={process.env.NEXT_PUBLIC_API_URL + project.image_home.url}
                 width="1920"
                 height="1080"
-                alt={selectedProject?.title ?? ""}
-                style={{ backgroundColor: project.homepage_image_color }}
+                alt={selectedProject?.titre ?? ""}
+                style={{ backgroundColor: project.couleur_image_home }}
               />
             </div>
           ))}
           {projects.map((project, index) => (
             <Link
-              href={`/projets/${project.title}`}
-              key={project.id}
+              href={`/projets/${project.titre}`}
+              key={project.titre}
               className={`relative text-5xl xs:text-6xl md:text-7xl lg:text-8xl font-bold text-center ${
-                project.id !== selectedProject?.id && "opacity-50"
+                project.titre !== selectedProject?.titre && "opacity-50"
               }`}
               ref={(el) => {
                 projectRefs.current[index] = el;
               }}
               onMouseEnter={() => setSelectedProject(project)}
             >
-              {project.title}
+              {project.titre}
             </Link>
           ))}
         </div>

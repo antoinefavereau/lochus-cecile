@@ -1,25 +1,34 @@
+import { ApiProjetProjet } from "@/types/generated/contentTypes";
 import type { MetadataRoute } from "next";
-import { fetchProjects } from "../lib/data";
 
 const BASE_URL = "https://cecile-lochus.fr";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const projects = await fetchProjects();
+  let dynamicUrls: MetadataRoute.Sitemap = [];
 
-  const dynamicUrls = projects.map((project) => ({
-    url: `${BASE_URL}/projets/${project.title.toLowerCase()}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as
-      | "always"
-      | "hourly"
-      | "daily"
-      | "weekly"
-      | "monthly"
-      | "yearly"
-      | "never"
-      | undefined,
-    priority: 0.8,
-  }));
+  try {
+    const data = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/projets");
+    if (data.ok) {
+      const projects = (await data.json()).data;
+
+      dynamicUrls = projects.map((project: ApiProjetProjet["attributes"]) => ({
+        url: `${BASE_URL}/projets/${project.titre}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly" as
+          | "always"
+          | "hourly"
+          | "daily"
+          | "weekly"
+          | "monthly"
+          | "yearly"
+          | "never"
+          | undefined,
+        priority: 0.8,
+      }));
+    }
+  } catch (error) {
+    console.error("Failed to fetch projects for sitemap:", error);
+  }
 
   return [
     {

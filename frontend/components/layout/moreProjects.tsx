@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { fetchProjects } from "@/lib/data";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,10 +8,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-import { ProjectType } from "@/types/project";
 import Project from "./project";
 import Link from "next/link";
 import SliceInText from "../ui/sliceInText";
+import { ApiProjetProjet } from "@/types/generated/contentTypes";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,7 +21,7 @@ export default function MoreProjects() {
   const titleRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
   const seeAllRef = useRef<HTMLDivElement>(null);
-  const [projects, setProjects] = useState<ProjectType[]>([]);
+  const [projects, setProjects] = useState<ApiProjetProjet["attributes"][]>([]);
 
   const projectsRefs = useMemo(
     () => projects.map(() => React.createRef<HTMLDivElement>()),
@@ -31,7 +30,16 @@ export default function MoreProjects() {
 
   useEffect(() => {
     async function fetchData() {
-      const projects = await fetchProjects();
+      let projects = [];
+      try {
+        const data = await fetch(
+          process.env.NEXT_PUBLIC_API_URL +
+            "/api/projets-en-avant?populate[projets][populate]=*"
+        );
+        projects = (await data.json()).data.projets;
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
       setProjects(projects);
     }
     fetchData();
@@ -48,6 +56,7 @@ export default function MoreProjects() {
         defaults: { duration: 1, ease: "power2.out" },
         scrollTrigger: {
           trigger: containerRef.current,
+          scroller: document.body,
           start: "top 80%",
           toggleActions: "play none none reverse",
         },
@@ -67,7 +76,12 @@ export default function MoreProjects() {
     });
 
     tl.from(seeAllRef.current, { y: "100%" }, "-=0.7");
-  }, [projectsRefs]);
+  }, [
+    containerRef.current,
+    titleRef.current,
+    lineRef.current,
+    seeAllRef.current,
+  ]);
 
   return (
     <div ref={containerRef} className="w-full flex flex-col gap-12 md:gap-16">
@@ -98,7 +112,7 @@ export default function MoreProjects() {
           modules={[Pagination]}
         >
           {projects.map((project, index) => (
-            <SwiperSlide key={project.id} className="px-4 md:px-8">
+            <SwiperSlide key={project.titre} className="px-4 md:px-8">
               <Project animationRef={projectsRefs[index]} project={project} />
             </SwiperSlide>
           ))}

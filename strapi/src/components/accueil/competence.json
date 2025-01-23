@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_accueil_competences",
+  "info": {
+    "displayName": "competence"
+  },
+  "options": {},
+  "attributes": {
+    "titre": {
+      "type": "string",
+      "required": true
+    },
+    "logo": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

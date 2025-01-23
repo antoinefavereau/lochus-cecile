@@ -1,7 +1,8 @@
 {
   "collectionName": "components_projet_projet_defauts",
   "info": {
-    "displayName": "projet_defaut"
+    "displayName": "Projet Defaut",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -24,36 +25,36 @@
       "required": true
     },
     "image_home": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
         "videos"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
+      ]
     },
     "couleur_image_home": {
       "type": "string",
       "required": true
     },
     "image_projets": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
+      ]
     },
     "image_principale": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
+      ]
     },
     "paragraphe": {
       "type": "component",

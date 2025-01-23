@@ -12,11 +12,11 @@
       "required": true
     },
     "texte_1": {
-      "type": "blocks",
+      "type": "text",
       "required": true
     },
     "texte_2": {
-      "type": "blocks"
+      "type": "text"
     }
   }
 }

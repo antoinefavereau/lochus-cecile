@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_projet_projet_communications",
+  "info": {
+    "displayName": "Projet Communication"
+  },
+  "options": {},
+  "attributes": {
+    "image_sans_fond": {
+      "allowedTypes": [
+        "files",
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "image_large": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

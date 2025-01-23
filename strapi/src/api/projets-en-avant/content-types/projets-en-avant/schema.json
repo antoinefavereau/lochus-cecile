@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "projets_en_avants",
+  "info": {
+    "singularName": "projets-en-avant",
+    "pluralName": "projets-en-avants",
+    "displayName": "Projets en avant"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "projets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::projet.projet"
+    }
+  }
+}

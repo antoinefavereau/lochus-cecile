@@ -4,11 +4,17 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ApiAccueilAccueil } from "@/types/generated/contentTypes";
 
-export default function BigText() {
-  gsap.registerPlugin(useGSAP);
-  gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
+interface Props {
+  data: {
+    texte_description: ApiAccueilAccueil["attributes"]["texte_description"];
+  };
+}
+
+export default function BigText({ data }: Readonly<Props>) {
   const container = useRef<HTMLParagraphElement>(null);
 
   useGSAP(
@@ -24,6 +30,7 @@ export default function BigText() {
           stagger: 0.2,
           scrollTrigger: {
             trigger: container.current,
+            scroller: document.body,
             start: "top 75%",
             end: "bottom 75%",
             scrub: 1,
@@ -36,9 +43,9 @@ export default function BigText() {
   );
 
   const splitText = (text: string) => {
-    return text.split("").map((word, index) => {
+    return text.split("").map((word: string, index: number) => {
       return (
-        <span key={index} className="word">
+        <span key={word + index} className="word">
           {word}
         </span>
       );
@@ -51,26 +58,30 @@ export default function BigText() {
         className="text-2xl xs:text-3xl md:text-4xl max-w-lg xs:max-w-xl md:max-w-2xl lg:max-w-4xl !leading-[1.2em]"
         ref={container}
       >
-        {splitText("Je déborde de ")}
-        <strong className="text-primary font-normal">
-          {splitText("passion pour le design")}
-        </strong>
-        {splitText(" et j'ai ")}
-        <strong className="text-primary font-normal">
-          {splitText("envie d'apprendre et de grandir")}
-        </strong>
-        {splitText(" dans ce domaine. Je n'ai pas peur d'apporter des ")}
-        <strong className="text-primary font-normal">
-          {splitText("perspectives nouvelles et de la créativité")}
-        </strong>
-        {splitText(", et je m'engage à constamment améliorer mes compétences.")}
-        <br />
-        {splitText("Je crois qu'avec ")}
-        <strong className="text-primary font-normal">
-          {splitText("mon potentiel et ma détermination")}
-        </strong>
-        {splitText(
-          ", je peux devenir la meilleure designer junior que vous pourriez recruter."
+        {data.texte_description.map(
+          (line: { children: { text: string }[] }, index: number) => {
+            return (
+              <span key={line.children[0].text + index}>
+                {line.children.map(
+                  (text: { text: string; bold?: boolean }, index: number) => {
+                    if (text.bold) {
+                      return (
+                        <strong
+                          key={text.text + index}
+                          className="text-primary font-normal"
+                        >
+                          {splitText(text.text)}
+                        </strong>
+                      );
+                    } else {
+                      return splitText(text.text);
+                    }
+                  }
+                )}
+                <br />
+              </span>
+            );
+          }
         )}
       </p>
     </section>

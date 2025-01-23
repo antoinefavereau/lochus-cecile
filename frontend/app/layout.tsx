@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Header from "../components/layout/header";
 import Footer from "../components/layout/footer";
 import { IsMobileProvider } from "@/context/IsMobileProvider";
+import LenisProvider from "@/components/LenisProvider";
 
 export const metadata: Metadata = {
   title: {
@@ -22,10 +23,12 @@ export default function RootLayout({
     <html lang="fr" className="scroll-smooth">
       <body id="top" className={`antialiased`}>
         <IsMobileProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-          <Analytics />
+          <LenisProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <Analytics />
+          </LenisProvider>
         </IsMobileProvider>
       </body>
     </html>

@@ -9,8 +9,7 @@
   "attributes": {
     "titre": {
       "type": "string",
-      "required": true,
-      "default": "Voir le projet"
+      "required": true
     },
     "lien": {
       "type": "string",

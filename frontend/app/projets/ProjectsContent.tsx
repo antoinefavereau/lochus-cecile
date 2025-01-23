@@ -4,22 +4,23 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ProjectType } from "@/types/project";
 import Project from "@/components/layout/project";
 import SliceInText from "@/components/ui/sliceInText";
-
-gsap.registerPlugin(ScrollTrigger);
+import { ApiProjetProjet } from "@/types/generated/contentTypes";
 
 export default function ProjectsContent({
+  texte_description,
   projects,
   categories,
 }: Readonly<{
-  projects: ProjectType[];
+  texte_description: string;
+  projects: ApiProjetProjet["attributes"][];
   categories: string[];
 }>) {
   const [activeCategory, setActiveCategory] = useState<string>(categories[0]);
-  const [filteredList, setFilteredList] = useState<ProjectType[]>([]);
+  const [filteredList, setFilteredList] = useState<
+    ApiProjetProjet["attributes"][]
+  >([]);
 
   const titleRef = useRef<HTMLDivElement>(null);
   const descriptionRef = useRef<HTMLDivElement>(null);
@@ -42,7 +43,8 @@ export default function ProjectsContent({
     setFilteredList(
       projects.filter(
         (project) =>
-          activeCategory === "Tous" || activeCategory === project.category
+          activeCategory === "Tous" ||
+          activeCategory === project.categorie.titre
       )
     );
   }, [activeCategory, projects]);
@@ -66,10 +68,7 @@ export default function ProjectsContent({
           ref={descriptionRef}
           className="max-w-3xl text-base sm:text-lg md:text-xl"
         >
-          Voici quelques projets sur lesquels j&apos;ai eu la chance de
-          travailler. Chaque expérience m&apos;a permis d&apos;apprendre,
-          d&apos;explorer de nouvelles idées et de relever de passionnants
-          défis.
+          {texte_description}
         </p>
         <div
           ref={filtersRef}
@@ -91,7 +90,7 @@ export default function ProjectsContent({
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full max-w-6xl mt-8">
         {filteredList.map((project) => (
-          <Project key={project.id} project={project} hasMarginTop />
+          <Project key={project.titre} project={project} hasMarginTop />
         ))}
       </div>
     </div>
