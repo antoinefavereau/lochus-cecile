@@ -64,14 +64,14 @@ export default function MoreProjects() {
       .from(titleRef.current, { y: "100%" })
       .from(lineRef.current, { width: 0 }, "-=1");
 
-    projectsRefs.forEach((ref, index) => {
+    projectsRefs.forEach((ref) => {
       tl.from(
         ref.current,
         {
           x: "100",
           opacity: 0,
         },
-        index === 0 ? undefined : "-=0.7"
+        "-=0.7"
       );
     });
 
