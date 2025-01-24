@@ -24,7 +24,11 @@ export default function Header() {
     { href: "#contact", label: "Contact" },
   ];
 
-  const getNavItem = (link) => (
+  const getNavItem = (link: {
+    href: string;
+    label: string;
+    important?: boolean;
+  }) => (
     <li key={link.href}>
       <Link
         className={`group block p-2 text-4xl md:text-base ${
