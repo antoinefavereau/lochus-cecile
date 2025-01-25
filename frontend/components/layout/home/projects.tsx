@@ -37,6 +37,7 @@ export default function Projects() {
         console.error("Error fetching projects:", error);
       }
       setProjects(projects);
+      setSelectedProject(projects[0]);
     }
     fetchData();
   }, []);
