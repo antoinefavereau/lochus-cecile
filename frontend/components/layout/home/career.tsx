@@ -64,6 +64,8 @@ export default function Career({ data }: Readonly<Props>) {
         .from(experiencesRef.current, fadeUp)
         .from(formationsRef.current, fadeUp, "-=0.6");
     }
+
+    ScrollTrigger.refresh();
   }, [isMobile]);
 
   const handleClick = (id: string) => {

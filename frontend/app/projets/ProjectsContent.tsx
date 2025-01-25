@@ -39,6 +39,8 @@ export default function ProjectsContent({
       .from(titleRef.current, { y: "100%" })
       .from(descriptionRef.current, { y: 100, opacity: 0 }, "-=0.7")
       .from(filtersRef.current, { y: 100, opacity: 0 }, "-=0.7");
+
+    ScrollTrigger.refresh();
   });
 
   useEffect(() => {

@@ -79,7 +79,9 @@ export default function Projects() {
         scrub: true,
       },
     });
-  }, []);
+
+    ScrollTrigger.refresh();
+  });
 
   useGSAP(() => {
     if (!marqueeRef.current) return;
@@ -95,6 +97,8 @@ export default function Projects() {
         scrub: 0.5,
       },
     });
+
+    ScrollTrigger.refresh();
   }, [marqueeRef.current]);
 
   return (
