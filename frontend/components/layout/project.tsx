@@ -41,6 +41,8 @@ export default function Project({
         },
       });
     }
+
+    ScrollTrigger.refresh();
   });
 
   return (

@@ -90,6 +90,8 @@ export default function About({ data }: Readonly<Props>) {
         },
       }
     );
+
+    ScrollTrigger.refresh();
   });
 
   useEffect(() => {

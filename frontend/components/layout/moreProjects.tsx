@@ -64,24 +64,21 @@ export default function MoreProjects() {
       .from(titleRef.current, { y: "100%" })
       .from(lineRef.current, { width: 0 }, "-=1");
 
-    projectsRefs.forEach((ref, index) => {
+    projectsRefs.forEach((ref) => {
       tl.from(
         ref.current,
         {
           x: "100",
           opacity: 0,
         },
-        index === 0 ? undefined : "-=0.7"
+        "-=0.7"
       );
     });
 
     tl.from(seeAllRef.current, { y: "100%" }, "-=0.7");
-  }, [
-    containerRef.current,
-    titleRef.current,
-    lineRef.current,
-    seeAllRef.current,
-  ]);
+
+    ScrollTrigger.refresh();
+  });
 
   return (
     <div ref={containerRef} className="w-full flex flex-col gap-12 md:gap-16">

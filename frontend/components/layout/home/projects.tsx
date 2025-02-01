@@ -25,20 +25,20 @@ export default function Projects() {
   const marqueeRef = useRef(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchData() {
       let projects = [];
       try {
         const data = await fetch(
-          process.env.NEXT_PUBLIC_API_URL + "/api/projets?populate=*"
+          process.env.NEXT_PUBLIC_API_URL +
+            "/api/projets-en-avant?populate[projets][populate]=*"
         );
-        projects = (await data.json()).data;
+        projects = (await data.json()).data.projets;
       } catch (error) {
         console.error("Error fetching projects:", error);
       }
-
       setProjects(projects);
       setSelectedProject(projects[0]);
-    };
+    }
     fetchData();
   }, []);
 
@@ -79,7 +79,9 @@ export default function Projects() {
         scrub: true,
       },
     });
-  }, []);
+
+    ScrollTrigger.refresh();
+  });
 
   useGSAP(() => {
     if (!marqueeRef.current) return;
@@ -95,6 +97,8 @@ export default function Projects() {
         scrub: 0.5,
       },
     });
+
+    ScrollTrigger.refresh();
   }, [marqueeRef.current]);
 
   return (

@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useMemo, useRef, useState } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import SliceInText from "../ui/sliceInText";
-import { usePathname } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,31 +15,16 @@ interface Social {
   lien: string;
 }
 
-export default function Footer() {
-  const pathName = usePathname();
+interface FooterProps {
+  socials: Social[];
+}
 
+export default function Footer({ socials }: Readonly<FooterProps>) {
   const triggerRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
   const devByRef = useRef<HTMLDivElement>(null);
 
-  const [socials, setSocials] = useState<Social[]>([]);
-
-  useMemo(() => {
-    const fetchData = async () => {
-      const data = await fetch(
-        process.env.NEXT_PUBLIC_API_URL + "/api/reseaux-sociaux?populate=*"
-      );
-      const footerData = (await data.json()).data;
-
-      setSocials(footerData.lien);
-    };
-    fetchData();
-  }, []);
-
-  const socialsRefs = useMemo(
-    () => socials.map(() => React.createRef<HTMLDivElement>()),
-    [socials]
-  );
+  const socialsRefs = socials.map(() => React.createRef<HTMLDivElement>());
 
   useGSAP(() => {
     if (!triggerRef.current) return;
@@ -81,11 +65,7 @@ export default function Footer() {
       },
       "-=0.7"
     );
-
-    return () => {
-      tl.kill();
-    };
-  }, [pathName, socialsRefs]);
+  });
 
   return (
     <footer
@@ -128,7 +108,7 @@ export default function Footer() {
             >
               <span className="relative block leading-normal overflow-hidden">
                 <SliceInText
-                  key={`${pathName}-social-${index}`}
+                  key={`social-${index}`}
                   animationRef={socialsRefs[index]}
                 >
                   <span className="block group-hover:-translate-y-full translate-y-0 transition-transform duration-500 ease-in-out">
@@ -143,12 +123,12 @@ export default function Footer() {
           ))}
         </div>
         <div className="flex items-baseline gap-4 xs:gap-8 md:gap-16 lg:gap-20">
-          <SliceInText key={`${pathName}-contact`} animationRef={contactRef}>
+          <SliceInText key={`contact`} animationRef={contactRef}>
             <h2 className="text-4xl xs:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-thin tracking-[0.2rem] xs:tracking-[0.25em]">
               Contact
             </h2>
           </SliceInText>
-          <SliceInText key={`${pathName}-devBy`} animationRef={devByRef}>
+          <SliceInText key={`devBy`} animationRef={devByRef}>
             <p className="text-xs xs:text-sm font-light">
               Développé par{" "}
               <a

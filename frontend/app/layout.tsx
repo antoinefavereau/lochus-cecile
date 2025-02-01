@@ -14,11 +14,22 @@ export const metadata: Metadata = {
   description: "Portfolio de Cécile Lochus",
 };
 
-export default function RootLayout({
+async function getSocials() {
+  const res = await fetch(
+    process.env.NEXT_PUBLIC_API_URL + "/api/reseaux-sociaux?populate=*"
+  );
+  const socials = await res.json();
+
+  return socials.data.lien;
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const socials = await getSocials();
+
   return (
     <html lang="fr" className="scroll-smooth">
       <body id="top" className={`antialiased`}>
@@ -26,7 +37,7 @@ export default function RootLayout({
           <LenisProvider>
             <Header />
             <main>{children}</main>
-            <Footer />
+            <Footer socials={socials} />
             <Analytics />
           </LenisProvider>
         </IsMobileProvider>

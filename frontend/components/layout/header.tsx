@@ -20,15 +20,21 @@ export default function Header() {
 
   const rightLinks = [
     { href: "/#skills", label: "Compétences" },
-    { href: "/projets", label: "Projets" },
+    { href: "/projets", label: "Projets", important: true },
     { href: "#contact", label: "Contact" },
   ];
 
-  const getNavItem = (href: string, label: string) => (
-    <li key={href}>
+  const getNavItem = (link: {
+    href: string;
+    label: string;
+    important?: boolean;
+  }) => (
+    <li key={link.href}>
       <Link
-        className="group block p-2 text-4xl md:text-base"
-        href={href}
+        className={`group block p-2 text-4xl md:text-base ${
+          link.important ? "text-primary font-semibold" : ""
+        }`}
+        href={link.href}
         onClick={() => {
           setIsMenuOpen(false);
         }}
@@ -42,11 +48,11 @@ export default function Header() {
                   : "translate-y-full md:translate-y-0"
               } transition-all duration-500 ease-in-out`}
             >
-              {label}
+              {link.label}
             </span>
           </SliceInText>
           <span className="absolute leading-normal md:group-hover:-translate-y-full transition-transform duration-500 ease-in-out">
-            {label}
+            {link.label}
           </span>
         </span>
       </Link>
@@ -134,7 +140,7 @@ export default function Header() {
         } transition-all`}
       >
         <ul className="w-full flex flex-col md:flex-row items-center justify-evenly text-black md:text-white">
-          {leftLinks.map(({ href, label }) => getNavItem(href, label))}
+          {leftLinks.map((link) => getNavItem(link))}
           <li className="hidden md:block">
             <Link href="/" title="Cécile Lochus">
               <Image
@@ -146,7 +152,7 @@ export default function Header() {
               />
             </Link>
           </li>
-          {rightLinks.map(({ href, label }) => getNavItem(href, label))}
+          {rightLinks.map((link) => getNavItem(link))}
         </ul>
       </nav>
     </header>

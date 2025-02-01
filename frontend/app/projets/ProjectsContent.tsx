@@ -7,6 +7,8 @@ import { useGSAP } from "@gsap/react";
 import Project from "@/components/layout/project";
 import SliceInText from "@/components/ui/sliceInText";
 import { ApiProjetProjet } from "@/types/generated/contentTypes";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ProjectsContent({
   texte_description,
@@ -37,6 +39,8 @@ export default function ProjectsContent({
       .from(titleRef.current, { y: "100%" })
       .from(descriptionRef.current, { y: 100, opacity: 0 }, "-=0.7")
       .from(filtersRef.current, { y: 100, opacity: 0 }, "-=0.7");
+
+    ScrollTrigger.refresh();
   });
 
   useEffect(() => {
@@ -47,6 +51,7 @@ export default function ProjectsContent({
           activeCategory === project.categorie.titre
       )
     );
+    gsap.delayedCall(0.1, () => ScrollTrigger.refresh());
   }, [activeCategory, projects]);
 
   return (

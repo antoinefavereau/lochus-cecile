@@ -17,30 +17,29 @@ interface Props {
 export default function BigText({ data }: Readonly<Props>) {
   const container = useRef<HTMLParagraphElement>(null);
 
-  useGSAP(
-    () => {
-      const tlSplitText = gsap.timeline();
+  useGSAP(() => {
+    const tl = gsap.timeline();
 
-      tlSplitText.from(
-        ".word",
-        {
-          duration: 0.5,
-          opacity: 0.05,
-          ease: "circ.out",
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: container.current,
-            scroller: document.body,
-            start: "top 75%",
-            end: "bottom 75%",
-            scrub: 1,
-          },
+    tl.from(
+      ".word",
+      {
+        duration: 0.5,
+        opacity: 0.05,
+        ease: "circ.out",
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: container.current,
+          scroller: document.body,
+          start: "top 75%",
+          end: "bottom 75%",
+          scrub: 1,
         },
-        "+=0"
-      );
-    },
-    { scope: container }
-  );
+      },
+      "+=0"
+    );
+
+    ScrollTrigger.refresh();
+  });
 
   const splitText = (text: string) => {
     return text.split("").map((word: string, index: number) => {

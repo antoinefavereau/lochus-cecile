@@ -54,6 +54,8 @@ export default function ProjectContent({
         },
       });
     });
+
+    ScrollTrigger.refresh();
   });
 
   return (

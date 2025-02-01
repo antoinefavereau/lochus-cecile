@@ -38,6 +38,8 @@ export default function SliceInText({
         },
       });
     }
+
+    ScrollTrigger.refresh();
   }, [pathName]);
 
   return (

@@ -40,6 +40,8 @@ export default function Skills({ data }: Readonly<Props>) {
         scrub: true,
       },
     });
+
+    ScrollTrigger.refresh();
   });
 
   return (
