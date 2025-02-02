@@ -10,7 +10,10 @@ export default async function Page() {
   let texte_description: string = "";
   try {
     const data = await fetch(
-      process.env.NEXT_PUBLIC_API_URL + "/api/page-projet"
+      process.env.NEXT_PUBLIC_API_URL + "/api/page-projet",
+      {
+        cache: "no-store",
+      }
     );
     texte_description = (await data.json()).data.texte_description;
   } catch (error) {
