@@ -16,7 +16,10 @@ export const metadata: Metadata = {
 
 async function getSocials() {
   const res = await fetch(
-    process.env.NEXT_PUBLIC_API_URL + "/api/reseaux-sociaux?populate=*"
+    process.env.NEXT_PUBLIC_API_URL + "/api/reseaux-sociaux?populate=*",
+    {
+      cache: "no-store",
+    }
   );
   const socials = await res.json();
 

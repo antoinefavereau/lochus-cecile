@@ -7,7 +7,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let dynamicUrls: MetadataRoute.Sitemap = [];
 
   try {
-    const data = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/projets");
+    const data = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/projets", {
+      cache: "no-store",
+    });
     if (data.ok) {
       const projects = (await data.json()).data;
 
