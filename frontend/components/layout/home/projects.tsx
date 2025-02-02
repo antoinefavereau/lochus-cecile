@@ -30,7 +30,10 @@ export default function Projects() {
       try {
         const data = await fetch(
           process.env.NEXT_PUBLIC_API_URL +
-            "/api/projets-en-avant?populate[projets][populate]=*"
+            "/api/projets-en-avant?populate[projets][populate]=*",
+          {
+            cache: "no-store",
+          }
         );
         projects = (await data.json()).data.projets;
       } catch (error) {

@@ -8,7 +8,10 @@ import Projects from "@/components/layout/home/projects";
 export default async function Home() {
   const data = await fetch(
     process.env.NEXT_PUBLIC_API_URL +
-      "/api/accueil?populate[experiences]=*&populate[formations]=*&populate[competences][populate]=*&populate=cv"
+      "/api/accueil?populate[experiences]=*&populate[formations]=*&populate[competences][populate]=*&populate=cv",
+    {
+      cache: "no-store",
+    }
   );
   const homeData = (await data.json()).data;
 

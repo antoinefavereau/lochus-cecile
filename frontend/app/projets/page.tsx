@@ -23,7 +23,10 @@ export default async function Page() {
   let projects: ApiProjetProjet["attributes"][] = [];
   try {
     const data = await fetch(
-      process.env.NEXT_PUBLIC_API_URL + "/api/projets?populate=*"
+      process.env.NEXT_PUBLIC_API_URL + "/api/projets?populate=*",
+      {
+        cache: "no-store",
+      }
     );
     projects = (await data.json()).data;
   } catch (error) {
