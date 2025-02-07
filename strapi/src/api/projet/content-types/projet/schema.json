@@ -81,7 +81,8 @@
         "projet.projet-ui-ux-design",
         "projet.projet-design-graphique",
         "projet.projet-communication",
-        "projet.projet-audiovisuel"
+        "projet.projet-audiovisuel",
+        "projet.projet-developpement-web"
       ],
       "required": true
     }

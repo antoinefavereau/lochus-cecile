@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_projet_projet_developpement_webs",
+  "info": {
+    "displayName": "Projet Developpement web",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "image_1": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "texte_1": {
+      "type": "text",
+      "required": true
+    },
+    "image_2": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "image_3": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
