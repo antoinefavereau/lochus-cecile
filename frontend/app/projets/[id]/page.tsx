@@ -34,15 +34,27 @@ export default async function Page({
 }) {
   const { id } = await params;
   let project = null;
+  const populateProjetUIUXDesign =
+    "populate[champs_categorie][on][projet.projet-ui-ux-design][populate][images][populate]=*";
+  const populateProjetDesignGraphique =
+    "populate[champs_categorie][on][projet.projet-design-graphique][populate][images_mockup][populate]=*&populate[champs_categorie][on][projet.projet-design-graphique][populate][images_branding][populate]=*";
+  const populateProjetAudiovisuel =
+    "populate[champs_categorie][on][projet.projet-audiovisuel][populate]=*";
+  const populateProjetCommunication =
+    "populate[champs_categorie][on][projet.projet-communication][populate]=*";
+  const populateProjetDeveloppementWeb =
+    "populate[champs_categorie][on][projet.projet-developpement-web][populate]=*";
+
   try {
     const data = await fetch(
       process.env.NEXT_PUBLIC_API_URL +
-        `/api/projets/?filters[titre][$eq]=${id}&populate[0]=*&populate[categorie][populate]=*&populate[image_principale][populate]=*&populate[paragraphe][populate]=*&populate[lien][populate]=*&populate[champs_categorie][populate]=*&populate[champs_categorie][on][projet.projet-ui-ux-design][populate][images][populate]=*&populate[champs_categorie][on][projet.projet-design-graphique][populate][images_mockup][populate]=*&populate[champs_categorie][on][projet.projet-design-graphique][populate][images_branding][populate]=*&populate[champs_categorie][on][projet.projet-audiovisuel][populate]=*&populate[champs_categorie][on][projet.projet-communication][populate]=*`,
+        `/api/projets/?filters[titre][$eq]=${id}&populate[0]=*&populate[categorie][populate]=*&populate[image_principale][populate]=*&populate[paragraphe][populate]=*&populate[lien][populate]=*&populate[champs_categorie][populate]=*&${populateProjetUIUXDesign}&${populateProjetDesignGraphique}&${populateProjetAudiovisuel}&${populateProjetCommunication}&${populateProjetDeveloppementWeb}`,
       {
         cache: "no-store",
       }
     );
     project = (await data.json()).data[0];
+    console.log("project", project);
   } catch (error) {
     console.error("Error fetching projects:", error);
   }
