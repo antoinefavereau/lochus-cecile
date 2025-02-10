@@ -484,6 +484,7 @@ export interface ApiProjetProjet extends Struct.CollectionTypeSchema {
         'projet.projet-design-graphique',
         'projet.projet-communication',
         'projet.projet-audiovisuel',
+        'projet.projet-developpement-web',
       ]
     > &
       Schema.Attribute.Required;

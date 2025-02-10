@@ -348,6 +348,47 @@ export default function ProjectContent({
           height={1080}
         />
       )}
+      {!!project.champs_categorie[0]?.image_1 && (
+        <Image
+          className="rounded-lg w-full max-w-5xl h-auto fade-up"
+          src={
+            process.env.NEXT_PUBLIC_API_URL +
+            project.champs_categorie[0]?.image_1.url
+          }
+          alt={"Image 1"}
+          width={1920}
+          height={1080}
+        />
+      )}
+      {!!project.champs_categorie[0]?.texte_1 && (
+        <p className="self-start max-w-none md:max-w-4xl text-base md:text-3xl px-8 md:px-16 pb-16 fade-up">
+          {project.champs_categorie[0]?.texte_1}
+        </p>
+      )}
+      {!!project.champs_categorie[0]?.image_2 && (
+        <Image
+          className="rounded-lg w-full max-w-5xl h-auto fade-up"
+          src={
+            process.env.NEXT_PUBLIC_API_URL +
+            project.champs_categorie[0]?.image_2.url
+          }
+          alt={"Image 2"}
+          width={1920}
+          height={1080}
+        />
+      )}
+      {!!project.champs_categorie[0]?.image_3 && (
+        <Image
+          className="rounded-lg w-full max-w-5xl h-auto fade-up"
+          src={
+            process.env.NEXT_PUBLIC_API_URL +
+            project.champs_categorie[0]?.image_3.url
+          }
+          alt={"Image 3"}
+          width={1920}
+          height={1080}
+        />
+      )}
       {!!project.lien && (
         <div className="w-full flex justify-center gap-8 px-8">
           <a

@@ -175,6 +175,22 @@ export interface ProjetProjetDesignGraphique extends Struct.ComponentSchema {
   };
 }
 
+export interface ProjetProjetDeveloppementWeb extends Struct.ComponentSchema {
+  collectionName: 'components_projet_projet_developpement_webs';
+  info: {
+    description: '';
+    displayName: 'Projet Developpement web';
+  };
+  attributes: {
+    image_1: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    image_2: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    image_3: Schema.Attribute.Media<'images' | 'files'>;
+    texte_1: Schema.Attribute.Text & Schema.Attribute.Required;
+  };
+}
+
 export interface ProjetProjetUiUxDesign extends Struct.ComponentSchema {
   collectionName: 'components_projet_projet_ui_ux_designs';
   info: {
@@ -211,6 +227,7 @@ declare module '@strapi/strapi' {
       'projet.projet-communication': ProjetProjetCommunication;
       'projet.projet-defaut': ProjetProjetDefaut;
       'projet.projet-design-graphique': ProjetProjetDesignGraphique;
+      'projet.projet-developpement-web': ProjetProjetDeveloppementWeb;
       'projet.projet-ui-ux-design': ProjetProjetUiUxDesign;
       'textes.texte': TextesTexte;
     }
