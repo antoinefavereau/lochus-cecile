@@ -8,9 +8,9 @@ export default [
   {
     name: "strapi::body",
     config: {
-      formLimit: "400mb",
-      jsonLimit: "400mb",
-      textLimit: "400mb",
+      formidable: {
+        maxFileSize: 400 * 1024 * 1024,
+      },
     },
   },
   'strapi::session',
