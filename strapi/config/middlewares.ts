@@ -5,7 +5,14 @@ export default [
   'strapi::cors',
   'strapi::poweredBy',
   'strapi::query',
-  'strapi::body',
+  {
+    name: "strapi::body",
+    config: {
+      formLimit: "400mb",
+      jsonLimit: "400mb",
+      textLimit: "400mb",
+    },
+  },
   'strapi::session',
   'strapi::favicon',
   'strapi::public',
