@@ -8,4 +8,11 @@ export default () => ({
             },
         },
     },
+    body: {
+        config: {
+            formidable: {
+                maxFileSize: 400 * 1024 * 1024,
+            },
+        },
+    },
 });
