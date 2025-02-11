@@ -3,7 +3,7 @@ export default () => ({
         config: {
             providerOptions: {
                 localServer: {
-                    maxFileSize: 400 * 1024 * 1024,
+                    maxFileSize: 1000 * 1024 * 1024,
                 },
             },
         },
