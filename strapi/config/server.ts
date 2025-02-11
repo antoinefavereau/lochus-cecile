@@ -4,4 +4,9 @@ export default ({ env }) => ({
   app: {
     keys: env.array('APP_KEYS'),
   },
+  body: {
+    formidable: {
+      maxFileSize: 400 * 1024 * 1024,
+    },
+  },
 });
