@@ -34,7 +34,7 @@ export default function MoreProjects() {
       try {
         const data = await fetch(
           process.env.NEXT_PUBLIC_API_URL +
-            "/api/projets-en-avant?populate[projets][populate]=*",
+          "/api/projets-en-avant?populate[projets][populate]=*",
           {
             cache: "no-store",
           }
@@ -88,7 +88,7 @@ export default function MoreProjects() {
       <div className="px-8 md:px-16 lg:px-24">
         <h2 className="relative text-xl md:text-2xl lg:text-3xl pb-4">
           <SliceInText animationRef={titleRef}>
-            <span>Plus de projets</span>
+            Plus de projets
           </SliceInText>
           <span
             ref={lineRef}

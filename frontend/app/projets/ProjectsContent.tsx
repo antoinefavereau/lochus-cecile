@@ -64,11 +64,11 @@ export default function ProjectsContent({
         height={1080}
       />
       <div className="relative flex flex-col items-center gap-12 text-center">
-        <SliceInText animationRef={titleRef}>
-          <h1 className="text-6xl sm:text-7xl md:text-8xl font-thin text-primary">
+        <h1 className="text-6xl sm:text-7xl md:text-8xl font-thin text-primary">
+          <SliceInText animationRef={titleRef}>
             Projets
-          </h1>
-        </SliceInText>
+          </SliceInText>
+        </h1>
         <p
           ref={descriptionRef}
           className="max-w-3xl text-base sm:text-lg md:text-xl"
@@ -83,9 +83,8 @@ export default function ProjectsContent({
             <button
               key={category}
               type="button"
-              className={`text-sm lg:text-base px-4 lg:px-6 py-4 ${
-                category === activeCategory ? "text-primary" : "text-white"
-              }`}
+              className={`text-sm lg:text-base px-4 lg:px-6 py-4 ${category === activeCategory ? "text-primary" : "text-white"
+                }`}
               onClick={() => setActiveCategory(category)}
             >
               {category}
