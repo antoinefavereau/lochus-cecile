@@ -123,23 +123,21 @@ export default function Footer({ socials }: Readonly<FooterProps>) {
           ))}
         </div>
         <div className="flex items-baseline gap-4 xs:gap-8 md:gap-16 lg:gap-20">
-          <SliceInText key={`contact`} animationRef={contactRef}>
-            <h2 className="text-4xl xs:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-thin tracking-[0.2rem] xs:tracking-[0.25em]">
+          <h2 className="text-4xl xs:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-thin tracking-[0.2rem] xs:tracking-[0.25em]">
+            <SliceInText key={`contact`} animationRef={contactRef}>
               Contact
-            </h2>
-          </SliceInText>
-          <SliceInText key={`devBy`} animationRef={devByRef}>
-            <p className="text-xs xs:text-sm font-light">
-              Développé par{" "}
-              <a
-                className="underline"
-                href="https://antoinefavereau.fr"
-                target="_blank"
-                rel="noopener"
-              >
-                Antoine Favereau
-              </a>
-            </p>
+            </SliceInText>
+          </h2>
+          <SliceInText key={`devBy`} className="text-xs xs:text-sm font-light" animationRef={devByRef}>
+            Développé par{" "}
+            <a
+              className="underline"
+              href="https://antoinefavereau.fr"
+              target="_blank"
+              rel="noopener"
+            >
+              Antoine Favereau
+            </a>
           </SliceInText>
         </div>
       </div>
