@@ -62,11 +62,11 @@ export default function ProjectContent({
     <>
       <div className="w-full flex flex-col gap-4 md:gap-8 md:px-16">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <SliceInText animationRef={titleRef}>
-            <h1 className="text-4xl md:text-7xl font-extralight">
+          <h1 className="text-4xl md:text-7xl font-extralight">
+            <SliceInText animationRef={titleRef}>
               {project.titre}
-            </h1>
-          </SliceInText>
+            </SliceInText>
+          </h1>
           <p className="md:hidden text-lg text-light pb-8">
             {project.categorie.titre}
           </p>
@@ -175,9 +175,8 @@ export default function ProjectContent({
           {project.paragraphe.titre}
         </h2>
         <div
-          className={`grid md:grid-cols-${
-            project.paragraphe.texte_2 ? 2 : 1
-          } gap-6`}
+          className={`grid md:grid-cols-${project.paragraphe.texte_2 ? 2 : 1
+            } gap-6`}
         >
           {[project.paragraphe.texte_1, project.paragraphe.texte_2].map(
             (content, index) => (
