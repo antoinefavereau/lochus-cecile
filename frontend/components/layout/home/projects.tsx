@@ -109,7 +109,7 @@ export default function Projects() {
       <div ref={containerRef} className="flex flex-col gap-8">
         <div
           ref={contentRef}
-          className="relative flex flex-col items-center gap-32 md:gap-40 px-8 py-[50vh] min-h-screen"
+          className="relative flex flex-col px-8 py-[40vh] min-h-screen"
         >
           {projects.map((project) => (
             <div key={project.titre} className="absolute inset-0">
@@ -129,7 +129,7 @@ export default function Projects() {
             <Link
               href={`/projets/${project.titre}`}
               key={project.titre}
-              className={`relative text-5xl xs:text-6xl md:text-7xl lg:text-8xl font-bold text-center ${
+              className={`relative py-16 md:py-20 text-5xl xs:text-6xl md:text-7xl lg:text-8xl font-bold text-center ${
                 project.titre !== selectedProject?.titre && "opacity-50"
               }`}
               ref={(el) => {
