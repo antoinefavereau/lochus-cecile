@@ -48,7 +48,7 @@ export default function Footer({ socials }: Readonly<FooterProps>) {
         {
           y: "100%",
         },
-        index === 0 ? undefined : "-=0.7"
+        index === 0 ? undefined : "-=0.7",
       );
     });
 
@@ -57,13 +57,13 @@ export default function Footer({ socials }: Readonly<FooterProps>) {
       {
         y: "100%",
       },
-      "-=0.7"
+      "-=0.7",
     ).from(
       devByRef.current,
       {
         y: "100%",
       },
-      "-=0.7"
+      "-=0.7",
     );
   });
 
@@ -123,12 +123,16 @@ export default function Footer({ socials }: Readonly<FooterProps>) {
           ))}
         </div>
         <div className="flex items-baseline gap-4 xs:gap-8 md:gap-16 lg:gap-20">
-          <h2 className="text-4xl xs:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-thin tracking-[0.2rem] xs:tracking-[0.25em]">
+          <h2 className="text-4xl xs:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-thin tracking-[0.2rem] xs:tracking-[0.25em] max-sm:hidden">
             <SliceInText key={`contact`} animationRef={contactRef}>
               Contact
             </SliceInText>
           </h2>
-          <SliceInText key={`devBy`} className="text-xs xs:text-sm font-light" animationRef={devByRef}>
+          <SliceInText
+            key={`devBy`}
+            className="text-xs xs:text-sm font-light"
+            animationRef={devByRef}
+          >
             Développé par{" "}
             <a
               className="underline"
@@ -138,6 +142,16 @@ export default function Footer({ socials }: Readonly<FooterProps>) {
             >
               Antoine Favereau
             </a>
+            , désormais au sein de l'agence{" "}
+            <a
+              className="underline"
+              href="https://selenium-studio.com"
+              target="_blank"
+              rel="noopener"
+            >
+              Selenium Studio
+            </a>
+            .
           </SliceInText>
         </div>
       </div>
