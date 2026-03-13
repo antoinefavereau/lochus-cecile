@@ -12,6 +12,10 @@ export const metadata: Metadata = {
     template: "%s | Cécile Lochus",
   },
   description: "Portfolio de Cécile Lochus",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 async function getSocials() {
@@ -19,7 +23,7 @@ async function getSocials() {
     process.env.NEXT_PUBLIC_API_URL + "/api/reseaux-sociaux?populate=*",
     {
       cache: "no-store",
-    }
+    },
   );
   const socials = await res.json();
 
